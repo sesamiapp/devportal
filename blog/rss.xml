@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[Welcome]]></title>
-            <link>https://sesamiapp.github.io/devportal/devportal/blog/welcome</link>
+            <link>https://sesamiapp.github.io/devportal/blog/welcome</link>
             <guid>welcome</guid>
             <pubDate>Fri, 17 Apr 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[We're working hard to make dev experience as great as Sesami app itself.]]></description>

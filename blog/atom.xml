@@ -10,7 +10,7 @@
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
         <id>welcome</id>
-        <link href="https://sesamiapp.github.io/devportal/devportal/blog/welcome"/>
+        <link href="https://sesamiapp.github.io/devportal/blog/welcome"/>
         <updated>2020-04-17T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[We're working hard to make dev experience as great as Sesami app itself.]]></summary>
     </entry>
