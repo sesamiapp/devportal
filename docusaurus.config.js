@@ -3,7 +3,7 @@ module.exports = {
   title: 'Sesami developers',
   tagline: 'Built for developers, by developers',
   url: 'https://sesamiapp.github.io/devportal/',
-  baseUrl: '/devportal/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
