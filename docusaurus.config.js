@@ -69,7 +69,7 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/sesamiapp/docs',
+              href: 'https://github.com/sesamiapp/devportal',
             }
           ],
         },
