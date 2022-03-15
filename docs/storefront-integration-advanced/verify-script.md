@@ -28,7 +28,7 @@ As a response you will get an object with two arrays: `allowed`, `rejected`.
 
 
 ## Example
-This is code demonstrates how to use Sesami verify-cart. 
+This code demonstrates how to use Sesami verify-cart. 
 
 
 ```js
@@ -72,11 +72,5 @@ async function  fetchCart() {
 
 }
       
-              
-(async() => {
-  
-  await fetchCart()  
-  
-})()
-
+fetchCart()
 ```
