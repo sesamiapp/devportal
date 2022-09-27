@@ -2,9 +2,9 @@
 module.exports = {
   title: 'Sesami developers',
   tagline: 'Built for developers, by developers',
-  url: 'https://sesami.dev/',
+  url: 'https://sesami.dev',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'sesamiapp',
