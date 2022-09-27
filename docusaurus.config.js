@@ -9,6 +9,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'sesamiapp',
   projectName: 'devportal',
+  trailingSlash: true,
   themeConfig: {
     navbar: {
       title: 'Sesami developers',
