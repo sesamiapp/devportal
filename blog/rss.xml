@@ -2,14 +2,14 @@
 <rss version="2.0">
     <channel>
         <title>Sesami developers Blog</title>
-        <link>https://sesamiapp.github.io/devportal/blog</link>
+        <link>https://sesami.dev/blog</link>
         <description>Sesami developers Blog</description>
         <lastBuildDate>Fri, 17 Apr 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[Welcome]]></title>
-            <link>https://sesamiapp.github.io/devportal/blog/welcome</link>
+            <link>https://sesami.dev/blog/welcome</link>
             <guid>welcome</guid>
             <pubDate>Fri, 17 Apr 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[We're working hard to make dev experience as great as Sesami app itself.]]></description>
