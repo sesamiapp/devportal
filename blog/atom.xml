@@ -13,5 +13,14 @@
         <link href="https://sesami.dev/blog/welcome"/>
         <updated>2020-04-17T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[We're working hard to make dev experience as great as Sesami app itself.]]></summary>
+        <content type="html"><![CDATA[<p>We're working hard to make dev experience as great as Sesami app itself.
+Sesami is not just another app, We are <strong>"The Booking Platform For Commerce"</strong></p>]]></content>
+        <author>
+            <name>Ramtin</name>
+            <uri>https://github.com/rmtngh</uri>
+        </author>
+        <category label="hello" term="hello"/>
+        <category label="sesami" term="sesami"/>
+        <category label="tech" term="tech"/>
     </entry>
 </feed>
