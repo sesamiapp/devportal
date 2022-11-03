@@ -10,16 +10,18 @@ You can build your own highly customized booking experience using Sesami SDK.
 The Sesami SDK for JavaScript supports the latest two versions of the most popular browsers. Internet explorer and older browsers are not supported.
 :::
 
-## Enable the SDK
+## Include SDK
 
-The Sesami SDK is currently in closed beta release. If you're interested in trying it out, you can reach out to our customer success team via our [help desk](https://help.sesami.co/).
+Include Sesami SDK on your theme.
 
-After this feature is activated on your store, you can enable it from:
+1. From your Shopify admin, go to **Online Store > Themes**.
+1. Click **Actions > Edit code**.
+1. Open **Layout / theme.liquid**.
+1. Insert the following code snippet at the bottom of the file.
 
-**Sesami app > Settings > Storefront settings > Use storefront SDK**
-
-
-*Enabling the Sesami SDK means that you need to implement storefront integration yourself and the Sesami button will not appear on product pages automatically.*
+```markup
+ <script async src="https://cdn.sesami.co/sdk.js"></script>
+```
 
 ## Quick start
 
@@ -108,6 +110,14 @@ Determines if this day is in the past.
 `Boolean`
 
 Determines if this day is today.
+
+#### onLoad(callback)
+
+Callback function receives cell availabilities for the currently selected range, [autoLoad](#autoload) must be enabled. This method will only trigger a network request when the data is not already available.
+
+#### onError(callback)
+
+Callback function receives any errors when getting cell availabilities for the currently selected range.
 
 ### SesamiSlotObject
 
@@ -265,6 +275,14 @@ Arguments:
 Loads availabilities for the currently selected range. Only needed if [autoLoad](#autoload) is disabled. This method will only trigger a network request if the data is not already available.
 
 Arguments: None
+
+### reserve(slot)
+
+Reserves a slot for the period of time defined in Sesami app settings. Returns a promise that resolves to a reservation status.
+
+Arguments: 
+- slot: SesamiSlotObject
+
 
 ## Helpers
 
