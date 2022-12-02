@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Order confirmation emails
+# Shopify Order confirmation emails
 
 If you have included a form on your Shopify product page and want it to also be included on your Shopify order confirmation, just follow the steps below.
 

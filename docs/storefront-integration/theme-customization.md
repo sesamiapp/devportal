@@ -7,9 +7,15 @@ sidebar_position: 3
 Sesami turns normal Shopify products into services that can be booked and paid for. The booking flow can be different from buying a physical product, therefore, You might want to customize your theme to provide a better user experience for your customers when booking with Sesami.
 
 
+:::info
+Since the introduction of the Shopify Online Store 2.0, most of the theme customizations can be done using the theme customizer: Refer to [Setting up Sesami for the Shopify Online Store 2.0](https://help.sesami.co/hc/en-us/articles/4421864289687-Setting-up-Sesami-for-the-Shopify-Online-Store-2-0)
+
+The rest of this article applies to the lagacy Shopify themes or when using non-app-embed integration on the OS 2.0 themes.
+:::
+
 :::note
 
-Each theme and business is different, you can apply any of these techniques that you feel will provide value for your business and works with your current theme.
+For the lagacy Shopify themes,  Each theme and business is different, you can apply any of these techniques that you feel will provide value for your business and works with your current theme.
 
 :::
 
@@ -18,7 +24,7 @@ Each theme and business is different, you can apply any of these techniques that
 ### Product tagging
 Tagging products will allow you to apply these customizations only on products that are used as a service.
 
-We recommend adding `sesami-service` as a tag on your Sesami services.
+We recommend adding `sesami-service` as a tag on your Sesami services. Sesami is auto-tagging all Shopify products you add to Sesami as a service. 
 
 :::info
 The rest of this article assumes that you are using `sesami-service` on the products that are added to Sesami as a service.
