@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Sesami Flows
+# Overview
 Sesami is a platform that allows merchants to automate workflows using Sesami Flows.
 
 :::note 
@@ -11,7 +11,7 @@ Sesami Flows are available on all our paid plans.
 
 :::
 
-Using Sesami Flows you can trigger events for any touchpoints throughout the customers' booking journey.
+Using Sesami Flows, you can trigger events for any touchpoints throughout the customers' booking journey.
 
  
 ## Flow types
@@ -38,8 +38,8 @@ Useful for early or delayed event types, such as reminders or thank-you messages
 Each Flow has a template which has a different format based on the Flow types:
 
 ### HTML or Text
-For Email type Flows.
+For email-type Flows.
 
 ### JSON
-For webhook type Flows.
+For webhook-type Flows.
 

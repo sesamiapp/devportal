@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Storefront SDK (Beta)
+# Storefront SDK
 
 You can build your own highly customized booking experience using Sesami SDK.
 
@@ -46,7 +46,7 @@ Sesami will not block your other resources from being loaded and will not cause 
 
 ```
 
-The code above will create a Sesami instance, You use it to render a fully customized calendar and get availabilities for each day.
+The code above will create a Sesami instance; You use it to render a fully customized calendar and get availabilities for each day.
 
 ## Data
 Each instance of the Sesami SDK will contain a `data` object with the following structure:
@@ -113,11 +113,11 @@ Determines if this day is today.
 
 #### onLoad(callback)
 
-Callback function receives cell availabilities for the currently selected range, [autoLoad](#autoload) must be enabled. This method will only trigger a network request when the data is not already available.
+The callback function receives cell availabilities for the currently selected range, [autoLoad](#autoload) must be enabled. This method will only trigger a network request when the data is not already available.
 
 #### onError(callback)
 
-Callback function receives any errors when getting cell availabilities for the currently selected range.
+The callback function receives any errors when getting cell availabilities for the currently selected range.
 
 ### SesamiSlotObject
 
@@ -142,17 +142,17 @@ Slot duration in minutes
 #### remainingSlots
 `Number`
 
-Number of remaining slots in the currently selected time. Always 1 except for sevices that accept group appointments.
+The number of remaining slots in the currently selected time. Always 1 except for services that accept group appointments.
 
 #### startTime
 `String`
 
-String representing starting date and time for the current slot in the selected timezone.
+A string representing starting date and time for the current slot in the selected timezone.
 
 #### status
 `String`
 
-Currently the only possible value is "available" for storefront integrations.
+Currently, the only possible value is "available" for storefront integrations.
 
 
 ## Options
@@ -177,7 +177,7 @@ Valid Shopify variant ID.
 ### timezone
 `String`
 Timezone in which you'd like availabilities to be displayed.
-IANA timezone values. example: **America/New_York**
+IANA timezone values. Example: **America/New_York**
 Defaults to store timezone.
 
 ### teamMember
@@ -188,8 +188,8 @@ Defaults to null, which will result in displaying availabilities for all team me
 
 ### quantity
 `Number`
-Quantity - Only use for a service with group appointments.
-defaults to **1**.
+Quantity - Only used for a service with group appointments.
+Defaults to **1**.
 
 ### weekStartDay
 `Number`
@@ -216,7 +216,7 @@ defaults to **false**
 `Date`
 Currently selected date.
 
-defaults to **Current time: `new Date()`**
+Defaults to **Current time: `new Date()`**
 
 
 ## Methods
@@ -285,7 +285,7 @@ Arguments:
 
 ### getConfig
 
-Retrun the configurations of a service, including:
+Returns the configurations of service, including:
 - Service details
 - Assigned team members
 - Shop details
@@ -411,7 +411,7 @@ Example:
 
 ### formatDate(date, options)
 
-Returnes formatted date in user's preferred locale.
+Returns formatted date in user's preferred locale.
 This is a wrapper around [`Intl.DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
 
 Example:

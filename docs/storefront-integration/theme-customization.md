@@ -4,18 +4,18 @@ sidebar_position: 3
 
 # Theme customization
 
-Sesami turns normal Shopify products into services that can be booked and paid for. The booking flow can be different from buying a physical product, therefore, You might want to customize your theme to provide a better user experience for your customers when booking with Sesami.
+Sesami turns normal Shopify products into services that can be booked and paid for. The booking flow can be different from buying a physical product. Therefore, You might want to customize your theme to provide a better user experience for your customers when booking with Sesami.
 
 
 :::info
 Since the introduction of the Shopify Online Store 2.0, most of the theme customizations can be done using the theme customizer: Refer to [Setting up Sesami for the Shopify Online Store 2.0](https://help.sesami.co/hc/en-us/articles/4421864289687-Setting-up-Sesami-for-the-Shopify-Online-Store-2-0)
 
-The rest of this article applies to the lagacy Shopify themes or when using non-app-embed integration on the OS 2.0 themes.
+The rest of this article applies to the legacy Shopify themes or when using non-app-embed integration on the OS 2.0 themes.
 :::
 
 :::note
 
-For the lagacy Shopify themes,  Each theme and business is different, you can apply any of these techniques that you feel will provide value for your business and works with your current theme.
+For the legacy Shopify themes,  Each theme and business is different; you can apply any of these techniques that you feel will provide value for your business and works with your current theme.
 
 :::
 
@@ -24,10 +24,10 @@ For the lagacy Shopify themes,  Each theme and business is different, you can ap
 ### Product tagging
 Tagging products will allow you to apply these customizations only on products that are used as a service.
 
-We recommend adding `sesami-service` as a tag on your Sesami services. Sesami is auto-tagging all Shopify products you add to Sesami as a service. 
+Sesami is auto-tagging all Shopify products you add to Sesami as a service with the tag `sesami-service`. 
 
 :::info
-The rest of this article assumes that you are using `sesami-service` on the products that are added to Sesami as a service.
+The rest of this article assumes that the tag `sesami-service` was added to the product.
 :::
 
 This way, all the changes will be applied to your future services only by adding a tag and you can also benefit from Shopify's features such as creating collections filtered by this tag.
@@ -44,10 +44,10 @@ Knowledge of HTML, CSS, JavaScript, and Liquid is required. Consider hiring a de
 
 1. Click **Actions > Edit code**.
 
-From here you can explore you current theme and it's source files.
+From here, you can explore your current theme and its source files.
 
 ## Disabling Add to cart button
-Sesami is using script tags ([Learn more](/docs/intro#storefront)) to load **Sesami button** on your store. Because of the nature of script tags, it can take a while until Sesami is fully loaded on your store. You can disable **Add to cart button** and enable it back once Sesami loaded:
+Sesami uses script tags ([Learn more](/docs/intro#storefront)) to load the **Sesami button** on your store. Because of the nature of script tags, it can take a while until Sesami is fully loaded on your store. You can disable **Add to cart button** and enable it back once Sesami loaded:
 
 - You'll need to add this script to the product page only if the current product is a **Sesami service**. 
 
@@ -82,7 +82,7 @@ Sesami is using script tags ([Learn more](/docs/intro#storefront)) to load **Ses
 
 Most themes have a quantity selector on products. Unless you have [Group appointments](https://help.sesami.co/hc/en-us/articles/360052498913-Group-Appointments) enabled on Sesami, you will probably want to prevent your customers from selecting more than one of the same time slot, otherwise, it will result in an unassigned appointment.
 
-Quantity field might be used in several different places depending on your theme. You can look for files that contain **product form**, **cart** and **cart drawer** and add this condition around the code that renders the quantity selector:
+The quantity field might be used in several different places depending on your theme. You can look for files that contain **product form**, **cart** and **cart drawer** and add this condition around the code that renders the quantity selector:
 
 ```handlebars
 

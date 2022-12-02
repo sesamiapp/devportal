@@ -9,7 +9,7 @@ Sesami can be integrated with any page on the web.
 You can add the Sesami button to any page, Anywhere on your store.
 
 ### Static pages
-First you have to create a static page and place this snippet on the page code:
+First, you have to create a static page and place this snippet on the page code:
 
 
 ```markup
@@ -31,7 +31,7 @@ Replace **`PRODUCT-ID`** and **`VARIANT-ID`**
 
 ### Home page
 
-Using a similar approach, you can add Sesami button to home page of your store, Some themes let you pick a **Featured product** to be displayed on the home page, if you want to display a Sesami service as a **Featured product**, you can find the theme file that renders featured product section and add this code to it:
+Using a similar approach, you can add the Sesami button to the home page of your store, Some themes let you pick a **Featured product** to be displayed on the home page, and if you want to display a Sesami service as a **Featured product**, you can find the theme file that renders featured product section and add this code to it:
 
 ```markup
 {% if product.tags contains "sesami-service" %} 
@@ -43,14 +43,14 @@ Using a similar approach, you can add Sesami button to home page of your store, 
 ```
 *Not sure what is a product tag? check [Product tagging](/docs/storefront-integration/theme-customization#product-tagging)*
 
-## In an external website
+## On an external website
 
 Sesami does have the needed components to be integrated with any external website using the Shopify storefront APIs.
 
-- Following Sesami wrapper element needs to be present on the page with an additional `shop-id`attribute:
+- The following Sesami wrapper element needs to be present on the page with an additional `shop-id`attribute:
 
 :::info
- Please check [Anatomy of Sesami button](/docs/storefront-integration/anatomy-of-sesami-button) if you are not familiar with the different options you can pass to Sesami button.
+ Please check [Anatomy of Sesami button](/docs/storefront-integration/anatomy-of-sesami-button) if you are not familiar with the different options you can pass to the Sesami button.
 :::
 
 ```markup
@@ -68,8 +68,8 @@ Sesami does have the needed components to be integrated with any external websit
 <script async src="https://cdn.sesami.co/shopify.js"></script>
 ```
 
-After these two steps, `sesami:loaded` event will be fired on window whenever Sesami button is loaded on the page, after Sesami button is loaded, change event can be listened to on the input fields that are created inside the wrapper element.
+After these two steps, `sesami:loaded` event will be fired on the window whenever the Sesami button is loaded on the page, after the Sesami button is loaded, the change event can be listened to on the input fields that are created inside the wrapper element.
 
-Depending on business logic, an order can be created with these properties right after change event, or after clicking an “Add to cart” button similar to normal Shopify flow.
+Depending on business logic, an order can be created with these properties right after the change event, or after clicking an “Add to cart” button similar to the normal Shopify flow.
 
 *Read more about [Sesami events](/docs/storefront-integration/anatomy-of-sesami-button#events)*
