@@ -283,7 +283,7 @@ Reserves a slot for the period of time defined in Sesami app settings. Returns a
 Arguments: 
 - slot: SesamiSlotObject
 
-### getConfig
+### getConfig()
 
 Returns the configurations of service, including:
 - Service details
