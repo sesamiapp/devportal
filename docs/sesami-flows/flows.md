@@ -43,3 +43,25 @@ For email-type Flows.
 ### JSON
 For webhook-type Flows.
 
+Example:
+```json
+  {
+    "customer_name": "{{CustomerName}}",
+    "phone_number": "{{CustomerPhone}}",
+    "properties": { {{#each LineItemProperties}}
+        "{{name}}": "{{value}}"{{/each}}
+    }
+  }
+```
+Will produce:
+
+```json
+    {
+    "customer_name": "John Smith",
+    "phone_number": "+1000000000",
+    "properties": { 
+        "location": "Los Angeles"
+        "preferred_color": "Green"
+    }
+    }
+```
