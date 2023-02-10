@@ -65,3 +65,25 @@ Will produce:
     }
     }
 ```
+### Date formats
+For those who need more flexibility with date formats, they can use the below helper function to send any date object in their desired format / timezone:
+
+Syntax:
+```json
+{{formatDate <ANY_DATE_OBJECT> <DATE_FORMAT> <OPTIONAL:TIMEZONE>}}
+```
+
+Date objects:
+- DateTime
+- DateTimeInUTC
+- DateTimeInStoreTimezone
+- DateTimeInCustomerTimezone
+
+Examples:
+```json
+{{formatDate DateTimeInUTC "YYYY Mo DD HH:mm:ss" "Europe/Berlin"}} <-- Appointment time in Berlin timezone formatted like: 2022 Dec 12 18:30:00
+
+{{formatDate AppointmentCreatedAt "YYYY/MM/DD HH:mm:ss"}} <-- Appointment creation time formatted like: 2022/12/21 18:30:00
+
+{{formatDate DateTimeInUTC "YYYY Mo DD HH:mm:ss" CustomerTimezone}} <-- Appointment time in customer timezone formatted like: 2022 Dec 12 18:30:00
+```
