@@ -11,7 +11,7 @@
         <item>
             <title><![CDATA[Welcome]]></title>
             <link>https://sesami.dev/blog/welcome</link>
-            <guid>welcome</guid>
+            <guid>https://sesami.dev/blog/welcome</guid>
             <pubDate>Fri, 17 Apr 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[We're working hard to make dev experience as great as Sesami app itself.]]></description>
             <content:encoded><![CDATA[<p>We're working hard to make dev experience as great as Sesami app itself.
