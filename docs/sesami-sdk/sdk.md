@@ -304,13 +304,39 @@ Reserves a slot for the period of time defined in Sesami app settings. Returns a
 Arguments: 
 - slot: SesamiSlotObject
 
-### book(slot, customer)
+### book(slot, customer, options)
 
 Instant Book a slot for a customer. Returns a promise that resolves to a booking status.
 
 Arguments: 
 - slot: SesamiSlotObject
 - customer: SesamiCustomerObject
+- options: Object
+
+Example:
+```js
+let customer=
+  {
+    email: "john@smith.com",
+    firstName: "John",
+    lastName: "Smith",
+    phone: "+12223333333"
+  }
+ 
+  let options={};
+  options.properties=[        
+            {name:"my_custom_property_1",value:"YES"},    
+            {name:"my_custom_property_2",value:"100"}                     
+  ];
+
+  sesami.book(slot,customer,options).then((value) => {
+    console.log("Booked");    
+  })
+  .catch((e) => {
+    console.error(e);    
+  })
+
+```
 
 ### getConfig()
 
