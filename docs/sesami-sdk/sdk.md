@@ -176,6 +176,35 @@ example:
 
 */
 ```
+### SesamiOptionsObject
+An object that contains form data as question and answer, key and value. This respresens line item properties correspondent to the eCommerce order.
+```js
+/*
+{
+  properties: [{
+    name: String
+    value: String
+  }]
+}
+
+example:
+
+{
+  properties:[
+    {
+      name: "How old are you?"
+      value: "18"
+    }
+    {
+      name: "Marital Status"
+      value: "Single"
+    }
+  ]
+}
+
+*/
+```
+
 ## Options
 
 You can pass several options to SesamiSDK, here are all possible options:
@@ -311,30 +340,35 @@ Instant Book a slot for a customer. Returns a promise that resolves to a booking
 Arguments: 
 - slot: SesamiSlotObject
 - customer: SesamiCustomerObject
-- options: Object
+- options: SesamiOptionsObject
 
 Example:
 ```js
-let customer=
-  {
-    email: "john@smith.com",
-    firstName: "John",
-    lastName: "Smith",
-    phone: "+12223333333"
-  }
+let customer = {
+  email: "john@smith.com",
+  firstName: "John",
+  lastName: "Smith",
+  phone: "+12223333333"
+}
  
-  let options={};
-  options.properties=[        
-            {name:"my_custom_property_1",value:"YES"},    
-            {name:"my_custom_property_2",value:"100"}                     
-  ];
+let options = {};
+options.properties = [
+  {
+    name: "my_custom_property_1", 
+    value:"YES"
+  },    
+  {
+    name: "my_custom_property_2",
+    value: "100"
+  }                     
+];
 
-  sesami.book(slot,customer,options).then((value) => {
-    console.log("Booked");    
-  })
-  .catch((e) => {
-    console.error(e);    
-  })
+sesami.book(slot,customer,options).then((value) => {
+  console.log("Booked");    
+})
+.catch((e) => {
+  console.error(e);    
+})
 
 ```
 
