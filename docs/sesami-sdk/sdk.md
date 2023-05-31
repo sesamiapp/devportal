@@ -525,5 +525,9 @@ Arguments:
 - slot: [SesamiSlotObject](#sesamislotobject) returned from getAvailabilities method.
 
 
+## FAQ 
 
+#### In case the date/time is already booked in Sesami, will it overwrite the existing appointment in Sesami or will the new appointment fail to book? 
+
+Booking will fail and one of those  [IMPORTANT] emails will be sent to the merchant informing them that we have received an order that can be assigned to any available team member.
 
