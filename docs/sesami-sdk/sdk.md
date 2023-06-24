@@ -121,6 +121,10 @@ The callback function receives any errors when getting cell availabilities for t
 
 ### SesamiSlotObject
 
+:::info
+You don't need to build this object yourself, as it is returned by [getAvailabilities](#getavailabilities) function.
+:::
+
 ```js
 /*
 example:
@@ -148,6 +152,7 @@ The number of remaining slots in the currently selected time. Always 1 except fo
 `String`
 
 A string representing starting date and time for the current slot in the selected timezone.
+Date and time format must match `YYYY-MM-DD HH:mm`
 
 #### status
 `String`
