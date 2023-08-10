@@ -163,3 +163,16 @@ these method would return an object which would have an attribute called `token`
      }
    ]
    ```
+3. user is not activated. the status code of this error would be **401**
+   ```json
+   [
+     {
+       "constraints": [
+         {
+           "name": "active_user"
+         }
+       ],
+       "property": "ROOT"
+     }
+   ]
+   ```

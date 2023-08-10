@@ -45,20 +45,7 @@ these methods will return an object like this
 
 ### Possible Errors
 
-1. when email is not valid. the status code of this error would be **400**
-   ```json
-   [
-     {
-       "property": "email",
-       "constraints": [
-         {
-           "name": "is_email"
-         }
-       ]
-     }
-   ]
-   ```
-2. user with specified email is not found. the status code of this error would be **404**
+1. user with specified email is not found. the status code of this error would be **404**
    ```json
    [
      {
@@ -71,7 +58,7 @@ these methods will return an object like this
      }
    ]
    ```
-3. user is not activated. the status code of this error would be **401**
+2. user is not activated. the status code of this error would be **401**
    ```json
    [
      {

@@ -94,6 +94,12 @@ curl -X 'GET' \
 
 If everything goes well, the return object of these methods would have an attribute called `token`, which is the access token.
 
+```json
+{
+  "token": "token"
+}
+```
+
 ### Possible Errors
 
 1. the code is dead. the status code of this error is **400**
