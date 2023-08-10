@@ -33,7 +33,7 @@ these methods will return an object like this
 
 ```json
 {
-    strategies: LoginStrategy[]
+    "strategies": LoginStrategy[]
 }
 ```
 

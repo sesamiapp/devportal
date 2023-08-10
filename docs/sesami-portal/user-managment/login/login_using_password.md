@@ -6,6 +6,10 @@ sidebar_position: 4
 
 Login using password is pretty straight forward. user will send his/her email and password and receives a token in response
 
+### Requirement
+
+User should have set password as their login strategy. For more information check Password Strategy document.
+
 #### GraphQL Example
 
 ```graphql

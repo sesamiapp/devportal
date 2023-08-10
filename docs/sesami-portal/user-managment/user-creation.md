@@ -33,12 +33,12 @@ mutation createUser {
 ```curl
 curl --request POST \
   --url https://api.sesami.dev/users \
-  --header 'Authorization: Bearer ShopManageToken' \
+  --header 'Authorization: Bearer shopManageToken' \
   --header 'Content-Type: application/json' \
   --data '{
-	"email":"google@gmail.com",
-	"firstName":"just",
-	"lastName":"google"
+  "email":"email@email.com",
+	"firstName":"name",
+	"lastName":"name"
 }'
 ```
 

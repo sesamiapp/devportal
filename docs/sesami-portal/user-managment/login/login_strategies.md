@@ -22,10 +22,10 @@ query getAvailableStrategies {
 
 #### REST Example
 
-````curl
+```curl
 curl --request GET \
-  --url https://api.sesami.dev/loginstrategies```
-````
+  --url https://api.sesami.dev/loginstrategies
+```
 
 ### Expected Output
 
@@ -33,7 +33,7 @@ these methods will return an object like this
 
 ```json
 {
-    strategies: LoginStrategy[]
+    "strategies": LoginStrategy[]
 }
 ```
 

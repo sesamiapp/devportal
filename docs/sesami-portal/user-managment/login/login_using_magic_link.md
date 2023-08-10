@@ -11,16 +11,21 @@ The first Step of login using magic link is to send a request to send an email t
 #### GraphQL Example
 
 ```graphql
-mutation activateUser {
-  activateUser(request: { email: "email@email.com", code: "someCode" })
+mutation sendMagicLink {
+  sendMagicLink(request: { email: "dayannilisani@gmail.com" })
 }
 ```
 
 #### REST Example
 
 ```curl
-curl --request GET \
-  --url 'https://api.sesami.dev/users/activate?email=email%40email.com&code=someCode'
+curl -X 'POST' \
+  'http://localhost:9000/users/magicLink' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "email": "email@email.com"
+}'
 ```
 
 ### Expected Output
@@ -40,7 +45,7 @@ https://portal.sesami.dev/magic-link?email=email@email.com&code=someCode
 but if the email's link faced any error, it will redirect to a url like this
 
 ```url
-TBD
+https://portal.sesami.dev/message?payload=errorPayload
 ```
 
 ### Possible Errors
@@ -106,8 +111,8 @@ the final step of this login method is to send the email and code back to server
 #### GraphQL Example
 
 ```graphql
-query loginByMagicLink {
-  loginByMagicLink(request: { email: "email@email.com", code: "someCode" }) {
+query loginWithOTP {
+  loginWithOTP(request: { email: "email@email.com", code: "someCode" }) {
     token
   }
 }
@@ -117,12 +122,18 @@ query loginByMagicLink {
 
 ```curl
 curl --request GET \
-  --url 'http://api.sesami.dev/users/login/magiclink?email=email%40email.com&code=someCode'
+  --url 'http://api.sesami.dev/users/login/otp?email=email%40email.com&code=someCode'
 ```
 
 ### Expected Output
 
 these method would return an object which would have an attribute called `token` inside it.
+
+```json
+{
+  "token": "token"
+}
+```
 
 ### Possible Errors
 

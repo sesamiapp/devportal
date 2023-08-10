@@ -4,13 +4,13 @@ sidebar_position: 2
 
 # User Activation
 
-After the user has been created based on the request of a shop admin we would send an invitation link to the newly created user's email. In this email there is a link to the frontend application. here is an example of this link
+After the user has been created based on the request of a shop admin we would send an invitation link to the newly created user's email. In this email there is a link like this one 
 
 ```url
-https://portal.sesami.dev/users/activate?code=someCode&email=email@email.com
+https://api.sesami.dev/users/activate?code=someCode&email=email@email.com
 ```
 
-the link that is sent to the user's mail is the REST API for activating user. As you can see there is a code inside this URL.Activating user's account require to send this code alongside the user's email back to the application using either GraphQL method or the REST method.
+Users can call this action directly using these two methods
 
 #### GraphQL Example
 
