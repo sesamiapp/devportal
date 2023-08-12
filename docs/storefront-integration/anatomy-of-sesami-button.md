@@ -148,6 +148,22 @@ This is an example that shows how you can listen for this event and trigger an a
 </script>
 ```
 
+### sesami:booking:success
+Unlike the classic experience where booking is only completed when the order is placed,
+when instant booking is enabled, the entire booking flow happens within Sesami.
+This event is triggered when a slot is successfully booked via Instant booking.
+
+```html title="Example" {3}
+<script>
+(function(){
+    window.addEventListener('sesami:booking:success', function(){
+      /// Redirect to "Thank you" page
+    })
+})()
+</script>
+```
+
+
 ### change
 
 A regular `change` event will be fired on respective hidden inputs displayed on [Rendered result](#rendered-result) section whenever a user selects a new time slot or changes the selected team member or timezone.
