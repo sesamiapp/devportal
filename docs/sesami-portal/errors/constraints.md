@@ -7,6 +7,7 @@ sidebar_position: 2
 here is a list of all constraints which request might fail to satisfy.
 
 ```list
+   'valid_permissions'
    'not_found'
    'is_unique'
    'valid_interval'
