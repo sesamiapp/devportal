@@ -20,7 +20,7 @@ mutation sendMagicLink {
 
 ```curl
 curl -X 'POST' \
-  'http://localhost:9000/users/magicLink' \
+  'http://localhost:9000/users/login/magicLink' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
