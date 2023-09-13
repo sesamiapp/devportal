@@ -94,19 +94,6 @@ these method doesn't return anything.
      }
    ]
    ```
-5. user is not activated. the status code of this error would be **401**
-   ```json
-   [
-     {
-       "constraints": [
-         {
-           "name": "active_user"
-         }
-       ],
-       "property": "ROOT"
-     }
-   ]
-   ```
 
 ## Complete Forgot Password
 
