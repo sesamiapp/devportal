@@ -25,5 +25,5 @@ https://portal.sesami.dev/profile?message=googleSynced
 if not, it will be redirected to
 
 ```url
-https://portal.sesami.dev/message?payload=errorMessagepayload
+https://portal.sesami.dev/message?action=syncGoogle&payload=errorMessagepayload
 ```

@@ -39,13 +39,13 @@ https://api.sesami.dev/users/validate/magicLink?email=email@eamil.com&code=someC
 This link will validate the email and the code and if everything was ok then It will be redirected to a url like this
 
 ```url
-https://portal.sesami.dev/magic-link?email=email@email.com&code=someCode
+https://portal.sesami.dev/login?email=email@email.com&code=someCode
 ```
 
 but if the email's link faced any error, it will redirect to a url like this
 
 ```url
-https://portal.sesami.dev/message?payload=errorPayload
+https://portal.sesami.dev/action=loginWithMagicLink&message?payload=errorPayload
 ```
 
 ### Possible Errors

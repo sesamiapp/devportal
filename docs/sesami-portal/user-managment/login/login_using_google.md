@@ -19,13 +19,13 @@ https://api.sesami.dev/users/login/google
 redirecting to this URL will start the flow of the Login with google. a page will be shown to the user too select their google account. if everything goes well this page would be redirected to this URL
 
 ```url
-https://portal.sesami.dev?code=someCode&email=email@email.com
+https://portal.sesami.dev/login?code=someCode&email=email@email.com
 ```
 
 if something goes wrong this page would be redirected to this URL
 
 ```url
-https://portal.sesami.dev/message?payload=errorPaylaod
+https://portal.sesami.dev/message?action=loginWithGoogle&payload=errorPaylaod
 ```
 
 ### Expected Output
@@ -67,7 +67,7 @@ As we've discussed this api result is in the form of redirection.
 As we've said before, in the pervious step, if everything goes well, we will be redirected to this url.
 
 ```url
-https://portal.sesami.dev/login/google?code=someCode&email=email@email.com
+https://portal.sesami.dev/login?code=someCode&email=email@email.com
 ```
 
 As you can see there is a code and email inside this url. using this code and email and sending this back to the backend application will give user a access token.
