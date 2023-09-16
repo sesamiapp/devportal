@@ -32,7 +32,7 @@ curl --request GET \
 REST method would be redirected to this url of the front end.
 
 ```url
-http://portal.sesami.dev/activated?email=${email}
+http://portal.sesami.dev/message?action=userActivated?payload=${email}
 ```
 
 GraphQL method doesn't return anything
