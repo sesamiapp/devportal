@@ -13,6 +13,7 @@ For this matter user should send a request to get an exchange code in order to s
 **User should be logged in.**
 
 #### GraphQL Example
+
 ```graphql
 mutation initGoogleSync {
   initGoogleSync {
@@ -30,7 +31,7 @@ curl --request GET \
 
 ## Google Account Selection
 
-After user got the code from the previous step, the user should be redirected to the following url 
+After user got the code from the previous step, the user should be redirected to the following url
 
 ```url
 https://api.sesami.dev/users/sync/google?code=PreviousStepCode&email=userEmail

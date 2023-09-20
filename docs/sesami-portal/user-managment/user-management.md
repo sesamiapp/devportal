@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# User Management
+# Management & Permissions
 
 Currently we only create accounts based on invitations, store owners can invite their staff to access their shop on Sesami portal.
 When A shop is created in shopify, a user with full access to the shop is also Created. This user has the permission to create user and assign permissions to them. we take a look at how we can create and update user and set permissions for the created user. As the permission assignment is a part of creating user and updating user, We will talk about the permissions first.
