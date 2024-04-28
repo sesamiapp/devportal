@@ -60,6 +60,8 @@ Let's talk about errors that all request might face.
    'is_array'
    'is_url'
    'is_time_zone'
+   'invalid_id'	
    'max'
    'min'
    ```
+**Note**: The system might return an error with a 400 status code and **invalid_id** in mutation APIs. This indicates that the client cannot access a specific resource.
