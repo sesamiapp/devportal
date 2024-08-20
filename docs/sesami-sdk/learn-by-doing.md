@@ -80,9 +80,9 @@ Here’s an example of what the `data` property might look like:
 ```
 
 we use the `labels` to render the label section of the calendar like
-| Su | Mo | Tu | We | Th | Fr | Sa |
-|----|----|----|----|----|----|----|
-| | | | | | | |
+
+| Su  | Mo  | Tu  | We  | Th  | Fr  | Sa  |
+| --- | --- | --- | --- | --- | --- | --- |
 
 like this
 
@@ -97,13 +97,14 @@ window.sesamiSDK.data.labels.map((dateString) => {
 ```
 
 and we use `rows` to generate the days of the calendar like
-| | | | | | | |
-|----|----|----|----|----|----|----|
-| 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-| 8 | 9 | 10 | 11 | 12 | 13 | 14 |
-| 15 | 16 | 17 | 18 | 19 | 20 | 21 |
-| 22 | 23 | 24 | 25 | 26 | 27 | 28 |
-| 29 | 30 | | | | | |
+
+|     |     |     |     |     |     |     |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1   | 2   | 3   | 4   | 5   | 6   | 7   |
+| 8   | 9   | 10  | 11  | 12  | 13  | 14  |
+| 15  | 16  | 17  | 18  | 19  | 20  | 21  |
+| 22  | 23  | 24  | 25  | 26  | 27  | 28  |
+| 29  | 30  |     |     |     |     |     |
 
 Each array in `rows` represents a row and contains the days for that row.
 
@@ -224,10 +225,11 @@ there are two types of data that you attach to the book request
 ### SesamiCustomerObject Format
 
 The customer object contains a property named `properties`, which is an array of objects with the following format:
-| Property | Type |
-|----------|--------|
-| `name` | `String`|
-| `value` | `String`|
+
+| Property | Type     |
+| -------- | -------- |
+| `name`   | `String` |
+| `value`  | `String` |
 
 #### Example
 
