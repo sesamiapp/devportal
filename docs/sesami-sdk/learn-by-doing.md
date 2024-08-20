@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Dive Right In:Learn Storefront SDK the Fun Way! 🚀✨😎
 
 Hi there! we’ll be diving into the Storefront SDK by building a calendar together. It's a fun and practical way to learn as we go. So, without wasting any time, let’s jump right in!
@@ -6,7 +10,7 @@ Hi there! we’ll be diving into the Storefront SDK by building a calendar toget
 
 Turning Where am I 😖 into I got this 😎
 
-![Calendar Preview](../../static/img/Roadmap.png)
+<!-- ![Calendar Preview](/img/Roadmap.png) -->
 
 ## Initializing
 
