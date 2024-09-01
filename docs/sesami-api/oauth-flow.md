@@ -80,7 +80,7 @@ https://app.domain.com/app_callback_uri?code=string&shop_id=string&timestamp&hma
 
 
 
-### Step2: Request an API Key
+### Step 3: Request an API Key
 
 Now you have an authorization key. You should use it with your `client_id` and `client_secret` to get your API key.
 
