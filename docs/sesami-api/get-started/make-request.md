@@ -1,6 +1,6 @@
 # Make a Request
- Our API uses the [API Key](authentication.md) to authenticate the requests.
- You can view and manage your API Key in the Admin portal.
+ Our API uses the [API key](authentication.md) to authenticate the requests.
+ You can view and manage your API key in the Admin portal.
 
 For authenticated requests, you must include your API key in the request headers. Use the following format:
 
@@ -11,7 +11,7 @@ x-shop-id: YOUR_SHOP_ID
 ```
 
 ### REST and GraphQL
-You can use our [GraphQL](https://api.sesami.dev/graphql) or [REST](https://api.sesami.dev/swagger) API to make your first request.
+You can use our API ([GraphQL](https://api.sesami.dev/graphql) | [REST](https://api.sesami.dev/swagger)) to make your first request.
 
 This is a request to get all of your shops with **GraphQL** :
 ```

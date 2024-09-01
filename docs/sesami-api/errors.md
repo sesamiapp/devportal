@@ -65,7 +65,7 @@ Each time a request fails, server would return a list of errors.The errors list 
 
 ## Examples
 
-here is an example of the response of a failed request.
+Here is an example of the response of a failed request.
 
 #### GraphQL Example
 
