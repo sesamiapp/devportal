@@ -1,47 +1,103 @@
 # OAuth Flow
 
-Your app should use sesami oauth flow to get an API key.To obtain this, you should add your domain and redirect URIs.To do this:
+Your app should use sesami oauth flow to get an API key.To obtain this, you should add your **domain** and **redirect
+URIs**.To do this:
+
 1. Login to your sesami account
 2. Go to `Developers` section.
-3. Find your app and open it.
+3. Find your [registered](register-application.md) app and open it.
 4. Insert your domain and redirect URIs. you should separate them with `,` for a list of URIs.
 
-## Run OAuth flow for the app
-You can use the [OAtuh](https://api.sesami.dev/swagger) to start an oauth flow.
+## Sesami OAuth workflow
 
-### Step 1: Send an authorization request
-To start the oauth flow, the app send a request to authorization endpoint.The endpoint is:
-```HTTPS
-GET /oauth/v1/authorization?client_id=string&scopes[]=string&redirect_uri=string&shop_id=string
+The installation flow follows the OAuth2.0 flow. In this flow, Sesami is the **Authorization Server(Protected Resource)**, the app is the **Client** and the merchant is the **Resource Owner**.
+
+1. The installation process is started by invoking the installation endpoint. Sesami receives the **shop ID and app ID**
+   as parameters and redirects them to the app domain address.
+```typescript
+https://app-domain?shop_id=string&timestamp=string&hmac=string
 ```
-**Note**
-1. The `shop_id` could be your sesami shop id or your shop URL.
-2. `scopes` are required permissions. you should send them like ```scopes[]=Shop:Read&scopes[]=Shop:Write```.For more details see [Sesami Permissions](https://api.sesami.dev)
+2. The app should authenticate the shop ID and verify the required process.
+3. The app sends a request(redirect) to the Sesami with redirect URIs and required scopes.
+4. Sesami checks the redirect URIs and validates them. Then it redirects to the Consent page.
+5. On the Consent page, the user can accept the required permissions. Then the front end invokes the grant-permission
+   endpoints.
+6. Sesami updates the state of the process. Also, it uses the redirect URIs and sends **a code to the app**. In this step,
+    Sesami uses the [client secret to sign the request](#how-to-sign-requests).
+7. The app now has a **short-lived code** and should use it to get an API key.
+8. The app can send a request to ensure the API key works as expected.
 
-This endpoint redirects the user to the [Sesami Consent Page](https://admin.sesami.dev/app-permissions).
-Now you should accept the permissions.Sesami process your request and send an authorization code on your provided redirect uris:
+9. Congratulation, You get your API key.
 
-```https://app.domain.com/provided_redirect_uri?code=string&shop_id=string&hmac=string```
 
-The **hmac** is a string that signs the request. The app should sign the request parameters with its client secret and check with hmac.
-The app should create this structure first:
+
+## Run OAuth flow for the app
+
+### step 1: Authenticate the request
+The app should authenticate request.The Sesami send request with a `hmac` property and app should use it to authenticate the requests.
+
+The `hmac` is a string that signs the request. The app should sign the request parameters with its client secret and
+check with hmac.
+The app should create an object with request's parameters and sort them alphabetically. 
+for Example:
+```typescript
+https://domian?code=string&shop_id=string&timestamp=string&hmac=string
+```
+the app should create this object:
 ``` typescript
 {
   code: string,
   shop_id: string
+  timestamp: string
 }
 ```
-then encrypt it with the `sha-256` algorithm and its `client_secret`. app should check the result with hmac to verify the request.
+
+then encrypt it with the `sha256` algorithm and its `client_secret`. The app should check the result with `hmac` to verify
+the request.
+
+### Step 2: Send an authorization request
+
+To start the oauth flow, the app send a request to authorization endpoint.The endpoint is:
+
+```HTTPS
+GET /api/v1/oauth/authorization?client_id=string&scopes[]=string&redirect_uri=string&shop_id=string
+```
+
+:::note
+
+1. The `shop_id` could be your sesami shop id or your shop URL.
+2. `scopes` are required permissions. you should send them like ```scopes[]=Shop:Read&scopes[]=Shop:Write```.
+
+:::
+
+This endpoint redirects the user to the [Sesami Consent Page](https://admin.sesami.dev/app-permissions).
+Now User should accept your permissions.Sesami processes your request and sends an authorization code on your provided
+redirect URIs:
+
+```typescript
+https://app.domain.com/app_callback_uri?code=string&shop_id=string&timestamp&hmac=string
+```
+
+
 
 ### Step2: Request an API Key
+
 Now you have an authorization key. You should use it with your `client_id` and `client_secret` to get your API key.
-The point that should be considered is **The app must get an API key for each shop**.
+
+:::note
+
+The app must get an API key for each shop.
+
+:::
 
 To get an API key, you can use this endpoint:
 
-```POST /oauth/v1/token```
+``` typescript
+POST /api/v1/oauth/access-token
+```
 
-and send this body:
+with this body:
+
 ``` typescript
 {
  code: string //your authorization code
@@ -50,6 +106,7 @@ and send this body:
  client_secret: string
 }
 ```
+
 
 
 
