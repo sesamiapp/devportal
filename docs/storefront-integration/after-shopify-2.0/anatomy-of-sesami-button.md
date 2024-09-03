@@ -6,7 +6,7 @@ sidebar_position: 1
 
 After Shopify 2.0, We introduced a new Shopify section block to help the merchants in adding the Sesami button with no custom code, wherever they want in a product page.
 
-![Alt text](../../../static/img/tutorial/sesamiButtonBlock.png)
+<!-- ![Alt text](../../../static/img/tutorial/sesamiButtonBlock.png) -->
 
 #### Rendered result
 This is a final rendered markup that Sesami creates to capture booking information:
