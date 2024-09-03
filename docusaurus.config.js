@@ -98,4 +98,11 @@ module.exports = {
       },
     ],
   ],
+  scripts: [
+    {
+      src:
+        'https://cdn.sesami.dev/storefront/latest/sesami-main.js',
+      async: false,
+    },
+  ],
 };
