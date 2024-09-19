@@ -1,0 +1,15 @@
+export const experienceLanguageOptions: { label: string, value: string }[] = [
+  { value: 'zh-CN', label: 'Chinese(Simplified, China)' },
+  { value: 'da', label: 'Danish(Denmark)' },
+  { value: 'de', label: 'Deutsch(Germany)' },
+  { value: 'en', label: 'English(United States)' },
+  { value: 'fi', label: 'Finnish(Finland)' },
+  { value: 'fr', label: 'French(France)' },
+  { value: 'it', label: 'Italian(Italy)' },
+  { value: 'ja', label: 'Japanese(Japan)' },
+  { value: 'no', label: 'Norwegian(Norway)' },
+  { value: 'pl', label: 'Polish(Poland)' },
+  { value: 'pt', label: 'Portuguese(Brazil)' },
+  { value: 'es', label: 'Spanish(Spain)' },
+  { value: 'sv', label: 'Swedish(Sweden)' },
+]
