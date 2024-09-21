@@ -225,7 +225,7 @@ export const Configurator = () => {
             </div>
             
             {/* code sample */}
-            <textarea disabled wrap='off' rows={14} className='codeSampleTextarea' defaultValue={`${`<sesami-experience`}${(
+            <textarea wrap='off' rows={14} className='codeSampleTextarea' value={`${`<sesami-experience`}${(
                         JSON.stringify(sesamiExperienceProps, null, 4)
                     )
                     .replace('{', '')
