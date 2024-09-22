@@ -164,7 +164,7 @@ export const Configurator = () => {
                     
                     <div className='inputContainer'>
                         <a>Label:</a>
-                        <input defaultValue={label === null ? '' : label} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
+                        <input defaultValue={label === null ? '' : label} onChange={e => setLabel(e.target.value === '' ? null : e.target.value)}/>
                     </div>
 
                     <div className='widthHeightWrapper'>
