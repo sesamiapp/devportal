@@ -2,7 +2,7 @@
 module.exports = {
   title: 'Sesami developers',
   tagline: 'Built for developers, by developers',
-  url: 'https://sesami.dev',
+  url: 'https://sesami.co',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -100,7 +100,7 @@ module.exports = {
   ],
   scripts: [
     {
-      src: 'https://cdn.sesami.dev/storefront/latest/sesami-main.js',
+      src: 'https://cdn.sesami.co/storefront/latest/sesami-main.js',
       async: false,
     },
   ],
