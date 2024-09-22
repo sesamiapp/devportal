@@ -16,6 +16,30 @@
     resize: none;
 }
 
+.widthHeightWrapper{
+    width: 100%;
+    display: flex;
+    gap: 8px;
+}
+
+.widthHeightWrapper .inputContainer{
+    width: calc(50% - 4px);
+}
+
+.checkboxWrapper{
+    margin-top: 8px;
+    display: flex;
+    gap: 4px;
+}
+.checkboxWrapper input{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.checkboxWrapper a{
+    color: #333;
+}
+
 .inputsWrapper{
     width: 100%;
     display: flex;
@@ -34,49 +58,28 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    a{
-        color: #333;
-    }
-    .description{
-        color: #777;
-    }
-    input, select{
-        height: 40px;
-        font-size: 16px;
-        border: solid 1px #999;
-        border-radius: 6px;
-    }
-    select{
-        padding: 0 4px;
-        background-color: transparent;
-        cursor: pointer;
-    }
-    input{
-        padding: 0 8px;
-    }
 }
 
-.widthHeightWrapper{
-    width: 100%;
-    display: flex;
-    gap: 8px;
-    .inputContainer{
-        width: calc(50% - 4px);
-    }
+.inputContainer a{
+    color: #333;
 }
-
-.checkboxWrapper{
-    margin-top: 8px;
-    display: flex;
-    gap: 4px;
-    input{
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-    }
-    a{
-        color: #333;
-    }
+.inputContainer .description{
+    color: #777;
+}
+.inputContainer input,
+.inputContainer select{
+    height: 40px;
+    font-size: 16px;
+    border: solid 1px #999;
+    border-radius: 6px;
+}
+.inputContainer select{
+    padding: 0 4px;
+    background-color: transparent;
+    cursor: pointer;
+}
+.inputContainer input{
+    padding: 0 8px;
 }
 
 @media only screen and (max-width: 600px) {
