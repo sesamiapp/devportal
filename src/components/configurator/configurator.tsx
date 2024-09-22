@@ -242,9 +242,7 @@ export const Configurator = () => {
             </textarea>
 
             {/* button */}
-            <div>
             {showButton && <sesami-experience {...sesamiExperienceProps} ></sesami-experience>}
-            </div>
 
         </div>
     )
