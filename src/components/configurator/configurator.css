@@ -26,6 +26,9 @@
     a{
         color: #333;
     }
+    .description{
+        color: #777;
+    }
     input, select{
         height: 40px;
         font-size: 16px;

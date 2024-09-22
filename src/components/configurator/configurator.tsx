@@ -13,14 +13,13 @@ declare global {
 export const Configurator = () => {
 
     const [ shopId              , setShopId              ] = useState<string>('71162396982')
-    const [ productId           , setProductId           ] = useState<string>('8087098196278')
-    const [ variantId           , setVariantId           ] = useState<string | null>('44316082864438')
+    const [ productId           , setProductId           ] = useState<string | null>('8087098196278')
+    const [ variantId           , setVariantId           ] = useState<string | null>(null)
     const [ quantity            , setQuantity            ] = useState<string>('1')
-    const [ timezone            , setTimezone            ] = useState('America/Los_Angeles')
+    const [ timezone            , setTimezone            ] = useState('')
     const [ locale              , setLocale              ] = useState<string | null>('en')
-
     const [ skipMonthlyCalendar , setSkipMonthlyCalendar ] = useState<boolean | null>(null)
-    const [ autoAddToCart       , setAutoAddToCart       ] = useState(true)
+    const [ autoAddToCart       , setAutoAddToCart       ] = useState(false)
     const [ skipCart            , setSkipCart            ] = useState(false)
     const [ hideAnyAvailable    , setHideAnyAvailable    ] = useState(false)
 
@@ -54,12 +53,11 @@ export const Configurator = () => {
     const sesamiExperienceProps = {
                 
         'shop-id': shopId,
-        'product-id': productId,
+        ...(productId !== null && { "product-id": productId }),
         ...(variantId !== null && { "variant-id": variantId }),
         ...(quantity !== '0' && { "quantity": quantity }),
-        'timezone': timezone,
+        ...(timezone !== '' && { "timezone": timezone }),
         ...(locale !== null && { "locale": locale }),
-
         ...(skipMonthlyCalendar !== null && { "skip-monthly-calendar": skipMonthlyCalendar }),
         ...(autoAddToCart === true && { "auto-add-to-cart": '' }),
         ...(skipCart === true && { "skip-cart": '' }),
@@ -94,7 +92,7 @@ export const Configurator = () => {
 
                     <div className='inputContainer'>
                         <a>Product ID:</a>
-                        <input defaultValue={productId} onChange={e => setProductId(e.target.value)}/>
+                        <input defaultValue={productId === null ? '' : productId} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
                     </div>
                     
                     <div className='inputContainer'>
@@ -104,7 +102,7 @@ export const Configurator = () => {
 
                     <div className='inputContainer'>
                         <a>Quantity:</a>
-                        <input type="number" defaultValue={quantity} onChange={e => setQuantity(e.target.value)}/>
+                        <input type="number" min={0} defaultValue={quantity} onChange={e => setQuantity(e.target.value)}/>
                     </div>
 
                     <div className='inputContainer'>
@@ -113,6 +111,7 @@ export const Configurator = () => {
                             defaultValue={timezone}
                             onChange={e => setTimezone(e.target.value)}
                         >
+                            <option key={''} value={''}>Auto</option>
                             {timezones.map(option => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
                             ))}
@@ -140,7 +139,7 @@ export const Configurator = () => {
                         >
                             <option value={'true'}>Skip</option>
                             <option value={'false'}>Do Not Skip</option>
-                            <option value={'none'}>Auto</option>
+                            <option value={'none'}>Auto(Based on Experience)</option>
                         </select>
                     </div>
 
