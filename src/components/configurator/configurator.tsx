@@ -12,19 +12,18 @@ declare global {
 
 export const Configurator = () => {
 
-    const [ shopId              , setShopId              ] = useState<string>('75849498919')
-    const [ productId           , setProductId           ] = useState<string>('8293753520423')
-    const [ variantId           , setVariantId           ] = useState<string | null>('45009108828455')
+    const [ shopId              , setShopId              ] = useState<string>('76573311249')
+    const [ productId           , setProductId           ] = useState<string | null>('8689310236945')
+    const [ variantId           , setVariantId           ] = useState<string | null>(null)
     const [ quantity            , setQuantity            ] = useState<string>('1')
-    const [ timezone            , setTimezone            ] = useState('America/Los_Angeles')
+    const [ timezone            , setTimezone            ] = useState('')
     const [ locale              , setLocale              ] = useState<string | null>('en')
-
     const [ skipMonthlyCalendar , setSkipMonthlyCalendar ] = useState<boolean | null>(null)
-    const [ autoAddToCart       , setAutoAddToCart       ] = useState(true)
+    const [ autoAddToCart       , setAutoAddToCart       ] = useState(false)
     const [ skipCart            , setSkipCart            ] = useState(false)
     const [ hideAnyAvailable    , setHideAnyAvailable    ] = useState(false)
 
-    const [ label               , setLabel               ] = useState('Select Time')
+    const [ label               , setLabel               ] = useState<string | null>(null)
     const [ width               , setWidth               ] = useState(300)
     const [ height              , setHeight              ] = useState(50)
     const [ color               , setColor               ] = useState('#FFF')
@@ -54,21 +53,20 @@ export const Configurator = () => {
     const sesamiExperienceProps = {
                 
         'shop-id': shopId,
-        'product-id': productId,
+        ...(productId !== null && { "product-id": productId }),
         ...(variantId !== null && { "variant-id": variantId }),
         ...(quantity !== '0' && { "quantity": quantity }),
-        'timezone': timezone,
+        ...(timezone !== '' && { "timezone": timezone }),
         ...(locale !== null && { "locale": locale }),
-
         ...(skipMonthlyCalendar !== null && { "skip-monthly-calendar": skipMonthlyCalendar }),
         ...(autoAddToCart === true && { "auto-add-to-cart": '' }),
         ...(skipCart === true && { "skip-cart": '' }),
         ...(hideAnyAvailable === true && { "hide-any-available": '' }),
 
-        'button-label': label,
+        ...(label !== null && { "button-label": label }),
         'button-customized-settings': encodeURIComponent(JSON.stringify({
-            'width': `${width}px`, //todo
-            'height': `${height}px`, //todo
+            'width': `${width}px`,
+            'height': `${height}px`, 
             'color': color,
             'color_background': backgroundColor,
             'font_size': fontSize,
@@ -94,7 +92,7 @@ export const Configurator = () => {
 
                     <div className='inputContainer'>
                         <a>Product ID:</a>
-                        <input defaultValue={productId} onChange={e => setProductId(e.target.value)}/>
+                        <input defaultValue={productId === null ? '' : productId} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
                     </div>
                     
                     <div className='inputContainer'>
@@ -104,7 +102,7 @@ export const Configurator = () => {
 
                     <div className='inputContainer'>
                         <a>Quantity:</a>
-                        <input type="number" defaultValue={quantity} onChange={e => setQuantity(e.target.value)}/>
+                        <input type="number" min={0} defaultValue={quantity} onChange={e => setQuantity(e.target.value)}/>
                     </div>
 
                     <div className='inputContainer'>
@@ -113,6 +111,7 @@ export const Configurator = () => {
                             defaultValue={timezone}
                             onChange={e => setTimezone(e.target.value)}
                         >
+                            <option key={''} value={''}>Auto</option>
                             {timezones.map(option => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
                             ))}
@@ -140,7 +139,7 @@ export const Configurator = () => {
                         >
                             <option value={'true'}>Skip</option>
                             <option value={'false'}>Do Not Skip</option>
-                            <option value={'none'}>Auto</option>
+                            <option value={'none'}>Auto(Based on Experience)</option>
                         </select>
                     </div>
 
@@ -165,17 +164,21 @@ export const Configurator = () => {
                     
                     <div className='inputContainer'>
                         <a>Label:</a>
-                        <input defaultValue={label} onChange={e => setLabel(e.target.value)}/>
+                        <input defaultValue={label === null ? '' : label} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
                     </div>
 
-                    <div className='inputContainer'>
-                        <a>Width:</a>
-                        <input type="number" defaultValue={width} onChange={e => setWidth(e.target.valueAsNumber)}/>
-                    </div>
+                    <div className='widthHeightWrapper'>
 
-                    <div className='inputContainer'>
-                        <a>Height:</a>
-                        <input type="number" defaultValue={height} onChange={e => setHeight(e.target.valueAsNumber)}/>
+                        <div className='inputContainer'>
+                            <a>Width(px):</a>
+                            <input type="number" min={0} defaultValue={width} onChange={e => setWidth(e.target.valueAsNumber)}/>
+                        </div>
+
+                        <div className='inputContainer'>
+                            <a>Height(px):</a>
+                            <input type="number" min={0} defaultValue={height} onChange={e => setHeight(e.target.valueAsNumber)}/>
+                        </div>
+
                     </div>
                     
                     <div className='inputContainer'>
@@ -189,18 +192,18 @@ export const Configurator = () => {
                     </div>
 
                     <div className='inputContainer'>
-                        <a>Font Size:</a>
-                        <input type="number" defaultValue={fontSize} onChange={e => setFontSize(e.target.valueAsNumber)}/>
+                        <a>Font Size(px):</a>
+                        <input type="number" min={0} defaultValue={fontSize} onChange={e => setFontSize(e.target.valueAsNumber)}/>
                     </div>
                     
                     <div className='inputContainer'>
-                        <a>Border Width:</a>
-                        <input defaultValue={borderWidth} onChange={e => setBorderWidth(e.target.valueAsNumber)}/>
+                        <a>Border Width(px):</a>
+                        <input type="number" min={0} defaultValue={borderWidth} onChange={e => setBorderWidth(e.target.valueAsNumber)}/>
                     </div>
                     
                     <div className='inputContainer'>
-                        <a>Border Radius:</a>
-                        <input defaultValue={borderRadius} onChange={e => setBorderRadius(e.target.valueAsNumber)}/>
+                        <a>Border Radius(px):</a>
+                        <input defaultValue={borderRadius} min={0} onChange={e => setBorderRadius(e.target.valueAsNumber)}/>
                     </div>
                     
                     <div className='inputContainer'>
@@ -239,9 +242,7 @@ export const Configurator = () => {
             </textarea>
 
             {/* button */}
-            <div>
             {showButton && <sesami-experience {...sesamiExperienceProps} ></sesami-experience>}
-            </div>
 
         </div>
     )
