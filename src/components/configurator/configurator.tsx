@@ -81,31 +81,31 @@ export const Configurator = () => {
     return (
         <div className="contentWrapper">
             
-            <div className='inputsWrapper'>
+            <div className="inputsWrapper">
 
-                <div className='leftColumn'>
+                <div className="leftColumn">
 
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Shop ID:</a>
                         <input defaultValue={shopId} onChange={e => setShopId(e.target.value)}/>
                     </div>
 
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Product ID:</a>
                         <input defaultValue={productId === null ? '' : productId} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
                     </div>
                     
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Variant ID:</a>
                         <input defaultValue={variantId === null ? '' : variantId} onChange={e => setVariantId(e.target.value === '' ? null : e.target.value)}/>
                     </div>
 
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Quantity:</a>
                         <input type="number" min={0} defaultValue={quantity} onChange={e => setQuantity(e.target.value)}/>
                     </div>
 
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Timezone:</a>
                         <select
                             defaultValue={timezone}
@@ -118,7 +118,7 @@ export const Configurator = () => {
                         </select>
                     </div>
 
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Locale:</a>
                         <select
                             defaultValue={locale === null ? 'none' : locale}
@@ -131,7 +131,7 @@ export const Configurator = () => {
                         </select>
                     </div>
 
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Skip Monthly Calendar:</a>
                         <select
                             defaultValue={skipMonthlyCalendar === null ? 'none' : skipMonthlyCalendar === true ? 'true' : 'false'}
@@ -143,75 +143,75 @@ export const Configurator = () => {
                         </select>
                     </div>
 
-                    <div className='checkboxWrapper'>
+                    <div className="checkboxWrapper">
                         <input type="checkbox" checked={autoAddToCart} onChange={e => setAutoAddToCart(e.target.checked)}/>
                         <a>Auto Add To Cart</a>
                     </div>
 
-                    <div className='checkboxWrapper'>
+                    <div className="checkboxWrapper">
                         <input type="checkbox" checked={skipCart} onChange={e => setSkipCart(e.target.checked)}/>
                         <a>Skip Cart</a>
                     </div>
 
-                    <div className='checkboxWrapper'>
+                    <div className="checkboxWrapper">
                         <input type="checkbox" checked={hideAnyAvailable} onChange={e => setHideAnyAvailable(e.target.checked)}/>
                         <a>Hide Any Available</a>
                     </div>
 
                 </div>
 
-                <div className='rightColumn'>
+                <div className="rightColumn">
                     
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Label:</a>
                         <input defaultValue={label === null ? '' : label} onChange={e => setLabel(e.target.value === '' ? null : e.target.value)}/>
                     </div>
 
-                    <div className='widthHeightWrapper'>
+                    <div className="widthHeightWrapper">
 
-                        <div className='inputContainer'>
+                        <div className="inputContainer">
                             <a>Width(px):</a>
                             <input type="number" min={0} defaultValue={width} onChange={e => setWidth(e.target.valueAsNumber)}/>
                         </div>
 
-                        <div className='inputContainer'>
+                        <div className="inputContainer">
                             <a>Height(px):</a>
                             <input type="number" min={0} defaultValue={height} onChange={e => setHeight(e.target.valueAsNumber)}/>
                         </div>
 
                     </div>
                     
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Color:</a>
                         <input defaultValue={color} onChange={e => setColor(e.target.value)}/>
                     </div>
                     
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Background Color:</a>
                         <input defaultValue={backgroundColor} onChange={e => setBackgroundColor(e.target.value)}/>
                     </div>
 
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Font Size(px):</a>
                         <input type="number" min={0} defaultValue={fontSize} onChange={e => setFontSize(e.target.valueAsNumber)}/>
                     </div>
                     
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Border Width(px):</a>
                         <input type="number" min={0} defaultValue={borderWidth} onChange={e => setBorderWidth(e.target.valueAsNumber)}/>
                     </div>
                     
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Border Radius(px):</a>
                         <input defaultValue={borderRadius} min={0} onChange={e => setBorderRadius(e.target.valueAsNumber)}/>
                     </div>
                     
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Border Color:</a>
                         <input defaultValue={borderColor} onChange={e => setBorderColor(e.target.value)}/>
                     </div>
 
-                    <div className='inputContainer'>
+                    <div className="inputContainer">
                         <a>Alignment:</a>
                         <select
                             defaultValue={alignment}
@@ -228,7 +228,7 @@ export const Configurator = () => {
             </div>
             
             {/* code sample */}
-            <textarea wrap='off' rows={14} className='codeSampleTextarea' value={`${`<sesami-experience`}${(
+            <textarea className="codeSampleTextarea" wrap="off" rows={14} value={`${`<sesami-experience`}${(
                         JSON.stringify(sesamiExperienceProps, null, 4)
                     )
                     .replace('{', '')
