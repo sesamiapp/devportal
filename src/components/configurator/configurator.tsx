@@ -12,8 +12,8 @@ declare global {
 
 export const Configurator = () => {
 
-    const [ shopId              , setShopId              ] = useState<string>('71162396982')
-    const [ productId           , setProductId           ] = useState<string | null>('8087098196278')
+    const [ shopId              , setShopId              ] = useState<string>('75849498919')
+    const [ productId           , setProductId           ] = useState<string | null>('8293753520423')
     const [ variantId           , setVariantId           ] = useState<string | null>(null)
     const [ quantity            , setQuantity            ] = useState<string>('1')
     const [ timezone            , setTimezone            ] = useState('')
