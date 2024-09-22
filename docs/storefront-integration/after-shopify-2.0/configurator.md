@@ -1,8 +1,9 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 ---
 
-# Configurator
+# Experience Configurator
+You can configure you Experience based on Your needs
 
 import { Configurator } from '@site/src/components/configurator/configurator'
 
