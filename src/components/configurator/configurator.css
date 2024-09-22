@@ -45,6 +45,15 @@
     }
 }
 
+.widthHeightWrapper{
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    .inputContainer{
+        width: calc(50% - 4px);
+    }
+}
+
 .checkboxWrapper{
     margin-top: 8px;
     display: flex;
@@ -68,4 +77,13 @@
     background-color: #333;
     border-radius: 8px;
     resize: none;
+}
+@media only screen and (max-width: 600px) {
+    .inputsWrapper{
+        flex-direction: column;
+        gap: 16px;
+    }
+    .leftColumn, .rightColumn{
+        max-width: unset;
+    }
 }

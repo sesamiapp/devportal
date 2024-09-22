@@ -65,8 +65,8 @@ export const Configurator = () => {
 
         ...(label !== null && { "button-label": label }),
         'button-customized-settings': encodeURIComponent(JSON.stringify({
-            'width': `${width}px`, //todo
-            'height': `${height}px`, //todo
+            'width': `${width}px`,
+            'height': `${height}px`, 
             'color': color,
             'color_background': backgroundColor,
             'font_size': fontSize,
@@ -167,14 +167,18 @@ export const Configurator = () => {
                         <input defaultValue={label === null ? '' : label} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
                     </div>
 
-                    <div className='inputContainer'>
-                        <a>Width(px):</a>
-                        <input type="number" min={0} defaultValue={width} onChange={e => setWidth(e.target.valueAsNumber)}/>
-                    </div>
+                    <div className='widthHeightWrapper'>
 
-                    <div className='inputContainer'>
-                        <a>Height(px):</a>
-                        <input type="number" min={0} defaultValue={height} onChange={e => setHeight(e.target.valueAsNumber)}/>
+                        <div className='inputContainer'>
+                            <a>Width(px):</a>
+                            <input type="number" min={0} defaultValue={width} onChange={e => setWidth(e.target.valueAsNumber)}/>
+                        </div>
+
+                        <div className='inputContainer'>
+                            <a>Height(px):</a>
+                            <input type="number" min={0} defaultValue={height} onChange={e => setHeight(e.target.valueAsNumber)}/>
+                        </div>
+
                     </div>
                     
                     <div className='inputContainer'>
