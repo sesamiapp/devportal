@@ -23,7 +23,7 @@ export const Configurator = () => {
     const [ skipCart            , setSkipCart            ] = useState(false)
     const [ hideAnyAvailable    , setHideAnyAvailable    ] = useState(false)
 
-    const [ label               , setLabel               ] = useState('Select Time')
+    const [ label               , setLabel               ] = useState<string | null>(null)
     const [ width               , setWidth               ] = useState(300)
     const [ height              , setHeight              ] = useState(50)
     const [ color               , setColor               ] = useState('#FFF')
@@ -63,7 +63,7 @@ export const Configurator = () => {
         ...(skipCart === true && { "skip-cart": '' }),
         ...(hideAnyAvailable === true && { "hide-any-available": '' }),
 
-        'button-label': label,
+        ...(label !== null && { "button-label": label }),
         'button-customized-settings': encodeURIComponent(JSON.stringify({
             'width': `${width}px`, //todo
             'height': `${height}px`, //todo
@@ -164,17 +164,17 @@ export const Configurator = () => {
                     
                     <div className='inputContainer'>
                         <a>Label:</a>
-                        <input defaultValue={label} onChange={e => setLabel(e.target.value)}/>
+                        <input defaultValue={label === null ? '' : label} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
                     </div>
 
                     <div className='inputContainer'>
-                        <a>Width:</a>
-                        <input type="number" defaultValue={width} onChange={e => setWidth(e.target.valueAsNumber)}/>
+                        <a>Width(px):</a>
+                        <input type="number" min={0} defaultValue={width} onChange={e => setWidth(e.target.valueAsNumber)}/>
                     </div>
 
                     <div className='inputContainer'>
-                        <a>Height:</a>
-                        <input type="number" defaultValue={height} onChange={e => setHeight(e.target.valueAsNumber)}/>
+                        <a>Height(px):</a>
+                        <input type="number" min={0} defaultValue={height} onChange={e => setHeight(e.target.valueAsNumber)}/>
                     </div>
                     
                     <div className='inputContainer'>
@@ -188,18 +188,18 @@ export const Configurator = () => {
                     </div>
 
                     <div className='inputContainer'>
-                        <a>Font Size:</a>
-                        <input type="number" defaultValue={fontSize} onChange={e => setFontSize(e.target.valueAsNumber)}/>
+                        <a>Font Size(px):</a>
+                        <input type="number" min={0} defaultValue={fontSize} onChange={e => setFontSize(e.target.valueAsNumber)}/>
                     </div>
                     
                     <div className='inputContainer'>
-                        <a>Border Width:</a>
-                        <input defaultValue={borderWidth} onChange={e => setBorderWidth(e.target.valueAsNumber)}/>
+                        <a>Border Width(px):</a>
+                        <input type="number" min={0} defaultValue={borderWidth} onChange={e => setBorderWidth(e.target.valueAsNumber)}/>
                     </div>
                     
                     <div className='inputContainer'>
-                        <a>Border Radius:</a>
-                        <input defaultValue={borderRadius} onChange={e => setBorderRadius(e.target.valueAsNumber)}/>
+                        <a>Border Radius(px):</a>
+                        <input defaultValue={borderRadius} min={0} onChange={e => setBorderRadius(e.target.valueAsNumber)}/>
                     </div>
                     
                     <div className='inputContainer'>
