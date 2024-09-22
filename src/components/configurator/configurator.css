@@ -26,6 +26,9 @@
     a{
         color: #333;
     }
+    .description{
+        color: #777;
+    }
     input, select{
         height: 40px;
         font-size: 16px;
@@ -39,6 +42,15 @@
     }
     input{
         padding: 0 8px;
+    }
+}
+
+.widthHeightWrapper{
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    .inputContainer{
+        width: calc(50% - 4px);
     }
 }
 
@@ -65,4 +77,13 @@
     background-color: #333;
     border-radius: 8px;
     resize: none;
+}
+@media only screen and (max-width: 600px) {
+    .inputsWrapper{
+        flex-direction: column;
+        gap: 16px;
+    }
+    .leftColumn, .rightColumn{
+        max-width: unset;
+    }
 }
