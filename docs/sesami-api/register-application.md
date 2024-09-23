@@ -4,7 +4,7 @@ The first step in creating an app is the registration. You should register your 
 
 
 You should log in to your account first.so,
-1. Go to the [Admin portal panel](https://admin.sesami.co/dev).
+1. Go to the [Admin portal panel](https://admin.sesami.co).
 2. Login with your username and password.
 3. Go to the Developer section.
 4. Click on `Register a new app`.
