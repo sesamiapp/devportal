@@ -44,7 +44,7 @@ https://api.sesami.co/api/v1/oauth/authorization?client_id=string&scopes[]=strin
 :::info
 
 `scopes`: These are the required permissions. They should be sent in the format: `scopes[]=Shop:Read&scopes[]=Shop:Write`.
-The access levels can be one of the following: `Manage | Read | Write`. For more details, see: [Sesami Fine-Grained Permissions](https://sesami.co).
+The access levels can be one of the following: `Manage | Read | Write`. For more details, see: [Sesami Fine-Grained Permissions](../sesami-permissions/fine-grained-permissions.md).
 `
 :::
 
