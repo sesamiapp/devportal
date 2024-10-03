@@ -11,7 +11,7 @@ x-shop-id: YOUR_SHOP_ID
 ```
 
 ### REST and GraphQL
-You can use our API ([GraphQL](https://api.sesami.dev/graphql) | [REST](https://api.sesami.dev/swagger)) to make your first request.
+You can use our API ([GraphQL](https://api.sesami.co/graphql) | [REST](https://api.sesami.co/swagger)) to make your first request.
 
 This is a request to get all of your shops with **GraphQL** :
 ```

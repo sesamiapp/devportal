@@ -22,10 +22,15 @@ The app should generate this object:
 {
   code: string,
   shop_id: string
-  timestamp: string
+  timestamp: number
 }
 ```
-
+:::note
+Timestamps are often received as strings in requests (e.g., in query parameters or bodies). Make sure to convert them to numbers before processing. For example, in an Express application:
+```typescript
+    const timestamp = Number(req.query.timestamp); // or req.body.timestamp
+```
+:::
 Then, the app should encrypt this object using the `sha256` algorithm along with its `client_secret` and compare the result with the provided `hmac` to verify the request.
 
 ### Step 1 : Send an authorization request
