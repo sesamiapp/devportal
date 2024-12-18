@@ -5,67 +5,54 @@ sidebar_position: 1
 # Intro
 These are classes that the app developers can use to interact with Sesami Experience.
 
-They have some common attributes and methods:
+These classes have some common attributes and methods:
 
 ### Attributes
 
-#### sessionId
-The ID for the current booking flow of the Experience.
+#### Session ID
+The ID for the current booking flow of the Experience. This ID will generate when the calendar modal opens, and will send to each extension that wants to load in any step.
 
 ```ts
 public getSessionId: () => string
 ```
 
 
-#### shopId
+#### Shop ID
 The current shop.
 
 ```ts
 public getShopId: () => string
 ```
 
-
-#### productId
+#### Product ID
 The current product in the Experience.
 
 ```ts
 public getProductId: () => string
 ```
 
-
-#### variantId
+#### Variant ID
 The selected variant of the service.
 
 ```ts
 public getVariantId: () => string
 ```
 
-
-#### quantity
+#### Quantity
 The selected quantity for the service.
 
 ```ts
 public getQuantity: () => number
 ```
 
-
-#### resources
-The selected team member, location, etc.
+#### Resources
+The selected resources with the user, such as coach, room, etc.
 
 ```ts
 public getResources: () => Resource[]
-
-// the "any available" team member will be like:
-[{
-  id: null,
-  name: 'Any Available', // will be translated
-  image: 'https://app.sesami.dev/static/default_avatar.png',
-  description: 'Book with maximum availability' // will be translated
-}]
 ```
 
-
-#### locale
+#### Locale
 The Experience's current locale.
 
 ```ts
@@ -73,7 +60,7 @@ public getLocale: () => string
 ```
 
 
-#### timezone
+#### Timezone
 The Experience's current timezone.
 
 ```ts
@@ -81,7 +68,7 @@ public getTimezone: () => string
 ```
 
 
-#### slot
+#### Slot
 Selected slot's date and time.
 
 ```ts
