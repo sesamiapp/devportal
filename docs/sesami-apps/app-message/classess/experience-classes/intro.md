@@ -5,7 +5,7 @@ sidebar_position: 1
 # Intro
 These are classes that the app developers can use to interact with Sesami Experience.
 
-These classes have some common attributes and methods:
+These classes have some common attributes:
 
 ### Attributes
 
