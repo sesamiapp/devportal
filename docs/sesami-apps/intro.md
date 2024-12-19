@@ -30,5 +30,5 @@ Also, the shop manager wants to see the collected data from the user when he/she
 </p>
 
 ### What is a target?
-The places where an app/extension can load, and have interaction with its provider(Sesami) are called targets.
+The places where an app/extension can load, and have interaction with its host(Sesami) are called targets.
 You can find the list of targets in <a href="/docs/sesami-apps/app-targets/">here</a>.

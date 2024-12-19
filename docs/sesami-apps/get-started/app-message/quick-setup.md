@@ -65,9 +65,9 @@ In the following steps, we will review all the classes in this library.
 
 :::warning
 <a>
-All the event callbacks in the Sesami App Message have a timeout(8 seconds), so if the provider(Admin, Experience, etc) asks for a callback from the app, and the app does not respond to the provider in the timeout duration, after the timeout the provider will continue its flow.
+All the event callbacks in the Sesami App Message have a timeout(8 seconds), so if the host(Admin, Experience, etc) asks for a callback from the app, and the app does not respond to the host in the timeout duration, after the timeout the host will continue its flow.
 </a>
 <p>
-Also, if the app/extension itself took a long time to load, after a timeout(16 seconds) th provider will ignore it and continue its flow.
+Also, if the app/extension itself took a long time to load, after a timeout(16 seconds) th host will ignore it and continue its flow.
 </p>
 :::
