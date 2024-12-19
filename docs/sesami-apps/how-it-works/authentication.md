@@ -11,14 +11,14 @@ This requirement can be achieved from 2 ways:
 
 1- When an app is loading, the host attaches an authentication token to its URL, so the app's backend can use this token to call requests to the Sesami's API.
 
+Also, an HMAC will be attached to the URL for the app to make sure the info that provided is valid.
+
 ```markup
-https://myapp.com/extension?token=3746gf34fg8f093fj0283hf32f309fh390fh&...
+https://myapp.com/extension?token=3746gf34fg8f093fj0283hf32h&hmac=2837ryh309j3209r&...
 ```
+<p class="sesami-description">* The length of the sample token and HMAC has been shortened to be fit in one line.</p>
 
 2- The app message can provide an authentication token to the app's frontend, and with this token, the APP can do API calls to it's backend, or even a direct call to the Sesami API.
 This way, an app can even have no backend, and directly work with the Sesami API.
 
 ![Authentication](/img/app-authentication.png)
-
-That said, when an app is loading in a web page, it wants to know 
-

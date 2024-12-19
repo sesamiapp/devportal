@@ -2,13 +2,13 @@
 sidebar_position: 1
 ---
 
-# Loading inside iframe
+# Loading inside an iframe
 
 Sesami app will be loaded inside an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe">iframe</a>. This will isolates the app and it's host and will block the app from accessing to the merchant's Admin Portal or customer's Experience.
 
 ### App Message
 
-But the app needs some information about the environment that is loading, for example, in the Experience, it may need to know the shop ID, product ID, selected slot, etc.
+That said, but the app needs some information about the environment that is loading, for example, in the Experience, it may need to know the shop ID, product ID, selected slot, etc.
 
 Also, the app wants to know about certain events, such as moving to the next step, or it wants to send an event to its host.
 
