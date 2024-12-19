@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 
 # Quick Setup
-You can install the App Message Library in your project using the following command:
+You can install the App Message Library in your app using the following command:
 
 ```markup
 npm install @sesamiapp/app-message

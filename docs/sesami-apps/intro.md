@@ -28,7 +28,3 @@ These generated forms will be loaded inside the Experience instant booking step 
 <p>
 Also, the shop manager wants to see the collected data from the user when he/she is viewing appointment details in the Admin Portal. So here the app can have an extension to get the appointment ID from the Admin and get the saved data for it from its backend, and show it in the Admin's UI.
 </p>
-
-### What is a target?
-The places where an app/extension can load, and have interaction with its host(Sesami) are called targets.
-You can find the list of targets in <a href="/docs/sesami-apps/app-targets/">here</a>.
