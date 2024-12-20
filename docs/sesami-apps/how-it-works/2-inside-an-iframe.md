@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Loading inside an iframe
+# Inside an iframe
 
 Sesami app will be loaded inside an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe">iframe</a>. This will isolates the app and it's host and will block the app from accessing to the merchant's Admin Portal or customer's Experience.
 

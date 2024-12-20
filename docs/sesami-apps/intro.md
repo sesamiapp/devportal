@@ -28,3 +28,9 @@ These generated forms will be loaded inside the Experience instant booking step 
 <p>
 Also, the shop manager wants to see the collected data from the user when he/she is viewing appointment details in the Admin Portal. So here the app can have an extension to get the appointment ID from the Admin and get the saved data for it from its backend, and show it in the Admin's UI.
 </p>
+
+### Can we develop apps for other shops?
+
+Yes! You can develop 2 types of apps with the Sesami Apps eho system: Private Apps and Public Apps.
+
+While private apps will work on your shop to provide more expand your shop's capabilities, you can also develop public apps and share them on the Sesami App Store for other shops to use.
