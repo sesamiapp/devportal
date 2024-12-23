@@ -6,7 +6,9 @@ sidebar_position: 1
 
 The places where an app/extension can load, and have interaction with its Sesami are called targets.
 
-Currently, these are the available targets:
+<br></br>
+
+#### <center>Targets List</center>
 
 | Target                          | Description                                             | Usage Example                                         |
 |---------------------------------|---------------------------------------------------------|-------------------------------------------------------|
@@ -17,7 +19,7 @@ Currently, these are the available targets:
 
 <br></br>
 
-Targets Authentication and Context:
+#### <center>Targets Authentication and Context</center>
 
 | Target                            | Authenticated   | Context                                                                                                                     |
 |-----------------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------|
