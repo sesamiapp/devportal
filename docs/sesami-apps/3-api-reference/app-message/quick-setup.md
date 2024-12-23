@@ -63,7 +63,7 @@ Answer: Basically nothing! If you initialize a class that is not meant to be the
 
 In the following steps, we will review all the classes in this library.
 
-:::warning
+:::info
 <a>
 All the event callbacks in the Sesami App Message have a timeout(8 seconds), so if the host(Admin, Experience, etc) asks for a callback from the app, and the app does not respond to the host in the timeout duration, after the timeout the host will continue its flow.
 </a>
