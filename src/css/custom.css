@@ -15,6 +15,9 @@
   --ifm-color-primary-lighter: #5662c1;
   --ifm-color-primary-lightest: #707bcb;
   --ifm-code-font-size: 95%;
+
+  /* Sesami */
+  --txt-color-description: #888;
 }
 
 html[data-theme='dark'] {
@@ -25,6 +28,9 @@ html[data-theme='dark'] {
   --ifm-color-primary-light: #6a75c8;
   --ifm-color-primary-lighter: #757ecc;
   --ifm-color-primary-lightest: #939bd7;
+
+  /* Sesami */
+  --txt-color-description: #999;
 }
 
 .docusaurus-highlight-code-line {
@@ -32,4 +38,9 @@ html[data-theme='dark'] {
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+/* Sesami */
+.sesami-description{
+  color: var(--txt-color-description);
 }
