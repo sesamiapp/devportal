@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Installation API
+# Installation
 The installation flow follows the OAuth 2.0 flow. In this flow, Sesami acts as the Authorization Server (Protected Resource), the app is the Client, and the merchant is the Resource Owner. This document outlines how to execute the OAuth flow from the app's perspective.
 
 Before proceeding, ensure that you have registered your app. See [Register an App](../5-register-application.md) for more details.
@@ -44,6 +44,7 @@ https://api.sesami.co/api/v1/oauth/authorization?clientId=string&scopes[]=string
 
 `scopes`: These are the required permissions. They should be sent in the format: `scopes[]=Shop:Read`.
 
+Our platform support Read-only permission at this time.
 :::
 
 This endpoint redirects the user to the Sesami consent page, where the user decides whether to accept or deny your requested permissions. If the user accepts, Sesami sends an authorization code to your specified redirect URI.
