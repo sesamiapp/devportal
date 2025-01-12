@@ -2,38 +2,37 @@
 sidebar_position: 8
 ---
 
-# Integrating with Shopify Hydrogen
+# Integrating Sesami with Shopify Hydrogen
 
-Follow these steps to integrate Sesami with your Shopify Hydrogen :
+This document outlines the steps required to integrate Sesami with your Shopify Hydrogen storefront.
 
 ## Step 1: Generate a New Hydrogen App
 
-Start by creating a new Hydrogen app. Shopify provides a comprehensive guide for this process, which you can find [here](https://shopify.dev/docs/custom-storefronts/hydrogen/getting-started).
+Begin by creating a new Hydrogen app. Shopify provides a detailed guide on how to set up a Hydrogen app, which can be found [here](https://shopify.dev/docs/custom-storefronts/hydrogen/getting-started).
 
 ## Step 2: Set Up Your Shop
 
-In this step, you'll need to configure the **Storefront API** using the Hydrogen channel or headless channel. Shopify's documentation offers a detailed walkthrough to guide you through the setup process. Refer to the [Shopify Storefront API guide](https://shopify.dev/docs/api/storefront).
+In this step, you will need to configure the **Storefront API** by utilizing the Hydrogen or headless channel. Shopify’s documentation provides a comprehensive walkthrough to assist with the configuration process. Refer to the [Shopify Storefront API guide](https://shopify.dev/docs/api/storefront) for further details.
 
-right now you should have a working hydrogen app connected to your shop
+At this stage, you should have a working Hydrogen app connected to your Shopify store.
 
-## Step 3: configure Sesami Experience
+## Step 3: Configure the Sesami Experience
 
-now generate the sesami experience using sesami [Experience Configurator](/docs/storefront-integration/configurator/)
-copy the experience code and base on your need add it to any page you want
+Generate the Sesami experience using the [Sesami Experience Configurator](/docs/storefront-integration/configurator/). After generating the experience code, copy it and add it to any page where you would like to display the Sesami experience, according to your requirements.
 
-## Step 4: load the sesami experience
+## Step 4: Load the Sesami Experience
 
-you can find the proper way of loading 3rd party script into hydrogen [here](https://shopify.dev/docs/api/hydrogen/2024-10/components/script)
-you need to load this javascript file where ever you use the sesami experience
+To integrate the Sesami experience into your Hydrogen storefront, you will need to load the Sesami script. The appropriate way to load third-party scripts into a Hydrogen app is outlined in the Shopify documentation, which can be found [here](https://shopify.dev/docs/api/hydrogen/2024-10/components/script).
+
+Add the following JavaScript snippet wherever you want to use the Sesami experience:
 
 ```javascript
 <Script src="https://cdn.sesami.co/storefront/latest/sesami-main.js" />
 ```
 
-## Step 5: update CSP
+## Step 5: Update the Content Security Policy (CSP)
 
-lastly you need to update Content Security Policy(CSP) , you can find this code in entry.server file
-it looks something like this
+Finally, you will need to update your store’s Content Security Policy (CSP) to allow the Sesami script to execute properly. The CSP configuration is typically found in the entry.server file. The default CSP configuration might look similar to this:
 
 ```javascript
 const { nonce, header, NonceProvider } = createContentSecurityPolicy({
@@ -44,7 +43,7 @@ const { nonce, header, NonceProvider } = createContentSecurityPolicy({
 });
 ```
 
-we need to add few more rules to this to make sure sesami script execute properly
+To ensure the Sesami script runs correctly, you will need to add the following additional rules to the CSP configuration:
 
 ```javascript
 const { nonce, header, NonceProvider } = createContentSecurityPolicy({
@@ -70,14 +69,10 @@ const { nonce, header, NonceProvider } = createContentSecurityPolicy({
 });
 ```
 
-<br/>
+## Conclusion
+
+After completing the above steps, you should be able to see the Sesami booking button on your page, integrated successfully into your Shopify Hydrogen storefront.
 
 ---
 
-<br/>
-
-# congrats 🎉🥳🙌
-
-#### now you should be able to see the Sesami book button in you page
-
-<br/>
+Congratulations! 🎉 You have successfully integrated Sesami with your Shopify Hydrogen app.
