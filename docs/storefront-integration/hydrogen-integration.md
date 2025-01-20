@@ -30,48 +30,35 @@ Add the following JavaScript snippet wherever you want to use the Sesami experie
 <Script src="https://cdn.sesami.co/storefront/latest/sesami-main.js" />
 ```
 
-## Step 5: Update the Content Security Policy (CSP)
-
-Finally, you will need to update your store’s Content Security Policy (CSP) to allow the Sesami script to execute properly. The CSP configuration is typically found in the entry.server file. The default CSP configuration might look similar to this:
-
-```javascript
-const { nonce, header, NonceProvider } = createContentSecurityPolicy({
-  shop: {
-    checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
-    storeDomain: context.env.PUBLIC_STORE_DOMAIN,
-  },
-});
-```
-
-To ensure the Sesami script runs correctly, you will need to add the following additional rules to the CSP configuration:
-
-```javascript
-const { nonce, header, NonceProvider } = createContentSecurityPolicy({
-  shop: {
-    checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
-    storeDomain: context.env.PUBLIC_STORE_DOMAIN,
-  },
-  scriptSrc: [
-    "'unsafe-eval'", // Allows Sesami script to be executed
-    "https://app.sesami.co", // Permits scripts from the Sesami app for added functionalities
-  ],
-  connectSrc: [
-    "'unsafe-eval'", // Allows Sesami script to be executed
-    "https://app.sesami.co", // Allows network requests to the Sesami app
-  ],
-  imgSrc: [
-    "'self'", // Permits loading images hosted on the same origin as your app.
-    "https://cdn.shopify.com", // Allows Shopify-hosted images from its primary CDN.
-    "https://cdn.shopifycdn.net", // Allows images from an additional Shopify CDN domain.
-    "https://cdn.sesami.co/", // Allows images from Sesami’s CDN to ensure its assets are displayed correctly.
-    "https://app.sesami.co", // Permits loading images directly from the Sesami app for its interface or functionality.
-  ],
-});
-```
-
-## Conclusion
+---
 
 After completing the above steps, you should be able to see the Sesami booking button on your page, integrated successfully into your Shopify Hydrogen storefront.
+
+## Events
+
+You can listen to the sesami:loaded event to update the UI after Sesami has loaded.
+For example, you can add the following code to the parent component of the sesami-experience component:
+
+```javascript
+useEffect(() => {
+  const changeUI = () => {
+    // Add logic for handling the "sesami:loaded" event
+    console.log("Sesami has loaded!");
+  };
+
+  // Ensure `window` is accessible before adding the event listener
+  if (typeof window !== "undefined") {
+    window.addEventListener("sesami:loaded", changeUI);
+
+    // Clean up the event listener when the component unmounts or dependencies change
+    return () => {
+      window.removeEventListener("sesami:loaded", changeUI);
+    };
+  }
+}, []);
+```
+
+For a complete list of all available events, refer to the [Sesami Events Documentation.](https://sesami.dev/docs/storefront-integration/anatomy-of-sesami-button/#events).
 
 ---
 
