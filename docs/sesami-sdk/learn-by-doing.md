@@ -2,27 +2,21 @@
 sidebar_position: 2
 ---
 
-# Dive Right In:Learn Storefront SDK the Fun Way! 🚀✨😎
+# Dive Right In: Learn Storefront SDK The Fun Way!
 
-Hi there! we’ll be diving into the Storefront SDK by building a calendar together. It's a fun and practical way to learn as we go. So, without wasting any time, let’s jump right in!
-
-## Overview
-
-Turning Where am I 😖 into I got this 😎
-
-<!-- ![Calendar Preview](/img/Roadmap.png) -->
+Hi there! We’ll be diving into the Storefront SDK by building a calendar together. It's a fun and practical way to learn as we go. So, without wasting any time, let’s jump right in!
 
 ## Initializing
 
-for initializing the SDK first we need the SDK!
-i will add SDK cdn to my project , you can just copy this and include it in you project
+To initialize the SDK, first, we need the SDK itself!  
+Add the SDK CDN to your project. You can just copy this snippet and include it in your project:
 
-```js
-<script async src="https://cdn.sesami.co/sdk.js"></script>
+```html
+<script async src="https://cdn.sesami.co/sdk.js"></script
 ```
 
-now we need to create an instance of SDK
-i will create a main.js file and in it
+Now we need to create an instance of the SDK.
+I’ll create a `main.js` file:
 
 ```js
 let SDKInstance = new SesamiSDK({
@@ -34,17 +28,15 @@ let SDKInstance = new SesamiSDK({
     })
 ```
 
-store the SDKInstance in a place that you can access it easily , in my case i will store it in `window.sesamiSDK`
+Store the `SDKInstance` in a place you can access easily. In my case, I’ll store it in `window.sesamiSDK`:
 
 ```js
 window.sesamiSDK = SDKInstance;
 ```
 
-💡 **Tip:** Remember to activate the instant booking option in the shop settings. If you don’t, the SDK instance will fail to generate.
+## Rendering The Calendar
 
-## Rendering Calendar
-
-Each SDK instance will include a data object. You can find a sample data set [here](your-link-here).
+Each SDK instance includes a data object. You can find a sample dataset [here](https://sesami.dev/docs/sesami-sdk/sdk/#data).
 
 ### Object Structure
 
@@ -79,14 +71,14 @@ Here’s an example of what the `data` property might look like:
 }
 ```
 
-we use the `labels` to render the label section of the calendar like
+We use the `labels` to render the label section of the calendar like this:
 
 | Su  | Mo  | Tu  | We  | Th  | Fr  | Sa  |
 | --- | --- | --- | --- | --- | --- | --- |
 
 like this
 
-```js
+```javascript
 // helper
 const dayName = (date) =>
   new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
@@ -96,7 +88,7 @@ window.sesamiSDK.data.labels.map((dateString) => {
 });
 ```
 
-and we use `rows` to generate the days of the calendar like
+We use `rows` to generate the days of the calendar like this:
 
 |     |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -121,9 +113,7 @@ Each array in `rows` represents a row and contains the days for that row.
 | `onLoad(callback)`    | `Function`       | The callback function receives cell availabilities for the currently selected range; requires autoLoad to be enabled. This method triggers a network request only if the data is not already available. |
 | `onError(callback)`   | `Function`       | The callback function receives any errors when retrieving cell availabilities for the selected range.                                                                                                   |
 
-i will use all this data to make the days of our calendar like this
-
-```js
+```javascript
 // Initialize an empty object to store all availabilities
 let allAvailabilities = {};
 
@@ -163,11 +153,10 @@ window.sesamiSDK.data.rows.forEach((row, rowIndex) => {
 });
 ```
 
-💡 **Tip:** There are several ways to handle day availabilities. One approach is to fetch the availabilities for each day only when it's selected. Alternatively, you could collect all availabilities in a single array and then filter it to find specific data. In this example, I chose to store all availabilities in a large object, using date keys for quick access. This method allows for efficient lookups by date.
-
 ## Getting Availabilities
 
-now that we got our days rendered and we stored all the availabilities, its time to render our available slot but before that lets take look at the slot structure
+Now that we’ve rendered our days and stored availabilities, it’s time to render available slots!
+Before that, let’s look at the slot structure.
 
 ### Slot Object Structure
 
@@ -189,40 +178,25 @@ now that we got our days rendered and we stored all the availabilities, its time
 }
 ```
 
-you can use this data in your UI as you like and add a click event to it, when user clicked on it store the slot data (ex : selectedSlot)
+You can render the availabilities in a drop down and store the selected slot
 
 ## Including Extra Data
 
-there are two types of data that you attach to the book request
+There are two types of data you can attach to the booking request:
 
-1. **SesamiCustomerObject**
-2. **SesamiOptionsObject**
-
-`SesamiCustomerObject` is required and it contained customer data
+1. **SesamiCustomerObject (required)**
+2. **SesamiOptionsObject (optional)**
 
 ### SesamiCustomerObject Structure
 
 | Property    | Description             | Example        |
 | ----------- | ----------------------- | -------------- |
-| `email`     | customer email address. | john@smith.com |
-| `firstName` | customer first name.    | John           |
-| `lastName`  | customer last name.     | Smith          |
-| `phone`     | customer phone number.  | +12223333333   |
+| `email`     | Customer email address. | john@smith.com |
+| `firstName` | Customer first name.    | John           |
+| `lastName`  | Customer last name.     | Smith          |
+| `phone`     | Customer phone number.  | +12223333333   |
 
-#### Example
-
-```json
-{
-  email: "john@smith.com"
-  firstName: "John"
-  lastName: "Smith"
-  phone: "+12223333333"
-}
-```
-
-`SesamiOptionsObject` is optional and can be used to store any data you choose, as long as you follow the required format.
-
-### SesamiCustomerObject Format
+### SesamiOptionsObject Format
 
 The customer object contains a property named `properties`, which is an array of objects with the following format:
 
@@ -248,11 +222,8 @@ The customer object contains a property named `properties`, which is an array of
 }
 ```
 
-💡 **Tip:** Remember to store each value, such as `SesamiCustomerObject` and `SesamiOptionsObject`, in separate variables. We will use these variables later when we want to book an event.
-
 ## Book
 
-finally we are here!
 now you can book an event using SDK instant and the data you gathered
 
 ```js
