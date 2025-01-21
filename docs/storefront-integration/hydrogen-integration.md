@@ -36,30 +36,91 @@ After completing the above steps, you should be able to see the Sesami booking b
 
 ## Events
 
-You can listen to the sesami:loaded event to update the UI after Sesami has loaded.
-For example, you can add the following code to the parent component of the sesami-experience component:
+sesami offer a list of events
+
+| Event                    | Description                                                              |
+| ------------------------ | ------------------------------------------------------------------------ |
+| `sesami:loaded`          | Triggered when the Sesami widget is fully loaded.                        |
+| `change`                 | Triggered when a user selects a new time slot, team member, or timezone. |
+| `sesami:modal:open`      | Triggered when the Sesami modal is opened.                               |
+| `sesami:modal:closed`    | Triggered when the Sesami modal is closed.                               |
+| `sesami:booking:success` | Triggered when a booking is successfully completed.                      |
+
+### Example:
+
+#### When instant booking is off
+
+Listen for `sesami:loaded` event and once inputs are rendered, listen for the `change` event on the Date input and programmatically create an order without customers having to click on add to cart button:
 
 ```javascript
+import { useEffect } from "react";
+
 useEffect(() => {
-  const changeUI = () => {
-    // Add logic for handling the "sesami:loaded" event
+  const initializeSesamiIntegration = () => {
     console.log("Sesami has loaded!");
+
+    // Select the form element
+    const formElement = document.querySelector("#form");
+    if (formElement) {
+      // Find the Sesami date input
+      const sesamiDateInput = formElement.querySelector(
+        "[name='properties[Date]']"
+      );
+      if (sesamiDateInput) {
+        // Add the event listener to handle changes
+        sesamiDateInput.addEventListener("change", function () {
+          const formData = new FormData(formElement);
+          createOrder(formData);
+        });
+
+        // Clean up the event listener when the component unmounts or the event listener is no longer needed
+        return () => {
+          sesamiDateInput.removeEventListener("change", createOrder);
+        };
+      } else {
+        console.warn("Sesami date input not found!");
+      }
+    } else {
+      console.warn("Form element not found!");
+    }
   };
 
-  // Ensure `window` is accessible before adding the event listener
   if (typeof window !== "undefined") {
-    window.addEventListener("sesami:loaded", changeUI);
+    window.addEventListener("sesami:loaded", initializeSesamiIntegration);
 
-    // Clean up the event listener when the component unmounts or dependencies change
     return () => {
-      window.removeEventListener("sesami:loaded", changeUI);
+      window.removeEventListener("sesami:loaded", initializeSesamiIntegration);
     };
   }
 }, []);
 ```
 
-For a complete list of all available events, refer to the [Sesami Events Documentation.](https://sesami.dev/docs/storefront-integration/anatomy-of-sesami-button/#events).
+#### When instant booking is on
 
----
+Listen for `sesami:loaded` event for making any action when sesami was fully loaded and listen for `sesami:booking:success` to make any action after customer finished booking:
 
-Congratulations! 🎉 You have successfully integrated Sesami with your Shopify Hydrogen app.
+```javascript
+import { useEffect } from "react";
+
+useEffect(() => {
+  const initializeSesamiIntegration = () => {
+    console.log("Sesami has loaded!");
+    // ex : hide the add to cart button
+  };
+
+  const successfulBooking = () => {
+    console.log("event was booked successfully!");
+    // ex : redirect to another page
+  };
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("sesami:loaded", initializeSesamiIntegration);
+    window.addEventListener("sesami:booking:success", successfulBooking);
+
+    return () => {
+      window.removeEventListener("sesami:loaded", initializeSesamiIntegration);
+      window.addEventListener("sesami:booking:success", successfulBooking);
+    };
+  }
+}, []);
+```
