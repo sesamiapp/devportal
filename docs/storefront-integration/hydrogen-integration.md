@@ -50,46 +50,38 @@ sesami offer a list of events
 
 #### When instant booking is off
 
-Listen for `sesami:loaded` event and once inputs are rendered, listen for the `change` event on the Date input and programmatically create an order without customers having to click on add to cart button:
+Listen for `sesami:loaded` event and once inputs are rendered, listen for the `change` event on the sesami-experience and programmatically create an order without customers having to click on add to cart button:
 
 ```javascript
 import { useEffect } from "react";
 
 useEffect(() => {
-  const initializeSesamiIntegration = () => {
+  const onSesamiLoaded = () => {
     console.log("Sesami has loaded!");
 
-    // Select the form element
-    const formElement = document.querySelector("#form");
-    if (formElement) {
-      // Find the Sesami date input
-      const sesamiDateInput = formElement.querySelector(
-        "[name='properties[Date]']"
-      );
-      if (sesamiDateInput) {
-        // Add the event listener to handle changes
-        sesamiDateInput.addEventListener("change", function () {
-          const formData = new FormData(formElement);
-          createOrder(formData);
-        });
-
-        // Clean up the event listener when the component unmounts or the event listener is no longer needed
-        return () => {
-          sesamiDateInput.removeEventListener("change", createOrder);
-        };
-      } else {
-        console.warn("Sesami date input not found!");
-      }
-    } else {
-      console.warn("Form element not found!");
+    const sesamiExperience = document.querySelector("sesami-experience");
+    if (!sesamiExperience) {
+      console.warn("Sesami experience element not found!");
+      return;
     }
+
+    sesamiExperience.addEventListener("change", (event) => {
+      const formData = new FormData();
+      sesamiExperience.querySelectorAll("input").forEach((input) => {
+        if (input.name) {
+          formData.append(input.name, input.value);
+        }
+      });
+
+      createOrder(formData);
+    });
   };
 
   if (typeof window !== "undefined") {
-    window.addEventListener("sesami:loaded", initializeSesamiIntegration);
+    window.addEventListener("sesami:loaded", onSesamiLoaded);
 
     return () => {
-      window.removeEventListener("sesami:loaded", initializeSesamiIntegration);
+      window.removeEventListener("sesami:loaded", onSesamiLoaded);
     };
   }
 }, []);
