@@ -50,31 +50,29 @@ sesami offer a list of events
 
 #### When instant booking is off
 
-Listen for `sesami:loaded` event and once inputs are rendered, listen for the `change` event on the sesami-experience and programmatically create an order without customers having to click on add to cart button:
+Listen for `sesami:loaded` event and once inputs are rendered (after 1 second delay), listen for the `change` event on the inputs inside of the wrapper:
 
 ```javascript
 import { useEffect } from "react";
 
 useEffect(() => {
   const onSesamiLoaded = () => {
-    console.log("Sesami has loaded!");
+    setTimeout(() => {
+      // Select the wrapper element
+      const wrapper = document.querySelector(".sesami-hidden-fields-wrapper");
 
-    const sesamiExperience = document.querySelector("sesami-experience");
-    if (!sesamiExperience) {
-      console.warn("Sesami experience element not found!");
-      return;
-    }
+      if (wrapper) {
+        // Select all input elements within the wrapper
+        const inputs = wrapper.querySelectorAll("input");
 
-    sesamiExperience.addEventListener("change", (event) => {
-      const formData = new FormData();
-      sesamiExperience.querySelectorAll("input").forEach((input) => {
-        if (input.name) {
-          formData.append(input.name, input.value);
-        }
-      });
-
-      createOrder(formData);
-    });
+        // Add a change event listener to each input
+        inputs.forEach((input) => {
+          input.addEventListener("change", (event) => {
+            console.log(input.name, input.value);
+          });
+        });
+      }
+    }, 1000);
   };
 
   if (typeof window !== "undefined") {
@@ -86,6 +84,8 @@ useEffect(() => {
   }
 }, []);
 ```
+
+if you want to call a certain action you can only listen on one of the inputs otherwise the action will run once for each input
 
 #### When instant booking is on
 
