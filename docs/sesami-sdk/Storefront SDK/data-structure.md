@@ -58,7 +58,7 @@ An object that contains customer data.
 | `phone`     | `String` | Customer's phone number.  |
 
 :::info
-The phone number must be validated according to the E.164 format, which ensures international compatibility [read more](https://www.twilio.com/docs/glossary/what-e164).
+The phone number must be validated according to the E.164 format, which ensures international compatibility [read more](https://en.m.wikipedia.org/wiki/E.164).
 :::
 
 ### `SesamiOptionsObject`
