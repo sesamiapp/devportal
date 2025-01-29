@@ -18,6 +18,7 @@ export const Configurator = () => {
     const [ quantity            , setQuantity            ] = useState<string>('1')
     const [ timezone            , setTimezone            ] = useState('')
     const [ locale              , setLocale              ] = useState<string | null>('en')
+    const [ version             , setVersion             ] = useState<'auto' | 'classic' | 'v2'>('auto')
     const [ skipMonthlyCalendar , setSkipMonthlyCalendar ] = useState<boolean | null>(null)
     const [ autoAddToCart       , setAutoAddToCart       ] = useState(false)
     const [ skipCart            , setSkipCart            ] = useState(false)
@@ -58,6 +59,7 @@ export const Configurator = () => {
         ...(quantity !== '0' && { "quantity": quantity }),
         ...(timezone !== '' && { "timezone": timezone }),
         ...(locale !== null && { "locale": locale }),
+        ...(version !== 'auto' && { "version": version }),
         ...(skipMonthlyCalendar !== null && { "skip-monthly-calendar": skipMonthlyCalendar }),
         ...(autoAddToCart === true && { "auto-add-to-cart": '' }),
         ...(skipCart === true && { "skip-cart": '' }),
