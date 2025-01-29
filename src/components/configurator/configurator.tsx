@@ -134,6 +134,18 @@ export const Configurator = () => {
                     </div>
 
                     <div className="inputContainer">
+                        <a>Experience Version:</a>
+                        <select
+                            defaultValue={version}
+                            onChange={e => setVersion(e.target.value as any)}
+                        >
+                            <option value={'auto'}>Auto(Based on Config)</option>
+                            <option value={'classic'}>Classic</option>
+                            <option value={'v2'}>V2</option>
+                        </select>
+                    </div>
+
+                    <div className="inputContainer">
                         <a>Skip Monthly Calendar:</a>
                         <select
                             defaultValue={skipMonthlyCalendar === null ? 'none' : skipMonthlyCalendar === true ? 'true' : 'false'}
