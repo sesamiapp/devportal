@@ -18,6 +18,7 @@ export const Configurator = () => {
     const [ quantity            , setQuantity            ] = useState<string>('1')
     const [ timezone            , setTimezone            ] = useState('')
     const [ locale              , setLocale              ] = useState<string | null>('en')
+    const [ experience          , setExperience          ] = useState<'auto' | 'classic' | 'v2'>('auto')
     const [ skipMonthlyCalendar , setSkipMonthlyCalendar ] = useState<boolean | null>(null)
     const [ autoAddToCart       , setAutoAddToCart       ] = useState(false)
     const [ skipCart            , setSkipCart            ] = useState(false)
@@ -58,6 +59,7 @@ export const Configurator = () => {
         ...(quantity !== '0' && { "quantity": quantity }),
         ...(timezone !== '' && { "timezone": timezone }),
         ...(locale !== null && { "locale": locale }),
+        ...(experience !== 'auto' && { "experience": experience }),
         ...(skipMonthlyCalendar !== null && { "skip-monthly-calendar": skipMonthlyCalendar }),
         ...(autoAddToCart === true && { "auto-add-to-cart": '' }),
         ...(skipCart === true && { "skip-cart": '' }),
@@ -128,6 +130,18 @@ export const Configurator = () => {
                             {experienceLanguageOptions.map(option => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
                             ))}
+                        </select>
+                    </div>
+
+                    <div className="inputContainer">
+                        <a>Experience:</a>
+                        <select
+                            defaultValue={experience}
+                            onChange={e => setExperience(e.target.value as any)}
+                        >
+                            <option value={'auto'}>Auto(Based on Config)</option>
+                            <option value={'classic'}>Classic</option>
+                            <option value={'v2'}>V2</option>
                         </select>
                     </div>
 
