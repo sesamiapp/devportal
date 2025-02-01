@@ -10,5 +10,5 @@ You can find Sesami APIs here:
 - [REST](https://api.sesami.co/swagger)
 
 
-Noe, Lets' dive in to quickly [Get started](get-started/authentication.md) with building and scaling your booking capabilities.
+Now, Lets' dive in to quickly [Get started](get-started/authentication.md) with building and scaling your booking capabilities.
 
