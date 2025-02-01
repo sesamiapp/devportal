@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Sesami Apps Boilerplate
 
-To ease up the developer's workflow to create an app in the Sesami platform, we provide a simple boilerplate created with React.JS, Express.JS, and MongoDB.
+To ease up the developer's workflow to create an app in the Sesami platform, we provide a simple <a href="https://github.com/sesamiapp/sesami-apps-boilerplate">boilerplate</a> created with React, Express, and MongoDB.
 
 You can use this boilerplate to speed up the process of creating apps for Sesami, without the hustle of setting up different technologies.
 
