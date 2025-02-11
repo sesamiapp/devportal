@@ -38,6 +38,7 @@ export const Configurator = () => {
     const [ showButton, setShowButton ] = useState(true)
 
     useEffect(() => { setShowButton(false) }, [
+        experience,
         label,
         width,
         height,
