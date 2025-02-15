@@ -22,7 +22,7 @@
     gap: 8px;
 }
 
-.widthHeightWrapper .fieldContainer{
+.widthHeightWrapper .fieldWrapper{
     width: calc(50% - 4px);
 }
 
@@ -61,13 +61,13 @@
     gap: 12px;
 }
 
-.fieldContainer{
+.fieldWrapper{
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.fieldContainer a{
+.fieldWrapper a{
     color: #333;
 }
 .description{
@@ -75,19 +75,19 @@
     font-size: 15px;
     margin: 0;
 }
-.fieldContainer input,
-.fieldContainer select{
+.fieldWrapper input,
+.fieldWrapper select{
     height: 40px;
     font-size: 16px;
     border: solid 1px #999;
     border-radius: 6px;
 }
-.fieldContainer select{
+.fieldWrapper select{
     padding: 0 4px;
     background-color: transparent;
     cursor: pointer;
 }
-.fieldContainer input{
+.fieldWrapper input{
     padding: 0 8px;
 }
 

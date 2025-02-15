@@ -28,11 +28,11 @@ export const Configurator = () => {
     const [ autoAddToCart       , setAutoAddToCart       ] = useState<boolean | null>(null)
     const [ skipCart            , setSkipCart            ] = useState<boolean | null>(null)
 
-    const [ buttonLabel         , setButtonLabel         ] = useState<string | null>(null)
+    const [ label               , setLabel               ] = useState<string | null>(null)
     const [ width               , setWidth               ] = useState<number | null>(300)
     const [ height              , setHeight              ] = useState<number | null>(50)
-    const [ color               , setColor               ] = useState<string | null>('#FFF')
     const [ backgroundColor     , setBackgroundColor     ] = useState<string | null>('#14146d')
+    const [ color               , setColor               ] = useState<string | null>('#FFF')
     const [ fontSize            , setFontSize            ] = useState<number | null>(18)
     const [ borderWidth         , setBorderWidth         ] = useState<number | null>(1)
     const [ borderColor         , setBorderColor         ] = useState<string | null>('#0f0f30')
@@ -59,7 +59,7 @@ export const Configurator = () => {
         skipMonthlyCalendar,
         hideAnyAvailable,
 
-        buttonLabel,
+        label,
         width,
         height,
         color,
@@ -96,18 +96,18 @@ export const Configurator = () => {
         ...(autoAddToCart === true && { 'auto-add-to-cart': '' }),
         ...(skipCart === true && { 'skip-cart': '' }),
 
-        // ...(label !== null && { 'button-label': label }),
-        // 'button-customized-settings': encodeURIComponent(JSON.stringify({
-        //     'width': `${width}px`,
-        //     'height': `${height}px`, 
-        //     'color': color,
-        //     'color_background': backgroundColor,
-        //     'font_size': fontSize,
-        //     'border_width': borderWidth,
-        //     'border_radius': borderRadius,
-        //     'border_color': borderColor,
-        //     'alignment': alignment
-        // }))
+        ...(label !== null && { 'button-label': label }),
+        'button-customized-settings': encodeURIComponent(JSON.stringify({
+            width: width !== null ? `${width}px` : undefined,
+            height: height !== null ? `${height}px` : undefined,
+            color_background: backgroundColor ?? undefined,
+            color: color ?? undefined,
+            font_size: fontSize !== null ? fontSize : undefined,
+            border_width: borderWidth !== null ? borderWidth : undefined,
+            border_color: borderColor ?? undefined,
+            border_radius: borderRadius !== null ? borderRadius : undefined,
+            alignment
+        }))
 
     }
     
@@ -118,31 +118,31 @@ export const Configurator = () => {
 
                 <div className="leftColumn">
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Shop ID</a>
                         <input defaultValue={shopId ?? ''} onChange={e => setShopId(e.target.value)}/>
                         <p className='description'>This field is required.</p>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Product ID</a>
                         <input defaultValue={productId ?? ''} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
                         <p className='description'>This field is required.</p>
                     </div>
                     
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Variant ID</a>
                         <input defaultValue={variantId ?? ''} onChange={e => setVariantId(e.target.value === '' ? null : e.target.value)}/>
                         <p className='description'>Leave it empty to pick the first variant.</p>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Quantity</a>
-                        <input type="number" min={1} defaultValue={quantity ?? undefined} onChange={e => setQuantity(parseInt(e.target.value))}/>
+                        <input type="number" min={1} defaultValue={quantity ?? undefined} onChange={e => setQuantity(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>If you leave it empty it would be one.</p>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Locale</a>
                         <select
                             defaultValue={locale ?? 'ns'}
@@ -156,7 +156,7 @@ export const Configurator = () => {
                         <p className='description'>If not specified, it will be picked from the settings.</p>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Timezone</a>
                         <select
                             defaultValue={timezone ?? 'auto'}
@@ -170,7 +170,7 @@ export const Configurator = () => {
                         <p className='description'>On auto, it will be picked the user's timezone.</p>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Experience</a>
                         <select
                             defaultValue={experienceVersion ?? undefined}
@@ -187,7 +187,7 @@ export const Configurator = () => {
                         <p className='description'>The default will be V2.</p>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Calendar</a>
                         <select
                             defaultValue={calendarType ?? undefined}
@@ -204,7 +204,7 @@ export const Configurator = () => {
                         <p className='description'>If not specified, it will be picked from shop settings.</p>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Skip Monthly Calendar</a>
                         <select
                             defaultValue={skipMonthlyCalendar === null ? 'auto' : skipMonthlyCalendar === true ? 'true' : 'false'}
@@ -217,7 +217,7 @@ export const Configurator = () => {
                         <p className='description'>On auto, it will be based on the calendar type.</p>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Hide any available</a>
                         <select
                             defaultValue={hideAnyAvailable === null ? 'auto' : hideAnyAvailable === true ? 'true' : 'false'}
@@ -254,56 +254,61 @@ export const Configurator = () => {
 
                 <div className="rightColumn">
                     
-                    <div className="fieldContainer">
-                        <a>Label:</a>
-                        <input defaultValue={label === null ? '' : label} onChange={e => setLabel(e.target.value === '' ? null : e.target.value)}/>
+                    <div className="fieldWrapper">
+                        <a>Label</a>
+                        <input defaultValue={label ?? ''} onChange={e => setLabel(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>The text on the button.</p>
                     </div>
 
-                    {/* <div className="widthHeightWrapper">
-
-                        <div className="fieldContainer">
-                            <a>Width(px):</a>
-                            <input type="number" min={0} defaultValue={width} onChange={e => setWidth(e.target.valueAsNumber)}/>
+                    <div className="widthHeightWrapper">
+                    
+                        <div className="fieldWrapper">
+                            <a>Width(px)</a>
+                            <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
+                            <p className='description'>The button's width.</p>
                         </div>
-
-                        <div className="fieldContainer">
-                            <a>Height(px):</a>
-                            <input type="number" min={0} defaultValue={height} onChange={e => setHeight(e.target.valueAsNumber)}/>
+                        
+                        <div className="fieldWrapper">
+                            <a>Height(px)</a>
+                            <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
+                            <p className='description'>The button's height.</p>
                         </div>
 
                     </div>
                     
-                    <div className="fieldContainer">
-                        <a>Color:</a>
-                        <input defaultValue={color} onChange={e => setColor(e.target.value)}/>
+                    <div className="fieldWrapper">
+                        <a>Background Color</a>
+                        <input defaultValue={backgroundColor ?? ''} onChange={e => setBackgroundColor(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>The button's background color.</p>
                     </div>
                     
-                    <div className="fieldContainer">
-                        <a>Background Color:</a>
-                        <input defaultValue={backgroundColor} onChange={e => setBackgroundColor(e.target.value)}/>
+                    <div className="fieldWrapper">
+                        <a>Color</a>
+                        <input defaultValue={color ?? ''} onChange={e => setColor(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>The button's text color.</p>
                     </div>
-
-                    <div className="fieldContainer">
+                    
+                    {/* <div className="fieldWrapper">
                         <a>Font Size(px):</a>
                         <input type="number" min={0} defaultValue={fontSize} onChange={e => setFontSize(e.target.valueAsNumber)}/>
                     </div>
                     
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Border Width(px):</a>
                         <input type="number" min={0} defaultValue={borderWidth} onChange={e => setBorderWidth(e.target.valueAsNumber)}/>
                     </div>
                     
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Border Radius(px):</a>
                         <input defaultValue={borderRadius} min={0} onChange={e => setBorderRadius(e.target.valueAsNumber)}/>
                     </div>
                     
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Border Color:</a>
                         <input defaultValue={borderColor} onChange={e => setBorderColor(e.target.value)}/>
                     </div>
 
-                    <div className="fieldContainer">
+                    <div className="fieldWrapper">
                         <a>Alignment:</a>
                         <select
                             defaultValue={alignment}
