@@ -31,13 +31,14 @@ export const Configurator = () => {
     const [ label               , setLabel               ] = useState<string | null>(null)
     const [ width               , setWidth               ] = useState<number | null>(300)
     const [ height              , setHeight              ] = useState<number | null>(50)
-    const [ backgroundColor     , setBackgroundColor     ] = useState<string | null>('#14146d')
-    const [ color               , setColor               ] = useState<string | null>('#FFF')
     const [ fontSize            , setFontSize            ] = useState<number | null>(18)
+    const [ color               , setColor               ] = useState<string | null>('#FFF')
+    const [ backgroundColor     , setBackgroundColor     ] = useState<string | null>('#14146d')
     const [ borderWidth         , setBorderWidth         ] = useState<number | null>(1)
     const [ borderColor         , setBorderColor         ] = useState<string | null>('#0f0f30')
     const [ borderRadius        , setBorderRadius        ] = useState<number | null>(12)
     const [ alignment           , setAlignment           ] = useState<'flex-start' | 'center' | 'flex-end' | null>('flex-start')
+
     const [ ctaBackgroundColor  , setCtaBackgroundColor  ] = useState<string | null>(null)
     const [ ctaTextColor        , setCtaTextColor        ] = useState<string | null>(null)
 
@@ -59,6 +60,9 @@ export const Configurator = () => {
         skipMonthlyCalendar,
         hideAnyAvailable,
 
+        autoAddToCart,
+        skipCart,
+
         label,
         width,
         height,
@@ -69,11 +73,9 @@ export const Configurator = () => {
         borderColor,
         borderRadius,
         alignment,
-        ctaBackgroundColor,
-        ctaTextColor,
 
-        autoAddToCart,
-        skipCart
+        ctaBackgroundColor,
+        ctaTextColor
 
     ])
     useEffect(() => { !showButton && setShowButton(true) }, [showButton])
@@ -94,20 +96,24 @@ export const Configurator = () => {
         ...(hideAnyAvailable    !== null && { 'hide-any-available': hideAnyAvailable ? '' : 'false' }),
 
         ...(autoAddToCart === true && { 'auto-add-to-cart': '' }),
-        ...(skipCart === true && { 'skip-cart': '' }),
+        ...(skipCart      === true && { 'skip-cart': ''        }),
 
         ...(label !== null && { 'button-label': label }),
+
         'button-customized-settings': encodeURIComponent(JSON.stringify({
-            width: width !== null ? `${width}px` : undefined,
-            height: height !== null ? `${height}px` : undefined,
+            width:            width           !== null ? `${width}px`  : undefined,
+            height:           height          !== null ? `${height}px` : undefined,
+            font_size:        fontSize        !== null ? fontSize      : undefined,
+            color:            color           ?? undefined,
             color_background: backgroundColor ?? undefined,
-            color: color ?? undefined,
-            font_size: fontSize !== null ? fontSize : undefined,
-            border_width: borderWidth !== null ? borderWidth : undefined,
-            border_color: borderColor ?? undefined,
-            border_radius: borderRadius !== null ? borderRadius : undefined,
+            border_width:     borderWidth     !== null ? borderWidth   : undefined,
+            border_color:     borderColor     ?? undefined,
+            border_radius:    borderRadius    !== null ? borderRadius  : undefined,
             alignment
-        }))
+        })),
+
+        ...(ctaBackgroundColor && { 'cta-background-color': ctaBackgroundColor }),
+        ...(ctaTextColor       && { 'cta-text-color'      : ctaTextColor       })
 
     }
     
@@ -229,6 +235,12 @@ export const Configurator = () => {
                         </select>
                         <p className='description'>On auto, it will be based on the configuration.</p>
                     </div>
+                    
+                    <div className="fieldWrapper">
+                        <a>Button Label</a>
+                        <input defaultValue={label ?? ''} onChange={e => setLabel(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>The text on the button.</p>
+                    </div>
 
                     <div className="checkboxWrapper">
                         <label>
@@ -255,79 +267,96 @@ export const Configurator = () => {
                 <div className="rightColumn">
                     
                     <div className="fieldWrapper">
-                        <a>Label</a>
-                        <input defaultValue={label ?? ''} onChange={e => setLabel(e.target.value === '' ? null : e.target.value)}/>
-                        <p className='description'>The text on the button.</p>
+                        <a>Button Width(px)</a>
+                        <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
+                        <p className='description'>The button's width.</p>
                     </div>
-
-                    <div className="widthHeightWrapper">
                     
-                        <div className="fieldWrapper">
-                            <a>Width(px)</a>
-                            <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
-                            <p className='description'>The button's width.</p>
-                        </div>
+                    <div className="fieldWrapper">
+                        <a>Button Height(px)</a>
+                        <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
+                        <p className='description'>The button's height.</p>
+                    </div>
                         
-                        <div className="fieldWrapper">
-                            <a>Height(px)</a>
-                            <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
-                            <p className='description'>The button's height.</p>
-                        </div>
-
+                    <div className="fieldWrapper">
+                        <a>Button Text Font Size(px)</a>
+                        <input type="number" min={0} defaultValue={fontSize ?? undefined} onChange={e => setFontSize(e.target.value ? parseInt(e.target.value) : null)}/>
+                        <p className='description'>The button's text font size.</p>
                     </div>
                     
                     <div className="fieldWrapper">
-                        <a>Background Color</a>
-                        <input defaultValue={backgroundColor ?? ''} onChange={e => setBackgroundColor(e.target.value === '' ? null : e.target.value)}/>
-                        <p className='description'>The button's background color.</p>
-                    </div>
-                    
-                    <div className="fieldWrapper">
-                        <a>Color</a>
+                        <a>Button Text Color</a>
                         <input defaultValue={color ?? ''} onChange={e => setColor(e.target.value === '' ? null : e.target.value)}/>
                         <p className='description'>The button's text color.</p>
                     </div>
                     
-                    {/* <div className="fieldWrapper">
-                        <a>Font Size(px):</a>
-                        <input type="number" min={0} defaultValue={fontSize} onChange={e => setFontSize(e.target.valueAsNumber)}/>
+                    <div className="fieldWrapper">
+                        <a>Button Background Color</a>
+                        <input defaultValue={backgroundColor ?? ''} onChange={e => setBackgroundColor(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>The button's background color.</p>
+                    </div>
+                        
+                    <div className="fieldWrapper">
+                        <a>Button Border Width(px)</a>
+                        <input type="number" min={0} defaultValue={borderWidth ?? undefined} onChange={e => setBorderWidth(e.target.value ? parseInt(e.target.value) : null)}/>
+                        <p className='description'>The button's border width.</p>
                     </div>
                     
                     <div className="fieldWrapper">
-                        <a>Border Width(px):</a>
-                        <input type="number" min={0} defaultValue={borderWidth} onChange={e => setBorderWidth(e.target.valueAsNumber)}/>
-                    </div>
-                    
-                    <div className="fieldWrapper">
-                        <a>Border Radius(px):</a>
-                        <input defaultValue={borderRadius} min={0} onChange={e => setBorderRadius(e.target.valueAsNumber)}/>
-                    </div>
-                    
-                    <div className="fieldWrapper">
-                        <a>Border Color:</a>
-                        <input defaultValue={borderColor} onChange={e => setBorderColor(e.target.value)}/>
+                        <a>Button Border Color</a>
+                        <input defaultValue={borderColor ?? ''} onChange={e => setBorderColor(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>The button's border color.</p>
                     </div>
 
                     <div className="fieldWrapper">
-                        <a>Alignment:</a>
+                        <a>Button Border Radius(px)</a>
+                        <input type="number" min={0} defaultValue={borderRadius ?? undefined} onChange={e => setBorderRadius(e.target.value ? parseInt(e.target.value) : null)}/>
+                        <p className='description'>The button's border radius.</p>
+                    </div>
+                    
+                    <div className="fieldWrapper">
+                        <a>Button Border Color</a>
+                        <input defaultValue={borderColor ?? ''} onChange={e => setBorderColor(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>The button's border color.</p>
+                    </div>
+
+                    <div className="fieldWrapper">
+                        <a>Button Alignment</a>
                         <select
-                            defaultValue={alignment}
+                            defaultValue={alignment === null ? 'none' : (hideAnyAvailable as any)}
                             onChange={e => setAlignment(e.target.value as 'flex-start' | 'center' | 'flex-end')}
                         >
                             <option value={'flex-start'}>Left</option>
                             <option value={'center'}>Center</option>
                             <option value={'flex-end'}>Right</option>
+                            <option value={'none'}>None</option>
                         </select>
-                    </div> */}
+                        <p className='description'>The alignment of the button.</p>
+                    </div>
+                    
+                    <div className="fieldWrapper">
+                        <a>CTA Background Color</a>
+                        <input defaultValue={ctaBackgroundColor ?? ''} onChange={e => setCtaBackgroundColor(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>Background color for the action buttons inside the Experience.</p>
+                    </div>
+                    
+                    <div className="fieldWrapper">
+                        <a>CTA Text Color</a>
+                        <input defaultValue={ctaTextColor ?? ''} onChange={e => setCtaTextColor(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>Text color for the action buttons inside the Experience.</p>
+                    </div>
 
                 </div>
 
             </div>
             
             {/* code sample */}
-            <textarea className="codeSampleTextarea" wrap="off" rows={16} value={`${`<sesami-experience`}${(
-                        JSON.stringify(sesamiExperienceProps, null, 4)
-                    )
+            <textarea
+                className="codeSampleTextarea"
+                wrap="off"
+                rows={16}
+                value={
+                    `${`<sesami-experience`}${(JSON.stringify(sesamiExperienceProps, null, 4))
                     .replace('{', '')
                     .replace('}', '')
                     .replace(new RegExp(': ' , 'g'), '=')
@@ -335,8 +364,9 @@ export const Configurator = () => {
                     .replace(new RegExp('"=' , 'g'), '=')
                     .replace(new RegExp(','  , 'g'), '' )
                     .replace(new RegExp('=""', 'g'), '' )
-                    }${`>`}${`</sesami-experience>`}`}>
-            </textarea>
+                    }${`>`}${`</sesami-experience>`}`
+                }
+            ></textarea>
 
             {/* button */}
             {showButton && <sesami-experience {...sesamiExperienceProps} ></sesami-experience>}
