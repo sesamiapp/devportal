@@ -22,21 +22,28 @@
     gap: 8px;
 }
 
-.widthHeightWrapper .inputContainer{
+.widthHeightWrapper .fieldContainer{
     width: calc(50% - 4px);
 }
 
 .checkboxWrapper{
     margin-top: 8px;
     display: flex;
+    flex-direction: column;
     gap: 4px;
 }
-.checkboxWrapper input{
-    width: 20px;
-    height: 20px;
+.checkbox{
+    display: flex;
+    gap: 4px;
     cursor: pointer;
 }
-.checkboxWrapper a{
+.checkbox input{
+    width: 18px;
+    height: 18px;
+    margin-left: 0;
+    cursor: pointer;
+}
+.checkbox a{
     color: #333;
 }
 
@@ -48,41 +55,43 @@
 
 .leftColumn, .rightColumn{
     flex: 1;
-    max-width: 320px;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.inputContainer{
+.fieldContainer{
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.inputContainer a{
+.fieldContainer a{
     color: #333;
 }
-.inputContainer .description{
-    color: #777;
+.description{
+    color: #888;
+    font-size: 15px;
+    margin: 0;
 }
-.inputContainer input,
-.inputContainer select{
+.fieldContainer input,
+.fieldContainer select{
     height: 40px;
     font-size: 16px;
     border: solid 1px #999;
     border-radius: 6px;
 }
-.inputContainer select{
+.fieldContainer select{
     padding: 0 4px;
     background-color: transparent;
     cursor: pointer;
 }
-.inputContainer input{
+.fieldContainer input{
     padding: 0 8px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
     .inputsWrapper{
         flex-direction: column;
         gap: 16px;
