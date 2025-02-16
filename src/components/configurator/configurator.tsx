@@ -13,7 +13,7 @@ declare global {
 export const Configurator = () => {
 
     const [ shopId              , setShopId              ] = useState<string | null>('76573311249')
-    const [ productId           , setProductId           ] = useState<string | null>('8689310236945')
+    const [ serviceId           , setServiceId           ] = useState<string | null>('8689310236945')
     const [ variantId           , setVariantId           ] = useState<string | null>(null)
     const [ quantity            , setQuantity            ] = useState<number | null>(null)
 
@@ -48,7 +48,7 @@ export const Configurator = () => {
     useEffect(() => { setShowButton(false) }, [
         
         shopId,
-        productId,
+        serviceId,
         variantId,
         quantity,
 
@@ -83,7 +83,7 @@ export const Configurator = () => {
     const sesamiExperienceProps = {
 
         ...(shopId      && { 'shop-id'   : shopId    }),
-        ...(productId   && { 'product-id': productId }),
+        ...(serviceId   && { 'service-id': serviceId }),
         ...(variantId   && { 'variant-id': variantId }),
         ...(quantity    && { 'quantity'  : quantity  }),
 
@@ -100,7 +100,7 @@ export const Configurator = () => {
 
         ...(label !== null && { 'button-label': label }),
 
-        'button-customized-settings': encodeURIComponent(JSON.stringify({
+        'button-style': encodeURIComponent(JSON.stringify({
             width:            width           !== null ? `${width}px`  : undefined,
             height:           height          !== null ? `${height}px` : undefined,
             font_size:        fontSize        !== null ? fontSize      : undefined,
@@ -131,8 +131,8 @@ export const Configurator = () => {
                     </div>
 
                     <div className="fieldWrapper">
-                        <a>Product ID</a>
-                        <input defaultValue={productId ?? ''} onChange={e => setProductId(e.target.value === '' ? null : e.target.value)}/>
+                        <a>Service ID</a>
+                        <input defaultValue={serviceId ?? ''} onChange={e => setServiceId(e.target.value === '' ? null : e.target.value)}/>
                         <p className='description'>This field is required.</p>
                     </div>
                     
