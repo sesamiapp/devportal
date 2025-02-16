@@ -323,13 +323,13 @@ export const Configurator = () => {
                     <div className="fieldWrapper">
                         <a>Button Alignment</a>
                         <select
-                            defaultValue={alignment === null ? 'none' : (hideAnyAvailable as any)}
+                            defaultValue={alignment === null ? 'ns' : (hideAnyAvailable as any)}
                             onChange={e => setAlignment(e.target.value as 'flex-start' | 'center' | 'flex-end')}
                         >
                             <option value={'flex-start'}>Left</option>
                             <option value={'center'}>Center</option>
                             <option value={'flex-end'}>Right</option>
-                            <option value={'none'}>None</option>
+                            <option value={'ns'}>Not Specified</option>
                         </select>
                         <p className='description'>The alignment of the button.</p>
                     </div>
