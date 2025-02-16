@@ -10,9 +10,9 @@ This document outlines the steps required to integrate Sesami with your front en
 
 Generate the Sesami experience using the [Sesami Experience Configurator](/docs/storefront-integration/configurator/). After generating the experience code, copy it and add it to any page where you would like to display the Sesami experience, according to your requirements.
 
-# Step 2: Load the Sesami Script in a Hydrogen Storefront
+# Step 2: Load the Sesami Script
 
-To integrate the Sesami experience into your Hydrogen storefront, you will need to load the Sesami script. The appropriate way to load third-party scripts into a Hydrogen app is outlined in the Shopify documentation, which can be found [here](https://shopify.dev/docs/api/hydrogen/2024-10/components/script).
+To integrate the Sesami experience into your front end, you will need to load the Sesami script.
 
 Add the following JavaScript snippet wherever you want to use the Sesami experience:
 
@@ -24,7 +24,7 @@ Add the following JavaScript snippet wherever you want to use the Sesami experie
 
 # Step 3: Verify the Integration
 
-After completing the above steps, you should be able to see the Sesami booking button on your page, integrated successfully into your Shopify Hydrogen storefront.
+After completing the above steps, you should be able to see the Sesami booking button on your page, integrated successfully into your front-end.
 
 # Step 4: Handling Events
 
