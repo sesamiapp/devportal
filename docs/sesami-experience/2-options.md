@@ -1,89 +1,62 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Anatomy of Sesami button
+# Options
 
-At its simplest form, you'll need an empty `div` element with `id` attribute set to `sesami__buttonWrapper` for Sesami to render the button and the hidden fields:
-
-```html title="product-template.liquid"
-<div
-  id="sesami__buttonWrapper"
->
-</div>
-```
-
-#### Rendered result
-This is a final rendered markup that Sesami creates to capture booking information:
-
-```html
-<div id="sesami__buttonWrapper">
-<!--- Anything inside this div is generated automatically --->
-	<input type="hidden" id="sesami-date-0" name="properties[Date]" value="">
-	<input type="hidden" id="sesami-time-0" name="properties[Time]" value="">
-	<input type="hidden" id="sesami-timezone-0" name="properties[Timezone]" value="">
-	<input type="hidden" id="sesami-teammember-0" name="properties[Team Member]" value="">
-	<input type="hidden" id="sesami-remainingslots-0" name="sesami-remainingslots" value="">
-	<button class="sesami__button" type="button">
-		Select Date &amp; Time
-	</button>
-</div>
-```
+The Sesami Experience can be customized in many ways; this is mostly done by passing options to the HTML element:
 
 :::note
-
-The above markup will only be generated if the current product is a Sesami service; otherwise, it will do nothing, and your other products won't be affected in any way.
-
+Remember that the **shop-id** and **service-id** are the essential/required options for the Experience to work, but other options that will be mentioned below are optional.
 :::
-
-
-## Options
-
-The Sesami button can be customized in many ways; this is mostly done by passing options to the wrapper element:
 
 ### locale
 Sometimes you might need Sesami calendar to be displayed in a different language than what is set as your primary language. This is primarily useful if you have a multi-lingual store:
 
-```html {3}
-<div
-  id="sesami__buttonWrapper"
-  data-sesami-locale="fr"
+```html {4}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  locale="fr-FR"
 >
-</div>
+</sesami-experience>
 ```
 
 ### button-label
 You can display any label on the button; this is useful if you'd like to conditionally render different labels based on product or context. If this option is not provided, it will display what is set on the settings page in Sesami app.
 
-```html {3}
-<div
-  id="sesami__buttonWrapper"
-  data-sesami-button-label="Book now!"
+```html {4}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  button-label="Book now!"
 >
-</div>
+</sesami-experience>
 ```
 
 ### product-id
 If you want to render a button on a page different from a product page, you'll need to tell Sesami for which product you are rendering a button. Depending on your implementation, if you are rendering the button outside a product form or if a variant input is not present on the form, you might need to add a [variant-id](#variant-id) as well.
 
-```html {3}
-<div
-  id="sesami__buttonWrapper"
-  data-sesami-product-id="192379823740"
+```html {4}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  product-id="192379823740"
 >
-</div>
+</sesami-experience>
 ```
 
 ### variant-id
 If you want to render a button on a page different from a product page, you'll need to tell Sesami for which variant you are rendering a button. You always need to specify the [product-id](#product-id) when using this option
 
-```html {3}
-<div
-  id="sesami__buttonWrapper"
-  data-sesami-product-id="192379823740"
-  data-sesami-variant-id="379823740343"
+```html {4}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  product-id="192379823740"
+  variant-id="379823740343"
 >
-</div>
+</sesami-experience>
 ```
 
 ### shop-id
@@ -96,14 +69,15 @@ If you want to integrate Sesami in an external page or website, you'll need to t
 Each store has its own shop id which can be fetched by visiting this address after replacing `STORE` with your store address: http://STORE.myshopify.com/admin/shop.json
 :::
 
-```html {3}
-<div
-  id="sesami__buttonWrapper"
-  data-sesami-shop-id="0000000000"
-  data-sesami-product-id="192379823740"
-  data-sesami-variant-id="379823740343"
+```html {4}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  shop-id="0000000000"
+  product-id="192379823740"
+  variant-id="379823740343"
 >
-</div>
+</sesami-experience>
 ```
 
 If you need to load Sesami on an external page (like a WordPress website), you'll need to add this line of code to your page:
@@ -118,12 +92,13 @@ If you need to load Sesami on an external page (like a WordPress website), you'l
 ### quantity
 If you don't want to display a quantity selector within your product form and need a pre-selected quantity value, you can set this option. defaults to **1** in other cases
 
-```html {3}
-<div
-  id="sesami__buttonWrapper"
-  data-sesami-quantity="1"
+```html {4}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  quantity="1"
 >
-</div>
+</sesami-experience>
 ```
 
 ## Events
@@ -153,7 +128,7 @@ Unlike the classic experience where booking is only completed when the order is 
 when instant booking is enabled, the entire booking flow happens within Sesami.
 This event is triggered when a slot is successfully booked via Instant booking.
 
-```html title="Example" {3}
+```html title="Example" {4}
 <script>
 (function(){
     window.addEventListener('sesami:booking:success', function(){
