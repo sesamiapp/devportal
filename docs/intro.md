@@ -43,4 +43,4 @@ You can find more information about line item properties [here](https://shopify.
 
 #### If you want multiple Experiences in a page...
 
-You can add multiple Experiences inside a page at the same time for different services, variants, etc. To avoid mixing different information of each Experience, there will be a common tag-id shared between each Experience and its hidden fields, this tag-id will be available on their tags and also in the payload of the [events](./).
+You can add multiple Experiences inside a page at the same time for different services, variants, etc. To avoid mixing different information about each Experience, there will be a common tag-id shared between each Experience and its hidden fields, this tag-id will be available on their HTML tags and also in the payload of all of their [events](./).
