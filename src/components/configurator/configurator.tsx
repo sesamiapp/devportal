@@ -177,7 +177,7 @@ export const Configurator = () => {
                     </div>
 
                     <div className="fieldWrapper">
-                        <a>Experience</a>
+                        <a>Experience Version</a>
                         <select
                             defaultValue={experienceVersion ?? undefined}
                             onChange={e => setExperienceVersion(
@@ -194,7 +194,7 @@ export const Configurator = () => {
                     </div>
 
                     <div className="fieldWrapper">
-                        <a>Calendar</a>
+                        <a>Calendar Type</a>
                         <select
                             defaultValue={calendarType ?? undefined}
                             onChange={e => setCalendarType(
@@ -245,7 +245,16 @@ export const Configurator = () => {
                     <div className="checkboxWrapper">
                         <label>
                             <div className='checkbox'>
-                                <input type="checkbox" checked={autoAddToCart === true} onChange={e => setAutoAddToCart(e.target.checked)}/>
+                                <input
+                                    type="checkbox"
+                                    checked={autoAddToCart === true}
+                                    onChange={e => {
+                                        setAutoAddToCart(e.target.checked)
+                                        if(!e.target.checked){
+                                            setSkipCart(null)
+                                        }
+                                    }}
+                                />
                                 <a>Auto Add To Cart</a>
                             </div>
                         </label>
@@ -253,9 +262,14 @@ export const Configurator = () => {
                     </div>
 
                     <div className="checkboxWrapper">
-                        <label>
+                        <label title={autoAddToCart !== true ? 'You have to enable the "Auto Add To Cart" first.' : undefined}>
                             <div className='checkbox'>
-                                <input type="checkbox" checked={skipCart === true} onChange={e => setSkipCart(e.target.checked)}/>
+                                <input
+                                    type="checkbox"
+                                    checked={skipCart === true}
+                                    disabled={autoAddToCart !== true}
+                                    onChange={e => setSkipCart(e.target.checked)}
+                                />
                                 <a>Skip Cart</a>
                             </div>
                         </label>
