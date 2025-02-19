@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # Quick Start
 
-Using Sesami Experience you can select time and make reservations, or book appointments instantly.
+Using Sesami Experience you can select date and time and make reservations, or book appointments instantly.
 
-The simplest way to do this is to load the [bundle](https://cdn.sesami.co/storefront/latest/sesami-main.js) and add its tag to your page:
+The simplest way to do this is to load the [bundle](https://cdn.sesami.co/storefront/latest/sesami-main.js) and add its tag:
 
 ```html
 <html>
@@ -27,7 +27,7 @@ The simplest way to do this is to load the [bundle](https://cdn.sesami.co/storef
 If you add Sesami to your product page using the Shopify theme customizer, it will automatically add the tag and the bundle for you. See the [Shopify integration](./) section for more information.
 :::
 
-### The behavior
+### Behavior
 After loading the page, a request will be sent to Sesami to validate the shop and service that are given to the Experience, and after that, a button will be rendered inside the page for using the Experience.
 
 #### Sesami hidden fields

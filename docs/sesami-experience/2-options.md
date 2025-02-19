@@ -166,25 +166,59 @@ You can display any label on the button, this is useful if you'd like to conditi
 ></sesami-experience>
 ```
 
+### cta-background-color & cta-text-color
+The CTA(call to action) buttons inside the Experience can be customized to match the theme of your website.
+
+```html {4-5}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  cta-background-color="#55C"
+  cta-text-color="FFF"
+></sesami-experience>
+```
+
 ### button-style
-You can customize the button style that will be rendered to open the calendar by the Experience.
+You can customize the style of the button that will be rendered to open the calendar by the Experience.
+The value of this option should be UIR encoded of the stringified object that has these optional fields:
 
 
+```ts
+type ButtonStyle = {
+  width?: string
+  height?: string
+  font_size?: number
+  color?: string
+  color_background?: string
+  border_width?: number
+  border_color?: string
+  border_radius?: number
+  alignment?: 'flex-start' | 'center' | 'flex-end'
+}
+```
 
+So for example if you stringify and then URI encode the object below:
 
+```ts
+const style = {
+  width: 300,
+  height: 50,
+  font_size: 14,
+  color: '#FFF',
+  color_background: 'red',
+  border_width: 2,
+  border_color: 'black',
+  border_radius: 10,
+  alignment: 'center'
+}
+```
 
-
-
-
-### cta-background-color
-CTA buttons
+It can be passed to the Experience like this:
 
 ```html {4}
 <sesami-experience
   shop-id="761236725762"
   service-id="981219221893"
-  button-label="Book now!"
+  button-style="%7B%22width%22%3A%22300px%22%2C%22height%22%3A%2250px%22%2C%22font_size%22%3A14%2C%22color%22%3A%22%23FFF%22%2C%22color_background%22%3A%22red%22%2C%22border_width%22%3A2%2C%22border_color%22%3A%22black%22%2C%22border_radius%22%3A9%2C%22alignment%22%3A%22center%22%7D"
 ></sesami-experience>
 ```
-
-
