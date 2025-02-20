@@ -182,7 +182,6 @@ The CTA(call to action) buttons inside the Experience can be customized to match
 You can customize the style of the button that will be rendered to open the calendar by the Experience.
 The value of this option should be UIR encoded of the stringified object that has these optional fields:
 
-
 ```ts
 type ButtonStyle = {
   width?: string
