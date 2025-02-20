@@ -204,8 +204,8 @@ export const Configurator = () => {
                             )}
                         >
                             <option value={'ns'}>Not Specified</option>
-                            <option value={'timeline'}>Classic</option>
-                            <option value={'slot'}>V2</option>
+                            <option value={'timeline'}>Timeline</option>
+                            <option value={'slot'}>Slot</option>
                         </select>
                         <p className='description'>If not specified, it will be picked from shop settings.</p>
                     </div>

@@ -4,9 +4,7 @@ sidebar_position: 1
 
 # Quick Start
 
-Using Sesami Experience you can select date and time and make reservations, or book appointments instantly.
-
-The simplest way to do this is to load the [bundle](https://cdn.sesami.co/storefront/latest/sesami-main.js) and add its tag:
+The simplest way to use Sesami Experience is to load the [bundle](https://cdn.sesami.co/storefront/latest/sesami-main.js) and add its tag where you want to load the button:
 
 ```html
 <html>
