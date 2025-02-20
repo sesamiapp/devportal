@@ -52,5 +52,39 @@ The above markup will only be generated if the current product is a Sesami servi
 
 :::
 
-#### If you want multiple Experiences in a page...
-You can add multiple Experiences inside a page at the same time for different services, variants, etc. To avoid mixing different information about each Experience, there will be a common tag-id shared between each Experience and its hidden fields, this tag-id will be available on their HTML tags and also in the payload of all of their [events](./).
+#### Multiple forms/Experiences
+
+You can add multiple Experiences inside a page at the same time for different services, variants, etc. Also, some websites/themes might have multiple form elements on the product page, one example would be a theme that has different markups for different devices, So one form appears on desktop another on mobile.
+
+In this cases, to avoid mixing different information about each Experience, there will be a common tag-id shared between each Experience and its hidden fields, this tag-id will be available on their HTML tags and also in the payload of all of their [events](./).
+
+Also, if you place each Experience in a form, the hidden fields of which will be rendered inside its own form.
+
+```html
+<form id="form-1">
+  
+  <sesami-experience
+    shop-id="761236725762"
+    service-id="981219221893"
+  ></sesami-experience>
+
+  <input type="submit" value="submit form 1"/>
+
+  <!-- the hidden fields for the first form will be rendered here -->
+
+</form>
+
+<form id="form-2">
+  
+  <sesami-experience
+    shop-id="761236725762"
+    service-id="758423784238"
+  ></sesami-experience>
+
+  <input type="submit" value="submit form 2"/>
+
+  <!-- the hidden fields for the second form will be rendered here -->
+
+</form>
+```
+
