@@ -92,7 +92,7 @@ window.addEventListener('sesami:booking:failed', e => {
 
 A regular `change` event will be fired on the hidden inputs [hidden fields](/docs/sesami-experience/quick-start/#sesami-hidden-fields).
 
-**Example:** Listen for [sesami:modal:opened](#sesamimodalopened) event and once inputs are rendered, listen for the change event on the `Date` input and programmatically create an order without customers having to click on add to cart button:
+**Example:** Listen for [sesami:modal:opened](#sesamimodalopened) event and once inputs are rendered, listen for the change event on the `Date` input and programmatically create an order without customers having to click on the add to cart button:
 
 ```html
 <script>
@@ -108,22 +108,4 @@ A regular `change` event will be fired on the hidden inputs [hidden fields](/doc
     })
   })()
 </script>
-```
-
-### sesami:button:label
-..........
-
-```js
-window.addEventListener('sesami:button:label', e => {
-  console.log('button label changed', e.detail.label)
-})
-```
-
-### sesami:button:disabled
-..........
-
-```js
-window.addEventListener('sesami:button:disabled', () => {
-  console.log('button disabled')
-})
 ```
