@@ -45,7 +45,7 @@ window.addEventListener('sesami:reservation:success', () => {
 ```
 
 ### sesami:reservation:failed
-The reservation process has been failed. In the situation, you can find the error message in the event's details.
+The reservation process has been failed. You can find the error message in the event's detail.
 
 ```ts
 type ReservationError =
@@ -57,21 +57,21 @@ type ReservationError =
 
 ```js
 window.addEventListener('sesami:reservation:failed', e => {
-  console.log('reservation failed', e.details.error)
+  console.log('reservation failed', e.detail.error)
 })
 ```
 
 ### sesami:booking:success
-The booking process has been completed successfully. You can get the appointment ID in the event's details.
+When instant booking is enabled, the entire booking flow happens within Sesami. This event is triggered when a slot is successfully booked via Instant booking. You can get the appointment ID in the event's detail.
 
 ```js
 window.addEventListener('sesami:booking:success', e => {
-  console.log('booking success', e.details.appointmentId)
+  console.log('booking success', e.detail.appointmentId)
 })
 ```
 
 ### sesami:booking:failed
-The booking process has been failed. In the situation, you can find the error message in the event's details.
+The booking process has been failed. You can find the error message in the event's detail.
 
 ```ts
 type BookingError =
@@ -84,48 +84,46 @@ type BookingError =
 
 ```js
 window.addEventListener('sesami:booking:failed', e => {
-  console.log('booking failed', e.details.error)
+  console.log('booking failed', e.detail.error)
 })
 ```
 
+### change
 
+A regular `change` event will be fired on the hidden inputs [hidden fields](/docs/sesami-experience/quick-start/#sesami-hidden-fields).
 
+**Example:** Listen for [sesami:modal:opened](#sesamimodalopened) event and once inputs are rendered, listen for the change event on the `Date` input and programmatically create an order without customers having to click on add to cart button:
 
-
-
-### sesami:booking:success
-Unlike the classic experience where booking is only completed when the order is placed,
-when instant booking is enabled, the entire booking flow happens within Sesami.
-This event is triggered when a slot is successfully booked via Instant booking.
-
-```html title="Example" {4}
+```html
 <script>
-(function(){
-    window.addEventListener('sesami:booking:success', function(){
-      /// Redirect to "Thank you" page
+  (() => {
+    window.addEventListener('sesami:modal:opened', e => {
+      const tagId = e.detail.tagId
+      const hiddenFieldsWrapper = document.getElementById(`sesami-hidden-fields-${tagId}`)
+      const sesamiDateInput = hiddenFieldsWrapper.querySelector("[name='properties[Date]']")
+      sesamiDateInput.addEventListener('change', e => {
+        console.log('date changed', e.target.value)
+        // create order...
+      })
     })
-})()
+  })()
 </script>
 ```
 
+### sesami:button:label
+..........
 
-### change
+```js
+window.addEventListener('sesami:button:label', e => {
+  console.log('button label changed', e.detail.label)
+})
+```
 
-A regular `change` event will be fired on respective hidden inputs displayed on [Rendered result](#rendered-result) section whenever a user selects a new time slot or changes the selected team member or timezone.
+### sesami:button:disabled
+..........
 
-**Example:** Listen for [sesami:loaded](#sesamiloaded) event and once inputs are rendered, listen for the change event on the `Date` input and programmatically create an order without customers having to click on add to cart button:
-
-```html title="Example" {6}
-<script>
-(function(){
-    window.addEventListener('sesami:loaded', function(){
-      var formElement = document.querySelector("#form")
-      var sesamiDateInput = formElement.querySelector("[name='properties[Date]']")
-      sesamiDateInput.addEventListener('change', function(){
-        const FD = new FormData( formElement )
-        createOrder(FD)
-      })
-    })
-})()
-</script>
+```js
+window.addEventListener('sesami:button:disabled', () => {
+  console.log('button disabled')
+})
 ```
