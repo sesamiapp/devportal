@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Verify cart
+# Verify Cart
 
 Appointments in cart might become unavailable while a customer is still browsing, you can use the verify endpoint to constantly check if the selected slot is still available and prevent double booking.
 
