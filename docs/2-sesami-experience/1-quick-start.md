@@ -4,6 +4,11 @@ sidebar_position: 1
 
 # Quick Start
 
+:::info If you are using the Sesami inside the Shopify
+
+If you add Sesami to your product page using the Shopify Theme Customizer, it will automatically add the tag and the bundle for you. See the [Shopify Integration](/docs/sesami-experience/shopify-integration/shopify-integration/) section for more information.
+:::
+
 The simplest way to use Sesami Experience is to load the [bundle](https://cdn.sesami.co/storefront/latest/sesami-main.js) and add its tag where you want to load the button:
 
 ```html
@@ -19,11 +24,6 @@ The simplest way to use Sesami Experience is to load the [bundle](https://cdn.se
   </body>
 </html>
 ```
-
-:::info If you are using it inside the Shopify
-
-If you add Sesami to your product page using the Shopify theme customizer, it will automatically add the tag and the bundle for you. See the [Shopify integration](./) section for more information.
-:::
 
 ### Behavior
 After loading the page, a request will be sent to Sesami to validate the shop and service that are given to the Experience, and after that, a button will be rendered inside the page for using the Experience.

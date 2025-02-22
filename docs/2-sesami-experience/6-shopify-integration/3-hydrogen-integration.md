@@ -1,8 +1,8 @@
 ---
-sidebar_position: 9
+sidebar_position: 2
 ---
 
-# Theme customization
+# Theme Customization
 
 Sesami turns normal Shopify products into services that can be booked and paid for. The booking flow can be different from buying a physical product. Therefore, You might want to customize your theme to provide a better user experience for your customers when booking with Sesami.
 
