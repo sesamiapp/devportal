@@ -10,7 +10,7 @@ You can use this boilerplate to speed up the process of creating apps for Sesami
 
 ### Why Sesami boilerplate?
 
-#### Easy to setup
+#### Easy to setup 
 You just need to <a href="https://github.com/sesamiapp/sesami-apps-boilerplate">clone the repository</a> and run the <code>docker compose up</code>, that's it! It will run the database, backend, and the frontend for you.
 
 #### API Ready
