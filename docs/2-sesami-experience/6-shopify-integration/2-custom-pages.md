@@ -15,7 +15,7 @@ You can add the Sesami button to the home page of your store, Some themes let yo
 {% endif %}
 ```
 
-*Not sure what is a product tag? check [Product tagging](/docs/storefront-integration/theme-customization#product-tagging)*
+*Not sure what is a product tag? check [Product tagging](/docs/sesami-experience/shopify-integration/intro/#product-tagging)*
 
 ### Editing theme files
 :::caution
@@ -26,27 +26,14 @@ Knowledge of HTML, CSS, JavaScript, and Liquid is required. Consider hiring a de
 
 1. Click **Actions > Edit code**.
 
+![App Message](/img/shopify-theme-customizer.png)
+
 From here, you can explore your current theme and its source files.
 
 ## Disabling Add to cart button
-Sesami uses script tags ([Learn more](/docs/intro#storefront)) to load the **Sesami button** on your store. Because of the nature of script tags, it can take a while until Sesami is fully loaded on your store. You can disable **Add to cart button** and enable it back once Sesami loaded:
+It can take a while until Sesami is fully loaded on your store. You can disable the **Add To Cart** button and enable it back once the Sesami is loaded:
 
-- You'll need to add this script to the product page only if the current product is a **Sesami service**. 
-
-```markup
-{% if product.tags contains 'sesami-service' %}
-  <script>
-    window.addEventListener('sesami:loaded',function(){
-      var addToCartButton = document.querySelector('button[sesami-id="add_to_cart_{{product.id}}"]');
-      // Or use any other selector that correctly returns only the add to cart button
-      addToCartButton.removeAttribute('disabled');
-    })
-  </script>
-{% endif %}
-```
-*Read more about [Sesami events](/docs/storefront-integration/anatomy-of-sesami-button#events)*
-
-- Then, only for Sesami services, add a `sesami-id` attribute and `disable` the button. It will automatically be enabled back by the code we added in the previous step, once Sesami is loaded.
+- First, only for Sesami services, add a `sesami-id` and a `disable` attribute to the **Add To Cart** button:
 
 ```handlebars {3,4,5,6}
 <button
@@ -58,6 +45,20 @@ Sesami uses script tags ([Learn more](/docs/intro#storefront)) to load the **Ses
 	<!-- ... -->
 </button>
 ```
+
+- Then, you'll need to add this script to the product page only if the current product is a **Sesami service**:
+
+```markup
+{% if product.tags contains 'sesami-service' %}
+  <script>
+    window.addEventListener('sesami:loaded', () => {
+      const addToCartButton = document.querySelector('button[sesami-id="add_to_cart_{{product.id}}"]')
+      addToCartButton.removeAttribute('disabled')
+    })
+  </script>
+{% endif %}
+```
+*Read more about [Sesami events](/docs/sesami-experience/events)*
 
 
 ## Hiding quantity selector
