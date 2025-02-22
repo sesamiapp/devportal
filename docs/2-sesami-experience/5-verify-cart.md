@@ -48,7 +48,7 @@ async fetchCart = () => {
         },
         body: JSON.stringify(cart)
       }
- 
+
       const response = await fetch('https://app.sesami.co/availabilities/verify-cart', verifyConfig)
       
       if(response.status === 200){
