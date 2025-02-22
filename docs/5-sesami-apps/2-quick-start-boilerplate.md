@@ -1,8 +1,8 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 ---
 
-# Sesami Apps Boilerplate
+# Quick Start: The Boilerplate
 
 To ease up the developer's workflow to create an app in the Sesami platform, we provide a simple <a href="https://github.com/sesamiapp/sesami-apps-boilerplate">boilerplate</a> created with React, Express, and MongoDB.
 
