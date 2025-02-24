@@ -21,7 +21,6 @@ export const Configurator = () => {
     const [ timezone            , setTimezone            ] = useState<string | null>(null)
     
     const [ experienceVersion   , setExperienceVersion   ] = useState<'classic'  | 'v2' | null>(null)
-    const [ calendarType        , setCalendarType        ] = useState<'timeline' | 'slot' | null>(null)
     const [ skipMonthlyCalendar , setSkipMonthlyCalendar ] = useState<boolean | null>(null)
     const [ hideAnyAvailable    , setHideAnyAvailable    ] = useState<boolean | null>(null)
     
@@ -56,7 +55,6 @@ export const Configurator = () => {
         timezone,
 
         experienceVersion,
-        calendarType,
         skipMonthlyCalendar,
         hideAnyAvailable,
 
@@ -90,8 +88,7 @@ export const Configurator = () => {
         ...(locale      && { 'locale'    : locale    }),
         ...(timezone    && { 'timezone'  : timezone  }),
         
-        ...(experienceVersion   && { 'experience-version': experienceVersion }),
-        ...(calendarType        && { 'calendar-type': calendarType }),
+        ...(experienceVersion   && { 'experience': experienceVersion }),
         ...(skipMonthlyCalendar !== null && { 'skip-monthly-calendar': skipMonthlyCalendar ? '' : 'false' }),
         ...(hideAnyAvailable    !== null && { 'hide-any-available': hideAnyAvailable ? '' : 'false' }),
 
@@ -177,7 +174,7 @@ export const Configurator = () => {
                     </div>
 
                     <div className="fieldWrapper">
-                        <a>Experience Version</a>
+                        <a>Experience</a>
                         <select
                             defaultValue={experienceVersion ?? undefined}
                             onChange={e => setExperienceVersion(
@@ -191,23 +188,6 @@ export const Configurator = () => {
                             <option value={'v2'}>V2</option>
                         </select>
                         <p className='description'>The default will be V2.</p>
-                    </div>
-
-                    <div className="fieldWrapper">
-                        <a>Calendar Type</a>
-                        <select
-                            defaultValue={calendarType ?? undefined}
-                            onChange={e => setCalendarType(
-                                e.target.value === 'timeline' ? 'timeline' :
-                                e.target.value === 'slot' ? 'slot' :
-                                null
-                            )}
-                        >
-                            <option value={'ns'}>Not Specified</option>
-                            <option value={'timeline'}>Timeline</option>
-                            <option value={'slot'}>Slot</option>
-                        </select>
-                        <p className='description'>If not specified, it will be picked from shop settings.</p>
                     </div>
 
                     <div className="fieldWrapper">
