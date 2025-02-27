@@ -1,38 +1,74 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Quick Start
 
-Welcome to the Storefront SDK documentation. This guide will walk you through initializing the SDK, rendering a calendar, retrieving availabilities, and booking an appointment using the SDK. By following these steps, you will gain a solid understanding of how to integrate and utilize the SDK effectively.
+This guide will walk you through initializing the SDK, rendering a calendar, retrieving availabilities, and booking an appointment using the SDK. By following these steps, you will gain a solid understanding of how to integrate and utilize the SDK effectively.
 
-## Initialization
+### Include SDK
 
 To begin, include the Storefront SDK in your project by adding the following script to your HTML file:
 
-```html
+1. From your Shopify admin, go to **Online Store > Themes**.
+1. Click **Actions > Edit code**.
+1. Open **Layout / theme.liquid**.
+1. Insert the following code snippet at the bottom of the file.
+
+```markup
 <script async src="https://cdn.sesami.co/sdk.js"></script>
 ```
 
+:::info
+The Sesami SDK for JavaScript supports the latest two versions of the most popular browsers. <br></br>
+Internet Explorer and older browsers are not supported.
+:::
+
+### Initialize
+
 Next, create an instance of the SDK. In your `main.js` file, initialize the SDK with the required parameters:
 
-```js
-let SDKInstance = new SesamiSDK({
-      variantId: {{product.selected_or_first_available_variant.id}},
-      shopId: {{shop.id}},
-      productId: {{product.id}},
-      quantity: 1,
-      autoLoad: true
-    });
+```ts
+sesami = new SesamiSDK({
+  shopId: {{shop.id}},
+  productId: {{product.id}},
+  variantId: {{product.selected_or_first_available_variant.id}},
+  quantity: 1,
+  autoLoad: true
+})
+
+sesami.init()
 ```
+
+The code above will create a Sesami instance, you use it to render a fully customized calendar and get availabilities for each day.
 
 To ensure easy access throughout your application, store the SDK instance in a global variable:
 
 ```js
-window.sesamiSDK = SDKInstance;
+window.sesami = sesami
 ```
 
-## Rendering the Calendar
+:::note
+Sesami will not block your other resources from being loaded or cause any delays or decrease in your store's performance.
+:::
+
+
+
+
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+## Rendering a Calendar
 
 Each SDK instance provides a `data` object containing the calendar structure. The dataset follows this format:
 
@@ -67,11 +103,11 @@ Each SDK instance provides a `data` object containing the calendar structure. Th
 
 Example to display the calendar labels:
 
-```javascript
+```ts
 const dayName = (date) =>
   new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
 
-window.sesamiSDK.data.labels.forEach((dateString) => {
+window.sesami.data.labels.forEach((dateString) => {
   calendarLabels.innerHTML += `<li>${dayName(new Date(dateString))}</li>`;
 });
 ```
@@ -93,8 +129,8 @@ The `rows` property contains the calendar days:
 
 Example to display the calendar rows:
 
-```javascript
-window.sesamiSDK.data.rows.forEach((row) => {
+```ts
+window.sesami.data.rows.forEach((row) => {
   row.forEach(async (day) => {
     const className = day.isPast ? "inactive" : "active";
     const dayElement = document.createElement("li");
@@ -186,7 +222,7 @@ Additional data can be stored in the `properties` array:
 Once you have gathered the necessary data, you can book an appointment using the following method:
 
 ```js
-await window.sesamiSDK.book(selectedSlot, customerObject, optionsObject);
+await window.sesami.book(selectedSlot, customerObject, optionsObject);
 ```
 
 ## Further Exploration

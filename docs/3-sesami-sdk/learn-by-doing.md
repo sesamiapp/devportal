@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 9
 ---
 
 # Dive Right In: Learn Storefront SDK The Fun Way!
@@ -28,10 +28,10 @@ let SDKInstance = new SesamiSDK({
     })
 ```
 
-Store the `SDKInstance` in a place you can access easily. In my case, I’ll store it in `window.sesamiSDK`:
+Store the `SDKInstance` in a place you can access easily. In my case, I’ll store it in `window.sesami`:
 
 ```js
-window.sesamiSDK = SDKInstance;
+window.sesami = SDKInstance;
 ```
 
 ## Rendering The Calendar
@@ -78,12 +78,12 @@ We use the `labels` to render the label section of the calendar like this:
 
 like this
 
-```javascript
+```ts
 // helper
 const dayName = (date) =>
   new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
 
-window.sesamiSDK.data.labels.map((dateString) => {
+window.sesami.data.labels.map((dateString) => {
   calendarLabels.innerHTML += `<li >${dayName(new Date(dateString))}</li>`;
 });
 ```
@@ -113,7 +113,7 @@ Each array in `rows` represents a row and contains the days for that row.
 | `onLoad(callback)`    | `Function`       | The callback function receives cell availabilities for the currently selected range; requires autoLoad to be enabled. This method triggers a network request only if the data is not already available. |
 | `onError(callback)`   | `Function`       | The callback function receives any errors when retrieving cell availabilities for the selected range.                                                                                                   |
 
-```javascript
+```ts
 // Initialize an empty object to store all availabilities
 let allAvailabilities = {};
 
@@ -121,7 +121,7 @@ let allAvailabilities = {};
 const toIso = (date) => date.toISOString().split("T")[0];
 
 // Process each row in the Sesami SDK data
-window.sesamiSDK.data.rows.forEach((row, rowIndex) => {
+window.sesami.data.rows.forEach((row, rowIndex) => {
   row.forEach(async (day) => {
     // Determine the CSS class based on whether the day is in the past
     const className = day.isPast ? "inactive" : "active";
@@ -227,7 +227,7 @@ The customer object contains a property named `properties`, which is an array of
 now you can book an event using SDK instant and the data you gathered
 
 ```js
-await window.sesamiSDK.book(selectedSlot, customerObject, optionsObject);
+await window.sesami.book(selectedSlot, customerObject, optionsObject);
 ```
 
 ## Hold On!
