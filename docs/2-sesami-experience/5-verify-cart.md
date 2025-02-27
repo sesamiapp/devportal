@@ -30,16 +30,17 @@ async fetchCart = () => {
 
   try{
   
+    // get cart data:
     const response = await fetch('/cart.js')
     if(!response.ok){
       throw new Error(response.status)
     }
-
     const cart = await response.json()
 
+    // verify cart data:
     if(cart.item_count){
       
-      const verifyConfig = {
+      const config = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ async fetchCart = () => {
         body: JSON.stringify(cart)
       }
 
-      const response = await fetch('https://app.sesami.co/availabilities/verify-cart', verifyConfig)
+      const response = await fetch('https://app.sesami.co/availabilities/verify-cart', config)
       
       if(response.status === 200){
         const responseJson = await response.json()
@@ -61,8 +62,8 @@ async fetchCart = () => {
     }
 
   }
-  catch(err){
-    console.error('error:', err)
+  catch(error){
+    console.error('error:', error)
   }
 
 }
