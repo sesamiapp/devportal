@@ -259,23 +259,26 @@ export const Configurator = () => {
                 </div>
 
                 <div className="rightColumn">
-                    
-                    <div className="fieldWrapper">
-                        <a>Button Width(px)</a>
-                        <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
-                        <p className='description'>The button's width.</p>
-                    </div>
-                    
-                    <div className="fieldWrapper">
-                        <a>Button Height(px)</a>
-                        <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
-                        <p className='description'>The button's height.</p>
-                    </div>
                         
                     <div className="fieldWrapper">
                         <a>Button Text Font Size(px)</a>
                         <input type="number" min={0} defaultValue={fontSize ?? undefined} onChange={e => setFontSize(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>The button's text font size.</p>
+                    </div>
+                    
+                    <div className="widthHeightWrapper">
+
+                        <div className="fieldWrapper">
+                            <a>Width(px)</a>
+                            <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
+                            <p className='description'>Button's width & height.</p>
+                        </div>
+                        
+                        <div className="fieldWrapper">
+                            <a>Height(px)</a>
+                            <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
+                        </div>
+
                     </div>
                     
                     <div className="fieldWrapper">
