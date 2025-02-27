@@ -8,21 +8,21 @@ Appointments in the cart might become unavailable while a customer is still brow
 
 You need to send the cart data via `POST` to the endpoint `https://app.sesami.co/availabilities/verify-cart`.
 
-#### Headers
+### Headers
 Include the following headers:
   - 'Content-Type': 'application/json'
   - 'Accept': 'application/json',
   - 'x-sesami-origin': https://`STORE`.myshopify.com
 
-#### Body
+### Body
 Include as the POST body the response from calling [**GET /cart.js**](https://shopify.dev/api/ajax/reference/cart#get-cart-js)
 
-#### Response
+### Response
 You will get an object with two arrays: `allowed`, `rejected`.
 - allowed: contains all the elements that  are currently available.
 - rejected: contains all the elements that  are not currently available.
 
-## Example
+### Example
 This code demonstrates how to use Sesami verify-cart. 
 
 ```ts

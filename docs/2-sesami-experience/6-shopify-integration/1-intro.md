@@ -13,7 +13,7 @@ You'll only need to read this section if you are trying to integrate with a them
 
 Sesami turns normal Shopify products into services that can be booked and paid for. The booking flow can be different from buying a physical product. Therefore, You might want to customize your theme to provide a better user experience for your customers when booking with Sesami.
 
-### Product tagging
+### Product Tagging
 Tagging products will allow you to apply these customizations only on products that are used as a service.<br></br>
 Sesami is auto-tagging all Shopify products you add to Sesami as a service with the tag `sesami-service`.<br></br>
 This way, all the changes will be applied to your future services only by adding a tag and you can also benefit from Shopify's features such as creating collections filtered by this tag.
