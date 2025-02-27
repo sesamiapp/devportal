@@ -34,4 +34,4 @@ You can also develop public apps for other shops and users and have your own cli
 
 Sesami API allows you to work with our backend directly without using our UI.
 
-This feature will add ability to developers to integrate Sesami management capabilities with their apps and services.
+This feature will add the ability for developers to integrate Sesami management capabilities with their apps and services.
