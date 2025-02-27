@@ -17,9 +17,9 @@ You can add the Sesami button to the home page of your store, Some themes let yo
 
 *Not sure what is a product tag? check [Product tagging](/docs/sesami-experience/shopify-integration/intro/#product-tagging)*
 
-### Editing theme files
+### Editing Theme Files
 :::caution
-Knowledge of HTML, CSS, JavaScript, and Liquid is required. Consider hiring a developer if you aren't comfortable doing the steps in the tutorial.
+Knowledge of HTML, CSS, JavaScript, and Liquid are required. Consider hiring a developer if you aren't comfortable doing the steps in the tutorial.
 :::
 
 1. From your Shopify admin, go to **Online Store > Themes**.
@@ -30,10 +30,10 @@ Knowledge of HTML, CSS, JavaScript, and Liquid is required. Consider hiring a de
 
 From here, you can explore your current theme and its source files.
 
-## Disabling Add to cart button
+## Disabling Add To Cart Button
 It can take a while until Sesami is fully loaded on your store. You can disable the **Add To Cart** button and enable it back once the Sesami is loaded:
 
-- First, only for Sesami services, add a `sesami-id` and a `disable` attribute to the **Add To Cart** button:
+- First, only for Sesami services, add a `sesami-id` and a `disabled` attribute to the **Add To Cart** button:
 
 ```handlebars {3,4,5,6}
 <button
@@ -61,11 +61,11 @@ It can take a while until Sesami is fully loaded on your store. You can disable 
 *Read more about [Sesami events](/docs/sesami-experience/events)*
 
 
-## Hiding quantity selector
+## Hiding Quantity Selector
 
 Most themes have a quantity selector on products. Unless you have [Group appointments](https://help.sesami.co/hc/en-us/articles/360052498913-Group-Appointments) enabled on Sesami, you will probably want to prevent your customers from selecting more than one of the same time slot, otherwise, it will result in an unassigned appointment.
 
-The quantity field might be used in several different places depending on your theme. You can look for files that contain **product form**, **cart** and **cart drawer** and add this condition around the code that renders the quantity selector:
+The quantity field might be used in several different places depending on your theme. You can look for files that contain **product form**, **cart**, and **cart drawer** and add this condition around the code that renders the quantity selector:
 
 ```handlebars
 
@@ -76,7 +76,7 @@ The quantity field might be used in several different places depending on your t
 ```
 
 
-## Hiding duration selector
+## Hiding Duration Selector
 
 Duration option is required for setting up Sesami services ([Learn more](https://help.sesami.co/hc/en-us/articles/360037521993-How-do-I-set-up-my-Sesami-account-))
 
