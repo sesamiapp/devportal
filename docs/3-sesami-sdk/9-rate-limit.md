@@ -2,7 +2,7 @@
 sidebar_position: 9
 ---
 
-# Sesami Storefront API rate limit
+# API Rate Limit
 
 To ensure our platform remains stable and fair for everyone, Sesami storefront API powering our Sesami storefront SDK is rate-limited. We use a request-based limiting strategy to enforce rate limits. We ask developers to use industry-standard techniques for responsibly limiting calls, caching results, and retrying requests.
 

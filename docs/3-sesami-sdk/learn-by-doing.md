@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 99
 ---
 
 # Dive Right In: Learn Storefront SDK The Fun Way!
