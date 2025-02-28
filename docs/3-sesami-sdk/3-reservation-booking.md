@@ -2,7 +2,27 @@
 sidebar_position: 3
 ---
 
-# Reservation
+# Reservation & Booking
+
+## Reservation
+
+You can Reserve a slot for the period of time defined in Sesami service settings.
+
+To do this, you can call the `reserve` function in your Sesami instance, it will get a [`SesamiSlotObject`](/docs/sesami-sdk/rendering-a-calendar/#sesamislotobject) and returns promise that resolves to a reservation status.
+
+```ts title="reserve"
+type reserve = (slot: SesamiSlotObject) => Promise<string>
+```
+
+## Booking
+
+You can book an available time slot instantly.
+
+To do this, you can call the `book` function in your Sesami instance, it will get [`SesamiSlotObject`](/docs/sesami-sdk/rendering-a-calendar/#sesamislotobject), [`SesamiCustomerObject`](#sesamicustomerobject), [`SesamiOptionsObject`](#sesamioptionsobject) and returns promise that resolves to a booking status.
+
+```ts title="book"
+type book = (slot: SesamiSlotObject, customer: SesamiCustomerObject, options: SesamiOptionsObject) => Promise<string>
+```
 
 ### `SesamiCustomerObject`
 
@@ -16,12 +36,12 @@ An object that contains customer data.
 | `phone`     | `String` | Customer's phone number.  |
 
 :::info
-The phone number must be validated according to the E.164 format, which ensures international compatibility [read more](https://en.m.wikipedia.org/wiki/E.164).
+The phone number must be validated according to the [E.164 format](https://en.m.wikipedia.org/wiki/E.164), which ensures international compatibility.
 :::
 
 ### `SesamiOptionsObject`
 
-An object that contains form data as question and answer, key and value. This respresens line item properties correspondent to the eCommerce order.
+An object that contains form data as question and answer, key and value. This represents line item properties correspondent to the eCommerce order.
 
 ```js
 {
