@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Rendering a Calendar
 
-## Rows and Columns
+## Rendering Rows and Columns
 
 ### Data
 
@@ -15,8 +15,8 @@ Each instance of the Sesami SDK will contain a `data` object with the following 
 | `labels` | `Array<Date>`                   | An array of `Date` objects.                     |
 | `rows`   | `Array<Array<SesamiDayObject>>` | A 2D array containing `SesamiDayObject` arrays. |
 
-```ts
-type data = {
+```ts title="Data"
+type Data = {
   labels: Date[]
   rows: SesamiDayObject[][]
 }
@@ -24,29 +24,35 @@ type data = {
 
 ### SesamiDayObject
 
-| Property              | Type             | Description                                                                                                                                                              |
-| --------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `date`                | `Date`           | Represents the day.                                                                                                                                                      |
-| `getAvailabilities()` | `async function` | Resolves to an array of available slots (`Promise<Array<SesamiSlotObject>>`).                                                                                            |
-| `isCurrentMonth`      | `Boolean`        | Indicates if the day is in the current month.                                                                                                                            |
-| `isCurrentWeek`       | `Boolean`        | Indicates if the day is in the current week.                                                                                                                             |
-| `isPast`              | `Boolean`        | Indicates if the day is in the past.                                                                                                                                     |
-| `isToday`             | `Boolean`        | Indicates if the day is today.                                                                                                                                           |
-| `onLoad(callback)`    | `Function`       | Receives cell availabilities for the selected range when `autoLoad` is enabled (This method will only trigger a network request when the data is not already available). |
-| `onError(callback)`   | `Function`       | Receives errors when fetching cell availabilities.                                                                                                                       |
+| Property              | Type             | Description                                                                   |
+| --------------------- | ---------------- | ----------------------------------------------------------------------------- |
+| `date`                | `Date`           | Represents the day.                                                           |
+| `isCurrentMonth`      | `Boolean`        | Indicates if the day is in the current month.                                 |
+| `isCurrentWeek`       | `Boolean`        | Indicates if the day is in the current week.                                  |
+| `isPast`              | `Boolean`        | Indicates if the day is in the past.                                          |
+| `isToday`             | `Boolean`        | Indicates if the day is today.                                                |
+| `getAvailabilities()` | `async function` | Resolves to an array of available slots (`Promise<Array<SesamiSlotObject>>`). |
+| `onLoad(callback)`    | `Function`       | Receives cell availabilities for the selected range when `autoLoad` is enabled. (This method will only trigger a network request when the data is not already available). |
+| `onError(callback)`   | `Function`       | Receives errors when fetching cell availabilities.                            |
 
-```json title="SesamiDayObject"
+```ts title="SesamiDayObject"
 {
-  labels: [Sun Dec 05 2021 00:00:00 {}, Mon Nov 29 2021 00:00:00 {}, ...],
+  labels: [
+    Sun Dec 05 2021 00:00:00 {},
+    Mon Nov 29 2021 00:00:00 {},
+    ...
+  ],
   rows: [
     [
       {
         date: Sun Nov 28 2021 00:00:00 {},
-        getAvailabilities: async ƒ (),
         isCurrentMonth: false,
         isCurrentWeek: false,
         isPast: true,
-        isToday: false
+        isToday: false,
+        getAvailabilities: async ƒ (),
+        onLoad: ƒ (callback: ƒ ()),
+        onError: ƒ (callback: ƒ ())
       },
       ...
     ]
@@ -94,7 +100,7 @@ window.sesami.data.rows.forEach(row => {
 })
 ```
 
-## Availabilities
+## Getting Availabilities
 
 Each day object contains a `getAvailabilities()` method, which returns available slots.
 
@@ -114,10 +120,19 @@ type getAvailabilities = () => SesamiSlotObject[]
 #### Example
 
 ```json
-{
-  "startTime": "2022-12-30 10:00",
-  "duration": 15,
-  "status": "available",
-  "remainingSlots": 1
-}
+[
+  {
+    "startTime": "2022-12-30 10:00",
+    "duration": 15,
+    "status": "available",
+    "remainingSlots": 1
+  },
+  {
+    "startTime": "2022-12-30 10:15",
+    "duration": 15,
+    "status": "available",
+    "remainingSlots": 3
+  },
+  ...
+]
 ```
