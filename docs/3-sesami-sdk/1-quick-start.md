@@ -6,7 +6,7 @@ sidebar_position: 1
 
 This guide will walk you through initializing the SDK, rendering a calendar, retrieving availabilities, and booking an appointment using the SDK. By following these steps, you will gain a solid understanding of how to integrate and utilize the SDK effectively.
 
-### Include SDK
+### Including the SDK
 
 To begin, include the Storefront SDK in your project by adding the following script to your HTML file:
 
@@ -24,7 +24,7 @@ The Sesami SDK for JavaScript supports the latest two versions of the most popul
 Internet Explorer and older browsers are not supported.
 :::
 
-### Initialize
+### Initialization
 
 Next, create an instance of the SDK. In your `main.js` file, initialize the SDK with the required parameters:
 
