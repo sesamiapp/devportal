@@ -11,39 +11,39 @@ The Sesami SDK offers various methods to render a calendar and manage availabili
 ### Initialization
 
 - **`init()`**  
-  Initializes the SDK instance. Automatically fetches availabilities for the current month if [autoLoad](/docs/sesami-sdk/options/) is enabled.
+  Initializes the SDK instance. Automatically fetches availabilities for the current month if [`autoLoad`](/docs/sesami-sdk/options/) is enabled.
 
 ### Date & Range Management
 
 - **`setDate(date: Date)`**  
-  Updates the current date [now](/docs/sesami-sdk/options/) and fetches availabilities if they haven't been fetched yet (when [autoLoad](/docs/sesami-sdk/options/) is enabled).
+  Updates the current date [`now`](/docs/sesami-sdk/options/) and fetches availabilities if they haven't been fetched yet (when [`autoLoad`](/docs/sesami-sdk/options/) is enabled).
 
 - **`next(duration: "year" | "month" | "week" | "day")`**  
-  Moves to the next year, month, week, or day and updates [now](/docs/sesami-sdk/options/). Automatically fetches availabilities if needed and [autoLoad](/docs/sesami-sdk/options/) is enabled.
+  Moves to the next year, month, week, or day and updates [`now`](/docs/sesami-sdk/options/). Automatically fetches availabilities if needed and [`autoLoad`](/docs/sesami-sdk/options/) is enabled.
 
 - **`previous(duration: "year" | "month" | "week" | "day")`**  
-  Moves to the previous year, month, week, or day and updates [now](/docs/sesami-sdk/options/). Automatically fetches availabilities if needed and [autoLoad](/docs/sesami-sdk/options/) is enabled.
+  Moves to the previous year, month, week, or day and updates [`now`](/docs/sesami-sdk/options/). Automatically fetches availabilities if needed and [`autoLoad`](/docs/sesami-sdk/options/) is enabled.
 
 ### Adjustment
 
 - **`setVariantId(variantId: string)`**  
-  Updates the current value for `variantId` and fetches availabilities if [autoLoad](/docs/sesami-sdk/options/) is enabled.
+  Updates the current value for [`variantId`](/docs/sesami-sdk/options/) and fetches availabilities if [`autoLoad`](/docs/sesami-sdk/options/) is enabled.
 
 - **`setTeamMember(teamMember: string)`**  
-  Updates the current value for [teamMember](/docs/sesami-sdk/options/) and fetches availabilities if [autoLoad](/docs/sesami-sdk/options/) is enabled.
+  Updates the current value for [`teamMember`](/docs/sesami-sdk/options/) and fetches availabilities if [`autoLoad`](/docs/sesami-sdk/options/) is enabled.
 
 ### Availabilities
 
 - **`load()`**  
-  Manually loads availabilities for the selected range. Use this when [autoLoad](/docs/sesami-sdk/options/) is disabled (This method will only trigger a network request if the data is not already available).
+  Manually loads availabilities for the selected range. Use this when [`autoLoad`](/docs/sesami-sdk/options/) is disabled (This method will only trigger a network request if the data is not already available).
 
 ### Slot Management
 
 - **`reserve(slot: SesamiSlotObject)`**  
-  Temporarily reserves a slot for the time period defined in Sesami app settings. Returns a promise resolving to the reservation status.
+  Temporarily reserves a slot for the period defined in Sesami app settings. Returns a promise resolving to the reservation status.
 
 - **`book(slot: SesamiSlotObject, customer: SesamiCustomerObject, options?: SesamiOptionsObject)`**  
-  Instantly books a slot for a customer. Returns a promise resolving to the booking status.
+  Instantly book a slot for a customer. Returns a promise resolving to the booking status.
 
 #### **Example**
 

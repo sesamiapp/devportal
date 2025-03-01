@@ -15,7 +15,7 @@ Each instance of the Sesami SDK will contain a `data` object with the following 
 | `labels` | `Array<Date>`                   | An array of `Date` objects.                     |
 | `rows`   | `Array<Array<SesamiDayObject>>` | A 2D array containing `SesamiDayObject` arrays. |
 
-```ts title="Data"
+```ts
 type Data = {
   labels: Date[]
   rows: SesamiDayObject[][]
@@ -60,7 +60,7 @@ type Data = {
   ]
 }
 ```
-Example to display the calendar labels
+Example to display the calendar labels:
 
 ```ts
 const dayName = (date) => new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(date)

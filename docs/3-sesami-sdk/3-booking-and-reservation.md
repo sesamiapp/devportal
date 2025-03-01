@@ -8,9 +8,9 @@ sidebar_position: 3
 
 You can book an available time slot instantly.
 
-To do this, you can call the `book` function in your Sesami instance, it will get [`SesamiSlotObject`](/docs/sesami-sdk/rendering-a-calendar/#sesamislotobject), [`SesamiCustomerObject`](#sesamicustomerobject), [`SesamiOptionsObject`](#sesamioptionsobject) and returns promise that resolves to a booking status.
+To do this, you can call the `book` function in your Sesami instance, it will get [`SesamiSlotObject`](/docs/sesami-sdk/rendering-a-calendar/#sesamislotobject), [`SesamiCustomerObject`](#sesamicustomerobject), and [`SesamiOptionsObject`](#sesamioptionsobject), and return a promise that resolves to a booking status.
 
-```ts title="book"
+```ts
 type book = (
   slot: SesamiSlotObject,
   customer: SesamiCustomerObject,
@@ -38,7 +38,7 @@ The phone number must be validated according to the [E.164 format](https://en.m.
 
 ### `SesamiOptionsObject`
 
-An object that contains form data as question and answer, key and value. This represents line item properties correspondent to the eCommerce order.
+An object that contains form data as question and answer, key and value. This represents line item properties corresponding to the eCommerce order.
 
 ```js
 {
@@ -49,7 +49,7 @@ An object that contains form data as question and answer, key and value. This re
 }
 ```
 
-#### example:
+#### Example
 
 ```js
 {
@@ -68,10 +68,10 @@ An object that contains form data as question and answer, key and value. This re
 
 ## Reservation
 
-You can Reserve a slot for the period of time defined in Sesami service settings.
+You can Reserve a slot for the period defined in Sesami service settings.
 
-To do this, you can call the `reserve` function in your Sesami instance, it will get a [`SesamiSlotObject`](/docs/sesami-sdk/rendering-a-calendar/#sesamislotobject) and returns promise that resolves to a reservation status.
+To do this, you can call the `reserve` function in your Sesami instance, it will get a [`SesamiSlotObject`](/docs/sesami-sdk/rendering-a-calendar/#sesamislotobject) and return a promise that resolves to a reservation status.
 
-```ts title="reserve"
+```ts
 type reserve = (slot: SesamiSlotObject) => Promise<string>
 ```
