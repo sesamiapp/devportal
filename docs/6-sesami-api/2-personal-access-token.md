@@ -3,16 +3,18 @@
 To use the Sesami API, you first need to have a Personal Access Token (PAT).
 
 ### Get PAT via Sesami Admin Portal
-1. Login to [Sesami Admin portal](https://admin.sesami.co/login).
-2. Find the **Tokens** section in the left-side panel.
-3. Click on **Create Token** button.
-4. Enter a **name** and select the **required permissions**.
+1. Login to [Sesami Admin portal](https://admin.sesami.co).
+1. Navigate to the [**Tokens**](https://admin.sesami.co/token) section.
+3. Click on **Create Token**.
+4. Enter a **Name** and select the **Grant Permissions**.
 5. Click **Create**.
 6. You will now see your **Client ID** and **Personal Access Token**.
 
+![Personal Access Token](/img/personal-access-token.png)
+
 :::important
 
-**Please keep them in a secure place**.
+**Please keep your personal access token in a secure place.**
 
 :::
 

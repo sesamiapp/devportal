@@ -26,7 +26,7 @@ Knowledge of HTML, CSS, JavaScript, and Liquid are required. Consider hiring a d
 
 1. Click **Actions > Edit code**.
 
-![App Message](/img/shopify-theme-customizer.png)
+![Shopify Theme Customizer](/img/shopify-theme-customizer.png)
 
 From here, you can explore your current theme and its source files.
 
