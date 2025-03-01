@@ -1,6 +1,6 @@
 # Personal Access Token
 
-To use the Sesami API, you first need to have a Personal Access Token (PAT). If you don't already have one, follow these steps:
+To use the Sesami API, you first need to have a Personal Access Token (PAT).
 
 ### Get PAT via Sesami Admin Portal
 1. Login to [Sesami Admin portal](https://admin.sesami.co/login).
