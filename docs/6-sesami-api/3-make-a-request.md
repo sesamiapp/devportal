@@ -1,5 +1,5 @@
 # Make a Request
- To use our API, you can use  [Personal Access Token](authentication.md) or [Offline Token](../../sesami-apps/3-api-reference/installation-api.md).
+To use our API, you can use [Personal Access Tokens](/docs/sesami-api/personal-access-token/) or [Offline Tokens](/docs/sesami-apps/api-reference/installation-api/).
 
 For authenticated requests, you must include your token in the request headers. Use the following format:
 
