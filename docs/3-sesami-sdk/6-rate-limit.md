@@ -11,7 +11,6 @@ If you exceed the limit, we send a 429 response with a `Retry-After` header.
 :::
 
 ## Avoiding rate limit errors
-
 Developing your solution with best practices in mind is the best way to avoid throttling errors. For example, you can stagger API requests in a queue and do other processing tasks while waiting for the next queued job to run. Consider the following best practices when designing your app:
 
 - Optimize your code to only get the data that your app requires.
