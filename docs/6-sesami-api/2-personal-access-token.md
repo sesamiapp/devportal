@@ -12,8 +12,8 @@ To use the Sesami API, you first need to have a Personal Access Token (PAT).
 
 ![Personal Access Token](/img/personal-access-token.png)
 
-:::important
-**Please keep your personal access token in a secure place.**
+:::warning
+**Please keep your personal access token in a secure place, if you lose it, it cannot be recovered.**
 :::
 
 <!-- 
