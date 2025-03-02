@@ -8,21 +8,21 @@ Appointments in the cart might become unavailable while a customer is still brow
 
 You need to send the cart data via `POST` to the endpoint `https://app.sesami.co/availabilities/verify-cart`.
 
-#### Headers
+### Headers
 Include the following headers:
   - 'Content-Type': 'application/json'
   - 'Accept': 'application/json',
   - 'x-sesami-origin': https://`STORE`.myshopify.com
 
-#### Body
+### Body
 Include as the POST body the response from calling [**GET /cart.js**](https://shopify.dev/api/ajax/reference/cart#get-cart-js)
 
-#### Response
+### Response
 You will get an object with two arrays: `allowed`, `rejected`.
 - allowed: contains all the elements that  are currently available.
 - rejected: contains all the elements that  are not currently available.
 
-## Example
+### Example
 This code demonstrates how to use Sesami verify-cart. 
 
 ```ts
@@ -30,16 +30,17 @@ async fetchCart = () => {
 
   try{
   
+    // get cart data:
     const response = await fetch('/cart.js')
     if(!response.ok){
       throw new Error(response.status)
     }
-
     const cart = await response.json()
 
+    // verify cart data:
     if(cart.item_count){
       
-      const verifyConfig = {
+      const config = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ async fetchCart = () => {
         body: JSON.stringify(cart)
       }
 
-      const response = await fetch('https://app.sesami.co/availabilities/verify-cart', verifyConfig)
+      const response = await fetch('https://app.sesami.co/availabilities/verify-cart', config)
       
       if(response.status === 200){
         const responseJson = await response.json()
@@ -61,8 +62,8 @@ async fetchCart = () => {
     }
 
   }
-  catch(err){
-    console.error('error:', err)
+  catch(error){
+    console.error('error:', error)
   }
 
 }
