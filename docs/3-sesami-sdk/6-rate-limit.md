@@ -1,13 +1,13 @@
 ---
-sidebar_position: 3
+sidebar_position: 6
 ---
 
-# Sesami Storefront API rate limit
+# Rate Limit
 
-To ensure our platform remains stable and fair for everyone, Sesami storefront API powering our Sesami storefront SDK is rate-limited. We use a request-based limiting strategy to enforce rate limits. We ask developers to use industry-standard techniques for responsibly limiting calls, caching results, and retrying requests.
+To ensure our platform remains stable and fair for everyone, the Sesami storefront API powering our Sesami storefront SDK is rate-limited. We use a request-based limiting strategy to enforce rate limits. We ask developers to use industry-standard techniques for responsibly limiting calls, caching results, and retrying requests.
 
 :::note
-If you exceed the limit, we send a 429 responce with a `Retry-After` header.
+If you exceed the limit, we send a 429 response with a `Retry-After` header.
 :::
 
 ## Avoiding rate limit errors

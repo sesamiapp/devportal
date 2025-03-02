@@ -6,7 +6,7 @@ sidebar_position: 4
 
 If you have included a form on your Shopify product page and want it to also be included on your Shopify order confirmation emails, just follow the steps below:
 
-- On your Shopify account, click on **Settings** > **Notifications** > **Order Confirmation**
+- On your Shopify account, click on **Settings** > **Notifications** > **Customer Notifications** > **Order Confirmation**
 - Search for the following text on the page: `list__item-title`
 - Place the following snippet directly below that line:
 
