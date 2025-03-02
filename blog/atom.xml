@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://sesami.dev/blog</id>
+    <id>https://sesami.co/blog</id>
     <title>Sesami developers Blog</title>
     <updated>2020-04-17T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://sesami.dev/blog"/>
+    <link rel="alternate" href="https://sesami.co/blog"/>
     <subtitle>Sesami developers Blog</subtitle>
-    <icon>https://sesami.dev/img/favicon.ico</icon>
+    <icon>https://sesami.co/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
-        <id>https://sesami.dev/blog/welcome</id>
-        <link href="https://sesami.dev/blog/welcome"/>
+        <id>https://sesami.co/blog/welcome</id>
+        <link href="https://sesami.co/blog/welcome"/>
         <updated>2020-04-17T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[We're working hard to make dev experience as great as Sesami app itself.]]></summary>
         <content type="html"><![CDATA[<p>We're working hard to make dev experience as great as Sesami app itself.
