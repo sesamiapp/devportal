@@ -4,39 +4,34 @@ sidebar_position: 1
 
 # Intro
 
-Here you will find information on integrating and customizing Sesami into your Shopify online store.
+Here you will find information on Sesami products, APIs, integration instructions, and more!
 
-## Storefront
+You can find the list of the topics blow:
 
-### Shopify theme architecture
+### Sesami Experience
 
-There are two types of integrations, based on which version of the Shopify Online Store your theme is based on:
-#### 1. Shopify Online Store 2.0 themes
-You should activate the Sesami app block and embed the Sesami Booking Button app block using your Shopify theme customizer.
-#### 2. Legacy Shopify themes
-Sesami creates a [script tag](https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag) on your Shopify store as soon as it is installed. This script will load a very small script on your store, which will then call Sesami to detect if we need to display a **Sesami button** on a page.
+The Sesami Experience adds booking functionality to your services by launching a calendar view. Using Sesami Experience, you can select a date and time, make reservations, or book appointments instantly.
 
+Also, in this section, we will have instructions for manual integration for Shopify and Hydrogen.
 
-### What is a Sesami button?
+### Sesami SDK
 
-The Sesami button adds booking functionality to your services by launching a calendar view before a service is added to the shopping cart; By default, it is automatically displayed for products that are added to Sesami as a service.
+The Sesami SDK includes tools to connect and communicate with the Sesami Storefront API, so you can build your own highly customized booking experience.
 
+### Sesami Flows
 
-### What are the requirements?
+Sesami is a platform that allows merchants to automate workflows using Sesami Flows. Using it, you can trigger events for any touchpoints throughout the customers' booking journey.
 
-:::info You might not need this!
+You can send automated emails and SMS, run webhooks, etc. triggered with so many event options, such as booking, checking-in, cancellation, or even scheduled reminders.
 
-By default, Sesami tries to find the product form and attaches itself to it. You'll only need to read this section if you are trying to integrate with a theme that is not following Shopify standards or need a custom behaviour.
-:::
+### Sesami Apps
 
-The Sesami button can be placed almost anywhere; It will create some hidden inputs which will then be populated with the selected time and other information (Like selected team member and timezone)
+Sesami has so many features built-in, but you can extend it even more by developing apps for your shop.
 
+You can also develop public apps for other shops and users and have your own clients in the Sesami ecosystem.
 
-#### If a Sesami button is placed inside a product form...
+### Sesami API
 
-Your customers will just need to submit the form (Usually by pressing "Add to cart" button)
+Sesami API allows you to work with our backend directly without using our UI.
 
-#### If it is not placed inside a product form...
-
-If for any reason you'd like to have the button rendered outside a product form, you will need to extract the information in the hidden fields and add them as **Line item properties** to the order.
-You can find more information about line item properties [here](https://shopify.dev/docs/themes/liquid/reference/objects/line_item#line_item-properties).
+This feature will add the ability for developers to integrate Sesami management capabilities with their apps and services.

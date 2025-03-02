@@ -21,7 +21,6 @@ export const Configurator = () => {
     const [ timezone            , setTimezone            ] = useState<string | null>(null)
     
     const [ experienceVersion   , setExperienceVersion   ] = useState<'classic'  | 'v2' | null>(null)
-    const [ calendarType        , setCalendarType        ] = useState<'timeline' | 'slot' | null>(null)
     const [ skipMonthlyCalendar , setSkipMonthlyCalendar ] = useState<boolean | null>(null)
     const [ hideAnyAvailable    , setHideAnyAvailable    ] = useState<boolean | null>(null)
     
@@ -56,7 +55,6 @@ export const Configurator = () => {
         timezone,
 
         experienceVersion,
-        calendarType,
         skipMonthlyCalendar,
         hideAnyAvailable,
 
@@ -90,8 +88,7 @@ export const Configurator = () => {
         ...(locale      && { 'locale'    : locale    }),
         ...(timezone    && { 'timezone'  : timezone  }),
         
-        ...(experienceVersion   && { 'experience-version': experienceVersion }),
-        ...(calendarType        && { 'calendar-type': calendarType }),
+        ...(experienceVersion   && { 'experience': experienceVersion }),
         ...(skipMonthlyCalendar !== null && { 'skip-monthly-calendar': skipMonthlyCalendar ? '' : 'false' }),
         ...(hideAnyAvailable    !== null && { 'hide-any-available': hideAnyAvailable ? '' : 'false' }),
 
@@ -194,23 +191,6 @@ export const Configurator = () => {
                     </div>
 
                     <div className="fieldWrapper">
-                        <a>Calendar</a>
-                        <select
-                            defaultValue={calendarType ?? undefined}
-                            onChange={e => setCalendarType(
-                                e.target.value === 'timeline' ? 'timeline' :
-                                e.target.value === 'slot' ? 'slot' :
-                                null
-                            )}
-                        >
-                            <option value={'ns'}>Not Specified</option>
-                            <option value={'timeline'}>Classic</option>
-                            <option value={'slot'}>V2</option>
-                        </select>
-                        <p className='description'>If not specified, it will be picked from shop settings.</p>
-                    </div>
-
-                    <div className="fieldWrapper">
                         <a>Skip Monthly Calendar</a>
                         <select
                             defaultValue={skipMonthlyCalendar === null ? 'auto' : skipMonthlyCalendar === true ? 'true' : 'false'}
@@ -245,7 +225,16 @@ export const Configurator = () => {
                     <div className="checkboxWrapper">
                         <label>
                             <div className='checkbox'>
-                                <input type="checkbox" checked={autoAddToCart === true} onChange={e => setAutoAddToCart(e.target.checked)}/>
+                                <input
+                                    type="checkbox"
+                                    checked={autoAddToCart === true}
+                                    onChange={e => {
+                                        setAutoAddToCart(e.target.checked)
+                                        if(!e.target.checked){
+                                            setSkipCart(null)
+                                        }
+                                    }}
+                                />
                                 <a>Auto Add To Cart</a>
                             </div>
                         </label>
@@ -253,9 +242,14 @@ export const Configurator = () => {
                     </div>
 
                     <div className="checkboxWrapper">
-                        <label>
+                        <label title={autoAddToCart !== true ? 'You have to enable the "Auto Add To Cart" first.' : undefined}>
                             <div className='checkbox'>
-                                <input type="checkbox" checked={skipCart === true} onChange={e => setSkipCart(e.target.checked)}/>
+                                <input
+                                    type="checkbox"
+                                    checked={skipCart === true}
+                                    disabled={autoAddToCart !== true}
+                                    onChange={e => setSkipCart(e.target.checked)}
+                                />
                                 <a>Skip Cart</a>
                             </div>
                         </label>
@@ -265,23 +259,26 @@ export const Configurator = () => {
                 </div>
 
                 <div className="rightColumn">
-                    
-                    <div className="fieldWrapper">
-                        <a>Button Width(px)</a>
-                        <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
-                        <p className='description'>The button's width.</p>
-                    </div>
-                    
-                    <div className="fieldWrapper">
-                        <a>Button Height(px)</a>
-                        <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
-                        <p className='description'>The button's height.</p>
-                    </div>
                         
                     <div className="fieldWrapper">
                         <a>Button Text Font Size(px)</a>
                         <input type="number" min={0} defaultValue={fontSize ?? undefined} onChange={e => setFontSize(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>The button's text font size.</p>
+                    </div>
+                    
+                    <div className="widthHeightWrapper">
+
+                        <div className="fieldWrapper">
+                            <a>Width(px)</a>
+                            <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
+                            <p className='description'>Button's width & height.</p>
+                        </div>
+                        
+                        <div className="fieldWrapper">
+                            <a>Height(px)</a>
+                            <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
+                        </div>
+
                     </div>
                     
                     <div className="fieldWrapper">
