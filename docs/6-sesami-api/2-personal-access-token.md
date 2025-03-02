@@ -16,6 +16,7 @@ To use the Sesami API, you first need to have a Personal Access Token (PAT).
 **Please keep your personal access token in a secure place.**
 :::
 
+<!-- 
 ### Get PAT via API
 
 1. Use the **Login** endpoint and log in to your account:
@@ -69,7 +70,7 @@ The response schema should be like this:
   "expireAt": "NEVER",
   "name": "YOUR_TOKEN_NAME"
 }
-```
+``` -->
 
 :::important
 Each **PAT** is uniquely associated with a specific **shop**. This means that the key grants access only to the resources and data for that particular shop, ensuring secure and isolated access.
