@@ -45,7 +45,7 @@ window.addEventListener('sesami:reservation:success', () => {
 ```
 
 ### sesami:reservation:failed
-The reservation process has been failed. You can find the error message in the event's detail.
+The reservation process has failed. You can find the error message in the event's detail.
 
 ```ts
 type ReservationError =
@@ -62,7 +62,8 @@ window.addEventListener('sesami:reservation:failed', e => {
 ```
 
 ### sesami:booking:success
-When instant booking is enabled, the entire booking flow happens within Sesami. This event is triggered when a slot is successfully booked via Instant booking. You can get the appointment ID in the event's detail.
+When Instant Booking is enabled, the entire booking flow happens within Sesami. This event is triggered when a slot is successfully booked via Instant Booking.<br></br>
+You can get the `appointmentId` in the event's detail.
 
 ```js
 window.addEventListener('sesami:booking:success', e => {
@@ -90,7 +91,7 @@ window.addEventListener('sesami:booking:failed', e => {
 
 ### change
 
-A regular `change` event will be fired on the hidden inputs [hidden fields](/docs/sesami-experience/quick-start/#sesami-hidden-fields).
+A regular `change` event will be fired on the [hidden fields](/docs/sesami-experience/quick-start/#sesami-hidden-fields).
 
 **Example:** Listen for [sesami:modal:opened](#sesamimodalopened) event and once inputs are rendered, listen for the change event on the `Date` input and programmatically create an order without customers having to click on the add to cart button:
 

@@ -11,11 +11,11 @@ Remember that the **shop-id** and **service-id** are the required options for th
 :::
 
 ### shop-id
-In order to tell Sesami for which store you want to display the Experience, you have to provide the `shop-id` option:
+To tell Sesami for which store you want to display the Experience, you have to provide the `shop-id` option:
 
 :::info Where can I find my shop ID?
 
-Each store has its own shop id which can be fetched by visiting this address after replacing `STORE` with your store address: http://STORE.myshopify.com/admin/shop.json
+Each store has its own shop ID which can be fetched by visiting this address after replacing `STORE` with your store name: https://admin.shopify.com/store/STORE_NAME/shop.json
 :::
 
 ```html {2}
@@ -47,7 +47,7 @@ You can set a specific variant of your service for the Experience, but if not se
 ```
 
 ### quantity
-If you don't want to display a quantity selector within your service form and need a pre-selected the quantity value, you can set this option. defaults to **1** in other cases.
+If you don't want to display a quantity selector within your service form and need a pre-selected quantity value, you can set this option. defaults to **1** in other cases.
 
 ```html {4}
 <sesami-experience
@@ -58,7 +58,7 @@ If you don't want to display a quantity selector within your service form and ne
 ```
 
 ### locale
-Sometimes you might need Sesami calendar to be displayed in a different language than what is set as your primary language. This is primarily useful if you have a multi-lingual store:
+Sometimes you might need the Sesami calendar to be displayed in a different language than what is set as your primary language in the settings. This is primarily useful if you have a multi-lingual store:
 
 ```html {4}
 <sesami-experience
@@ -79,33 +79,15 @@ By default, the Experience will pick the user's browser timezone(if it's set to 
 ></sesami-experience>
 ```
 
-### experience-version
-Sesami V2 calendar is our latest version of the Experience, but you can set the version manually to older versions(like Sesami Classic) if you want.
+### experience
+You override your experience version in the Sesami settings.<br></br>
+There are gonna be two options available: `classic` and `v2`.
 
 ```html {4}
 <sesami-experience
   shop-id="761236725762"
   service-id="981219221893"
-  experience-version="classic"
-></sesami-experience>
-```
-
-### calendar-type
-You can configure the calendar type in the Sesami settings, but if you want to manually override it on the tag, you can do it by passing the calendar type as an option:
-
-```html {4}
-<sesami-experience
-  shop-id="761236725762"
-  service-id="981219221893"
-  calendar-type="timeline"
-></sesami-experience>
-```
-
-```html {4}
-<sesami-experience
-  shop-id="761236725762"
-  service-id="981219221893"
-  calendar-type="slot"
+  experience="classic"
 ></sesami-experience>
 ```
 
@@ -132,7 +114,7 @@ You can remove this option in the Sesami settings for that resource, also, you c
 ```
 
 ### auto-add-to-cart
-If set, after reservation completed, the Experience will automatically add the selected values(date, time, resource, etc.) to the cart.
+If set, after the reservation is completed, the Experience will automatically add the selected values(date, time, resource, etc.) to the cart.
 
 ```html {4}
 <sesami-experience
@@ -143,7 +125,7 @@ If set, after reservation completed, the Experience will automatically add the s
 ```
 
 ### skip-cart
-If set, the Experience will add the selected values to the cart and redirect the page to the check out page.
+If set, the Experience will add the selected values to the cart and redirect the page to the checkout page.
 To make this work, you also have to set the **auto-add-to-cart** option.
 
 ```html {5}
