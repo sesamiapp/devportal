@@ -55,7 +55,7 @@
 
 .leftColumn, .rightColumn{
     flex: 1;
-    max-width: 350px;
+    max-width: 360px;
     display: flex;
     flex-direction: column;
     gap: 12px;
