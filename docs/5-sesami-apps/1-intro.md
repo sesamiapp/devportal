@@ -6,7 +6,7 @@ sidebar_position: 1
 Working with various businesses with various requirements brought us to create a system for external developers to expand the Sesami feature.
 
 <p>
-<b>Sesami Apps</b> provides an echo system for external apps to communicate with the Sesami platform, products, and APIs, expanding Sesami features, providing more services, easing workflows, and improving customers' user experiences.
+<b>Sesami Apps</b> provides an ecosystem for external apps to communicate with the Sesami platform, products, and APIs, expanding Sesami features, providing more services, easing workflows, and improving customers' user experiences.
 </p>
 
 <p>
@@ -14,7 +14,7 @@ In this sequence of documents, you can explore working with the Sesami Apps and 
 </p>
 
 ### What is an app?
-In the Sesami echo system, an app is a small piece of web software that serves from a host on the internet and can communicate with Sesami in its products.
+In the Sesami ecosystem, an app is a small piece of web software that serves from a host on the internet and can communicate with Sesami in its products.
 
 ### What is an extension?
 Every app has a home page for its users which will open in the Admin Portal. But there are several more places(targets) available for the app developers to load a small version of their app to do something specific in that place. We call that small app an "extension".
@@ -31,6 +31,6 @@ Also, the shop manager wants to see the collected data from the user when he/she
 
 ### Can we develop apps for other shops?
 
-Yes! The Sesami Apps echo system allows you to develop two types of apps: Private Apps and Public Apps.
+Yes! The Sesami Apps ecosystem allows you to develop two types of apps: Private Apps and Public Apps.
 
 While private apps will work on your shop to provide more expand your shop's capabilities, you can also develop public apps and share them on the Sesami App Store for other shops to use.
