@@ -94,9 +94,8 @@ Also, if you place each Experience in a form, the hidden fields will be rendered
 
 ### Rescheduling/Reassigning
 
-You can use the Sesami Experience to reschedule an appointment, or reassign it to another location or resource.
-
-To achieve this, you just need to send the `appointment-id` and `management-token` to the tag:
+You can use the Sesami Experience to reschedule or reassign an appointment to another location or resource.<br></br>
+To achieve this, you need to send the  [`appointment-id`](/docs/sesami-experience/options/#appointment-id) and [`management-token`](/docs/sesami-experience/options/#management-token) to the tag:
 
 ```html {4-5}
 <sesami-experience
@@ -107,8 +106,14 @@ To achieve this, you just need to send the `appointment-id` and `management-toke
 ></sesami-experience>
 ```
 
-:::info If you are using the Sesami inside the Shopify
+:::note
 
-If you add Sesami to your product page using the Shopify Theme Customizer, it will automatically add the tag and the bundle for you. See the [Shopify Integration](/docs/sesami-experience/shopify-integration/intro/) section for more information.
+In order to enable the reschedule mode in the Sesami Experience, you have to set both `appointment-id` and `management-token` are required.
+
+:::
+
+:::info
+
+When the Sesami Experience is in the rescheduling mode, it will ignore the [`quantity`](/docs/sesami-experience/options/#quantity), [`variant-id`](/docs/sesami-experience/options/#variant-id), or any other parameters that can affect the order pricing.
 
 :::
