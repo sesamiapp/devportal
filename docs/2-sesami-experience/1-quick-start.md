@@ -91,3 +91,17 @@ Also, if you place each Experience in a form, the hidden fields will be rendered
 </form>
 ```
 
+### Rescheduling/Reassigning
+
+You can use the Sesami Experience to reschedule an appointment, or reassign it to another location or resource.
+
+To achieve this, you just need to send the `appointment-id` and `management-token` to the tag:
+
+```html {4-5}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  appointment-id="32948238943298428"
+  management-token="8374yr3489r98ryh4r0123rj4g8n903dhg3djk309yu47fh3903f4h"
+></sesami-experience>
+```
