@@ -7,6 +7,7 @@ sidebar_position: 1
 :::info If you are using the Sesami inside the Shopify
 
 If you add Sesami to your product page using the Shopify Theme Customizer, it will automatically add the tag and the bundle for you. See the [Shopify Integration](/docs/sesami-experience/shopify-integration/intro/) section for more information.
+
 :::
 
 The simplest way to use Sesami Experience is to load the [bundle](https://cdn.sesami.co/storefront/latest/sesami-main.js) and add its tag where you want to load the button:
@@ -105,3 +106,9 @@ To achieve this, you just need to send the `appointment-id` and `management-toke
   management-token="8374yr3489r98ryh4r0123rj4g8n903dhg3djk309yu47fh3903f4h"
 ></sesami-experience>
 ```
+
+:::info If you are using the Sesami inside the Shopify
+
+If you add Sesami to your product page using the Shopify Theme Customizer, it will automatically add the tag and the bundle for you. See the [Shopify Integration](/docs/sesami-experience/shopify-integration/intro/) section for more information.
+
+:::
