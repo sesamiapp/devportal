@@ -157,13 +157,13 @@ export const Configurator = () => {
                     <div className="fieldWrapper">
                         <a>Appointment ID</a>
                         <input defaultValue={appointmentId ?? ''} onChange={e => setAppointmentId(e.target.value === '' ? null : e.target.value)}/>
-                        <p className='description'>xxxxxxxxxxxxx.</p>
+                        <p className='description'>If you want to reschedule/reassign an appointment.</p>
                     </div>
 
                     <div className="fieldWrapper">
                         <a>Management Token</a>
                         <input defaultValue={managementToken ?? ''} onChange={e => setManagementToken(e.target.value === '' ? null : e.target.value)}/>
-                        <p className='description'>xxxxxxxxxxxxx.</p>
+                        <p className='description'>Required when rescheduling/reassigning.</p>
                     </div>
 
                     <div className="fieldWrapper">
@@ -313,7 +313,7 @@ export const Configurator = () => {
                         <input defaultValue={backgroundColor ?? ''} onChange={e => setBackgroundColor(e.target.value === '' ? null : e.target.value)}/>
                         <p className='description'>The button's background color.</p>
                     </div>
-                        
+                    
                     <div className="fieldWrapper">
                         <a>Button Border Width(px)</a>
                         <input type="number" min={0} defaultValue={borderWidth ?? undefined} onChange={e => setBorderWidth(e.target.value ? parseInt(e.target.value) : null)}/>
