@@ -17,6 +17,9 @@ export const Configurator = () => {
     const [ variantId           , setVariantId           ] = useState<string | null>(null)
     const [ quantity            , setQuantity            ] = useState<number | null>(null)
 
+    const [ appointmentId       , setAppointmentId       ] = useState<string | null>(null)
+    const [ managementToken     , setManagementToken     ] = useState<string | null>(null)
+
     const [ locale              , setLocale              ] = useState<string | null>(null)
     const [ timezone            , setTimezone            ] = useState<string | null>(null)
     
@@ -51,6 +54,9 @@ export const Configurator = () => {
         variantId,
         quantity,
 
+        appointmentId,
+        managementToken,
+
         locale,
         timezone,
 
@@ -80,17 +86,20 @@ export const Configurator = () => {
 
     const sesamiExperienceProps = {
 
-        ...(shopId      && { 'shop-id'   : shopId    }),
-        ...(serviceId   && { 'service-id': serviceId }),
-        ...(variantId   && { 'variant-id': variantId }),
-        ...(quantity    && { 'quantity'  : quantity  }),
+        ...(shopId          && { 'shop-id'          : shopId            }),
+        ...(serviceId       && { 'service-id'       : serviceId         }),
+        ...(variantId       && { 'variant-id'       : variantId         }),
+        ...(quantity        && { 'quantity'         : quantity          }),
 
-        ...(locale      && { 'locale'    : locale    }),
-        ...(timezone    && { 'timezone'  : timezone  }),
+        ...(appointmentId   && { 'appointment-id'   : appointmentId     }),
+        ...(managementToken && { 'management-token' : managementToken   }),
+
+        ...(locale          && { 'locale'           : locale            }),
+        ...(timezone        && { 'timezone'         : timezone          }),
         
-        ...(experienceVersion   && { 'experience': experienceVersion }),
+        ...(experienceVersion && { 'experience': experienceVersion }),
         ...(skipMonthlyCalendar !== null && { 'skip-monthly-calendar': skipMonthlyCalendar ? '' : 'false' }),
-        ...(hideAnyAvailable    !== null && { 'hide-any-available': hideAnyAvailable ? '' : 'false' }),
+        ...(hideAnyAvailable    !== null && { 'hide-any-available': hideAnyAvailable       ? '' : 'false' }),
 
         ...(autoAddToCart === true && { 'auto-add-to-cart': '' }),
         ...(skipCart      === true && { 'skip-cart': ''        }),
@@ -143,6 +152,18 @@ export const Configurator = () => {
                         <a>Quantity</a>
                         <input type="number" min={1} defaultValue={quantity ?? undefined} onChange={e => setQuantity(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>If you leave it empty it would be one.</p>
+                    </div>
+
+                    <div className="fieldWrapper">
+                        <a>Appointment ID</a>
+                        <input defaultValue={appointmentId ?? ''} onChange={e => setAppointmentId(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>If you want to reschedule/reassign an appointment.</p>
+                    </div>
+
+                    <div className="fieldWrapper">
+                        <a>Management Token</a>
+                        <input defaultValue={managementToken ?? ''} onChange={e => setManagementToken(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>Required when rescheduling/reassigning.</p>
                     </div>
 
                     <div className="fieldWrapper">
@@ -215,12 +236,6 @@ export const Configurator = () => {
                         </select>
                         <p className='description'>On auto, it will be based on the configuration.</p>
                     </div>
-                    
-                    <div className="fieldWrapper">
-                        <a>Button Label</a>
-                        <input defaultValue={label ?? ''} onChange={e => setLabel(e.target.value === '' ? null : e.target.value)}/>
-                        <p className='description'>The text on the button.</p>
-                    </div>
 
                     <div className="checkboxWrapper">
                         <label>
@@ -259,6 +274,12 @@ export const Configurator = () => {
                 </div>
 
                 <div className="rightColumn">
+                    
+                    <div className="fieldWrapper">
+                        <a>Button Label</a>
+                        <input defaultValue={label ?? ''} onChange={e => setLabel(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>The text on the button.</p>
+                    </div>
                         
                     <div className="fieldWrapper">
                         <a>Button Text Font Size(px)</a>
@@ -292,7 +313,7 @@ export const Configurator = () => {
                         <input defaultValue={backgroundColor ?? ''} onChange={e => setBackgroundColor(e.target.value === '' ? null : e.target.value)}/>
                         <p className='description'>The button's background color.</p>
                     </div>
-                        
+                    
                     <div className="fieldWrapper">
                         <a>Button Border Width(px)</a>
                         <input type="number" min={0} defaultValue={borderWidth ?? undefined} onChange={e => setBorderWidth(e.target.value ? parseInt(e.target.value) : null)}/>
