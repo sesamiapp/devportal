@@ -22,7 +22,6 @@ The generated booking id after the booking process.
 public getBookingId: () => string
 ```
 
-
 ### Methods
 
 #### onDone()
