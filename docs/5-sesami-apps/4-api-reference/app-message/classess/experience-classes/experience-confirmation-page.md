@@ -8,11 +8,18 @@ This target will be rendered after the instant booking process is finished as ex
 
 ### Attributes
 
-#### Appointment ID
-The generated appointment id after the booking process.
+#### Cart
+The customers cart items.
 
 ```ts
-public getAppointmentId: () => string
+public getCart: () => CartItem[]
+```
+
+#### Booking ID
+The generated booking id after the booking process.
+
+```ts
+public getBookingId: () => string
 ```
 
 

@@ -5,6 +5,15 @@ sidebar_position: 3
 # ExperienceInstantBookingForm
 This class will be used in the `EXPERIENCE_INSTANT_BOOKING_FORM` target.
 
+### Attributes
+
+#### Cart
+The customers cart items.
+
+```ts
+public getCart: () => CartItem[]
+```
+
 ### Methods
 
 #### onConfirm()

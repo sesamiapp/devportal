@@ -5,6 +5,50 @@ sidebar_position: 2
 # ExperienceBeforeCart
 This class will be used in the `EXPERIENCE_BEFORE_CART` target.
 
+### Attributes
+
+#### Service ID
+The current service in the Experience.
+
+```ts
+public getServiceId: () => string
+```
+
+#### Variant ID
+The selected variant of the service.
+
+```ts
+public getVariantId: () => string
+```
+
+#### Quantity
+The selected quantity for the service.
+
+```ts
+public getQuantity: () => number
+```
+
+#### Resources
+The selected resources with the user, such as coach, room, etc.
+
+```ts
+public getResources: () => Resource[]
+```
+
+#### Timezone
+The Experience's current timezone.
+
+```ts
+public getTimezone: () => string
+```
+
+#### Slot
+Selected slot's date and time.
+
+```ts
+public getSlot: () => Date
+```
+
 ### Methods
 
 #### onConfirm()

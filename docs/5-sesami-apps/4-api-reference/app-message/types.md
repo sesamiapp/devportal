@@ -16,6 +16,19 @@ enum AppTarget {
 }
 ```
 
+### Cart Item
+```ts
+type CartItem = {
+    serviceId: string
+    variantId: string
+    quantity: number
+    resources: Resource[]
+    timezone: string
+    slot: Date
+    reservationId: string | null
+}
+```
+
 ### Resource
 ```ts
 type Resource = {
