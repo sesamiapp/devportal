@@ -1,17 +1,52 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-# ExperienceInstantBookingForm
-This class will be used in the `EXPERIENCE_INSTANT_BOOKING_FORM` target.
+# ExperienceBeforeCart
+This class will be used in the `EXPERIENCE_BEFORE_CART` target.
 
 ### Attributes
 
-#### Cart
-The customers cart items.
+#### Service ID
+The current service in the Experience.
 
 ```ts
-public getCart: () => CartItem[]
+public getServiceId: () => string
+```
+
+#### Variant ID
+The selected variant of the service.
+
+```ts
+public getVariantId: () => string
+```
+
+#### Quantity
+The selected quantity for the service.
+
+```ts
+public getQuantity: () => number
+```
+
+#### Resources
+The selected resources with the user, such as coach, room, etc.
+
+```ts
+public getResources: () => Resource[]
+```
+
+#### Timezone
+The Experience's current timezone.
+
+```ts
+public getTimezone: () => string
+```
+
+#### Slot
+Selected slot's date and time.
+
+```ts
+public getSlot: () => Date
 ```
 
 ### Methods
