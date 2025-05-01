@@ -1,5 +1,9 @@
 # Personal Access Token
 
+:::note
+As of now, **Personal Access Tokens** are not automatically generated through the developer portal. To obtain your PAT, please contact our Support Team. They will assist you in generating and securing your PAT, ensuring you have everything you need to start integrating with our platform.
+:::
+
 To use the Sesami API, you first need to have a Personal Access Token (PAT).
 
 ### Get PAT via Sesami Admin Portal
@@ -74,8 +78,4 @@ The response schema should be like this:
 
 :::important
 Each **PAT** is uniquely associated with a specific **shop**. This means that the key grants access only to the resources and data for that particular shop, ensuring secure and isolated access.
-:::
-
-:::note
-As of now, **Personal Access Tokens** are not automatically generated through the developer portal. To obtain your PAT, please contact our Support Team. They will assist you in generating and securing your PAT, ensuring you have everything you need to start integrating with our platform.
 :::
