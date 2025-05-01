@@ -7,7 +7,7 @@ This class will be used in the `EXPERIENCE_CONFIRMATION_PAGE` target.
 This target will be rendered after the instant booking process is finished as expected.
 
 ### Attributes
-
+ 
 #### Cart
 The customers cart items.
 
