@@ -361,7 +361,7 @@ export const Configurator = () => {
                 className="codeSampleTextarea"
                 wrap="off"
                 rows={16}
-                value={ 
+                value={
                     `${`<sesami-experience`}${(JSON.stringify(sesamiExperienceProps, null, 4))
                     .replace('{', '')
                     .replace('}', '')
