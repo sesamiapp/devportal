@@ -14,6 +14,7 @@ export const Configurator = () => {
 
     const [ shopId              , setShopId              ] = useState<string | null>('76573311249')
     const [ serviceId           , setServiceId           ] = useState<string | null>('8689310236945')
+    const [ locationId          , setLocationId          ] = useState<string | null>(null)
     const [ variantId           , setVariantId           ] = useState<string | null>(null)
     const [ quantity            , setQuantity            ] = useState<number | null>(null)
 
@@ -48,6 +49,7 @@ export const Configurator = () => {
         
         shopId,
         serviceId,
+        locationId,
         variantId,
         quantity,
 
@@ -80,13 +82,14 @@ export const Configurator = () => {
 
     const sesamiExperienceProps = {
 
-        ...(shopId      && { 'shop-id'   : shopId    }),
-        ...(serviceId   && { 'service-id': serviceId }),
-        ...(variantId   && { 'variant-id': variantId }),
-        ...(quantity    && { 'quantity'  : quantity  }),
+        ...(shopId     && { 'shop-id'    : shopId     }),
+        ...(serviceId  && { 'service-id' : serviceId  }),
+        ...(locationId && { 'location-id': locationId }),
+        ...(variantId  && { 'variant-id' : variantId  }),
+        ...(quantity   && { 'quantity'   : quantity   }),
 
-        ...(locale      && { 'locale'    : locale    }),
-        ...(timezone    && { 'timezone'  : timezone  }),
+        ...(locale     && { 'locale'     : locale     }),
+        ...(timezone   && { 'timezone'   : timezone   }),
         
         ...(experienceVersion   && { 'experience': experienceVersion }),
         ...(skipMonthlyCalendar !== null && { 'skip-monthly-calendar': skipMonthlyCalendar ? '' : 'false' }),
@@ -131,6 +134,12 @@ export const Configurator = () => {
                         <a>Service ID</a>
                         <input defaultValue={serviceId ?? ''} onChange={e => setServiceId(e.target.value === '' ? null : e.target.value)}/>
                         <p className='description'>This field is required.</p>
+                    </div>
+                    
+                    <div className="fieldWrapper">
+                        <a>Location ID</a>
+                        <input defaultValue={locationId ?? ''} onChange={e => setLocationId(e.target.value === '' ? null : e.target.value)}/>
+                        <p className='description'>If empty, it will show the locations list.</p>
                     </div>
                     
                     <div className="fieldWrapper">
