@@ -88,7 +88,7 @@ window.addEventListener('sesami:booking:failed', e => {
   console.log('booking failed', e.detail.error)
 })
 ```
-
+ 
 ### change
 
 A regular `change` event will be fired on the [hidden fields](/docs/sesami-experience/quick-start/#sesami-hidden-fields).
