@@ -58,7 +58,7 @@ It can take a while until Sesami is fully loaded on your store. You can disable 
   </script>
 {% endif %}
 ```
-*Read more about [Sesami events](/docs/sesami-experience/events)*
+*Read more about [Sesami Events](/docs/sesami-experience/events)*
 
 
 ## Hiding Quantity Selector

@@ -110,3 +110,21 @@ A regular `change` event will be fired on the [hidden fields](/docs/sesami-exper
   })()
 </script>
 ```
+
+### sesami:cart:add
+Auto add to cart has been triggered.
+
+```js
+window.addEventListener('sesami:cart:add', () => {
+  console.log('auto add to cart')
+})
+```
+
+### sesami:cart:skip
+Auto skip cart has been triggered.
+
+```js
+window.addEventListener('sesami:cart:skip', () => {
+  console.log('skip cart')
+})
+```
