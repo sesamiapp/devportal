@@ -247,7 +247,7 @@ export const Configurator = () => {
                                 <a>Auto Add To Cart</a>
                             </div>
                         </label>
-                        <p className='description'>It will add the selected information to the cart.</p>
+                        <p className='description'>It will add the selected information to the cart.*</p>
                     </div>
 
                     <div className="checkboxWrapper">
@@ -262,7 +262,7 @@ export const Configurator = () => {
                                 <a>Skip Cart</a>
                             </div>
                         </label>
-                        <p className='description'>It will go to the checkout after user selects time.</p>
+                        <p className='description'>It will go to the checkout after user selects time.*</p>
                     </div>
 
                 </div>
@@ -376,6 +376,8 @@ export const Configurator = () => {
 
             {/* button */}
             {showButton && <sesami-experience {...sesamiExperienceProps} ></sesami-experience>}
+
+            <p className='description'>* It will work with forms with a target of "/cart/add" (like Shopify); other headless platforms with different structures can use <a href="/docs/sesami-experience/events">Sesami Events</a> to handle it manually.</p>
 
         </div>
     )
