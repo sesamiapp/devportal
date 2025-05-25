@@ -35,7 +35,7 @@ Copy the tag that you generated in the step 2, and add it to any page where you 
 
 **Note:**
 While using Shopify Hydrogen for implementing **auto add to cart** or **skip cart** functionality, adding them to `<sesami-experience></sesami-experience>` tag alone is **not enough**.
-You **must also listen** for the relevant custom events on the `window` object and handle them properly base on your application logic:
+You **must also listen** for the relevant custom events on the `window` object and handle them properly base on your application logics:
 
 ```js
 // Auto add to cart
