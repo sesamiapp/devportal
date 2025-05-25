@@ -26,10 +26,29 @@ Create your customized Sesami Experience based on your own requirements using th
 
 Copy the tag that you generated in the step 2, and add it to any page where you would like to display the Sesami Experience.
 
-
 ```html title="INSIDE YOUR SERVICE PAGE"
 <sesami-experience
-    shop-id="761236725762"
-    service-id="981219221893"
+  shop-id="761236725762"
+  service-id="981219221893"
 ></sesami-experience>
 ```
+
+**Note:**
+While using Shopify Hydrogen for implementing **auto add to cart** or **skip cart** functionality, adding them to `<sesami-experience></sesami-experience>` tag alone is **not enough**.
+You **must also listen** for the relevant custom events on the `window` object and handle them properly base on your application logic:
+
+```js
+// Auto add to cart
+window.addEventListener('sesami:cart:add', () = {
+  console.log('auto add to cart')
+  // Example: Use Hydrogen's useCart to add a product
+})
+
+// Auto skip cart
+window.addEventListener('sesami:cart:skip', () = {
+  console.log('skip cart')
+  // Example: Redirect to checkout
+})
+```
+
+you can use hydrogen built in hook [useCart](https://shopify.dev/docs/api/hydrogen-react/2025-01/hooks/usecart) for adding products to the cart.
