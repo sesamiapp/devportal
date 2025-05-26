@@ -104,7 +104,7 @@ A regular `change` event will be fired on the [hidden fields](/docs/sesami-exper
       const sesamiDateInput = hiddenFieldsWrapper.querySelector('[sesami-hidden-date]')
       sesamiDateInput.addEventListener('change', e => {
         console.log('date changed', e.target.value)
-        // create order... 
+        // create order...
       })
     })
   })()
