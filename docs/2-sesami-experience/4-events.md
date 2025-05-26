@@ -101,7 +101,7 @@ A regular `change` event will be fired on the [hidden fields](/docs/sesami-exper
     window.addEventListener('sesami:modal:opened', e => {
       const tagId = e.detail.tagId
       const hiddenFieldsWrapper = document.getElementById(`sesami-hidden-fields-${tagId}`)
-      const sesamiDateInput = hiddenFieldsWrapper.querySelector("[name='properties[Date]']")
+      const sesamiDateInput = hiddenFieldsWrapper.querySelector('[sesami-hidden-date]')
       sesamiDateInput.addEventListener('change', e => {
         console.log('date changed', e.target.value)
         // create order...
