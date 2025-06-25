@@ -127,7 +127,7 @@ export const Configurator = () => {
                     <div className="fieldWrapper">
                         <a>Shop ID</a>
                         <input defaultValue={shopId ?? ''} onChange={e => setShopId(e.target.value)}/>
-                        <p className='description'>You can find it in the Admin's shop select menu.</p>
+                        <p className='description'>You can find it in the <a href='/docs/sesami-api/intro/#sesami-shop-id'>Admin's shop select menu</a>.</p>
                     </div>
 
                     <div className="fieldWrapper">
