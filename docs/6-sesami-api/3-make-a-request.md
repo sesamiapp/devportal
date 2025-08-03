@@ -6,7 +6,7 @@ For authenticated requests, you must include your token in the request headers. 
 ```curl
 x-api-key: YOUR_TOKEN
 x-client-id: YOUR_CLIENT_ID
-x-shop-id: YOUR_SHOP_ID
+x-shop-id: YOUR_SESAMI_ADMIN_SHOP_ID
 ```
 
 ### GraphQL and REST
@@ -20,7 +20,7 @@ curl --request POST \
 --header 'content-type: application/json' \
 --header 'x-api-key: YOUR_TOKEN'\
 --header 'x-client-id: YOUR_CLIENT_ID'\
---header 'x-shop-id: YOUR_SHOP_ID'\
+--header 'x-shop-id: YOUR_SESAMI_ADMIN_SHOP_ID'\
 --url 'https://api.sesami.co/graphql' \
 --data '{"query":"query GetShops { getShops {data { email } } }","variables":{}}'
 ```
@@ -31,7 +31,7 @@ curl --request GET \
 --header 'content-type: application/json' \
 --header 'x-api-key: YOUR_TOKEN'\
 --header 'x-client-id: YOUR_CLIENT_ID'\
---header 'x-shop-id: YOUR_SHOP_ID'\
+--header 'x-shop-id: YOUR_SESAMI_ADMIN_SHOP_ID'\
 --url 'https://api.sesami.co/api/v1/shops?limit=10' \
 ```
 
