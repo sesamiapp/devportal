@@ -385,7 +385,7 @@ export const Configurator = () => {
             {/* button */}
             {showButton && <sesami-experience {...sesamiExperienceProps} ></sesami-experience>}
 
-            <p className='description'>* It will work with forms with a target of "/cart/add" (like Shopify); other headless platforms with different structures can use <a href="/docs/sesami-experience/events">Sesami Events</a> to handle it manually.</p>
+            <p className='description' id='page-description'>* It will work with forms with a target of "/cart/add" (like Shopify); other headless platforms with different structures can use <a href="/docs/sesami-experience/events">Sesami Events</a> to handle it manually.</p>
 
         </div>
     )
