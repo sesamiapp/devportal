@@ -29,8 +29,8 @@ export const Configurator = () => {
     const [ skipCart            , setSkipCart            ] = useState<boolean | null>(null)
 
     const [ label               , setLabel               ] = useState<string | null>(null)
-    const [ width               , setWidth               ] = useState<number | null>(300)
-    const [ height              , setHeight              ] = useState<number | null>(50)
+    const [ width               , setWidth               ] = useState<string | null>('300px')
+    const [ height              , setHeight              ] = useState<string | null>('50px')
     const [ fontSize            , setFontSize            ] = useState<number | null>(18)
     const [ color               , setColor               ] = useState<string | null>('#FFF')
     const [ backgroundColor     , setBackgroundColor     ] = useState<string | null>('#14146d')
@@ -80,6 +80,14 @@ export const Configurator = () => {
     ])
     useEffect(() => { !showButton && setShowButton(true) }, [showButton])
 
+    const validateSize = (size: string | null) => {
+        if(size?.includes('px') || size?.includes('%') ){
+            return size
+        }else{
+            return undefined
+        }
+    }
+
     const sesamiExperienceProps = {
 
         ...(shopId     && { 'shop-id'    : shopId     }),
@@ -101,8 +109,8 @@ export const Configurator = () => {
         ...(label !== null && { 'button-label': label }),
 
         'button-style': encodeURIComponent(JSON.stringify({
-            width:            width           !== null ? `${width}px`  : undefined,
-            height:           height          !== null ? `${height}px` : undefined,
+            width:  validateSize(width),
+            height: validateSize(height),
             font_size:        fontSize        !== null ? fontSize      : undefined,
             color:            color           ?? undefined,
             color_background: backgroundColor ?? undefined,
@@ -279,13 +287,13 @@ export const Configurator = () => {
 
                         <div className="fieldWrapper">
                             <a>Width</a>
-                            <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
+                            <input defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ?? null)}/>
                             <p className='description'>e.g. 250px or 90%</p>
                         </div>
                         
                         <div className="fieldWrapper">
                             <a>Height</a>
-                            <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
+                            <input defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ?? null)}/>
                         </div>
 
                     </div>
