@@ -278,13 +278,13 @@ export const Configurator = () => {
                     <div className="widthHeightWrapper">
 
                         <div className="fieldWrapper">
-                            <a>Width(px)</a>
+                            <a>Width</a>
                             <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
-                            <p className='description'>Button's width & height.</p>
+                            <p className='description'>e.g. 250px or 90%</p>
                         </div>
                         
                         <div className="fieldWrapper">
-                            <a>Height(px)</a>
+                            <a>Height</a>
                             <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
                         </div>
 
