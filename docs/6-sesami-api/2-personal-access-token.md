@@ -52,9 +52,8 @@ curl -XPOST 'https://api.sesami.co/api/v1/auth/access-token' \
 --data '{
     "type": "PERSONAL_ACCESS_TOKEN",
     "personalAccessTokenRequest": {
-        "permissions": ["Shop:YOUR_SHOP_ID:Read"],
-        "expireAt": "NEVER",
-        "shop": "YOUR_SHOP_ID",
+        "expireAt": "THIRTY" | "SIXTY" | "NINETY" | "NEVER",
+        "shop": "YOUR_SESAMI_SHOP_ID",
         "name": "ANY NAME",
         "user": "YOUR_USER_ID"
   },
@@ -66,14 +65,13 @@ The response schema should be like this:
 ```json
 {
   "token": "YOUR_TOKEN",
-  "clientId": "YOUR_CLIENT_ID",
   "expireAt": "NEVER",
   "name": "YOUR_TOKEN_NAME"
 }
 ``` -->
 
 :::important
-Each **PAT** is uniquely associated with a specific **shop**. This means that the key grants access only to the resources and data for that particular shop, ensuring secure and isolated access.
+Each **PAT** is uniquely associated with a specific **user**. This means that the key grants access only to the resources and data for that particular user, ensuring secure and isolated access.
 :::
 
 :::note
