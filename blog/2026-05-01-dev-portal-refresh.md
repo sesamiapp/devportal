@@ -2,8 +2,9 @@
 slug: dev-portal-refresh
 title: A fresh look for sesami.dev
 author: Ehsan
-author_title: Engineer @ Sesami
-author_url: https://github.com/sesamiapp
+author_title: Cofounder @ Sesami
+author_url: https://github.com/ehsankhakbaz
+author_image_url: https://avatars.githubusercontent.com/ehsankhakbaz
 tags: [docs, platform, sesami]
 ---
 
