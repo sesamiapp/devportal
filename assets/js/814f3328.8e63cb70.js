@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[2535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"A fresh look for sesami.dev","permalink":"/blog/dev-portal-refresh"},{"title":"Welcome","permalink":"/blog/welcome"}]}')}}]);

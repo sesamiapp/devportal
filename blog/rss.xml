@@ -4,10 +4,21 @@
         <title>Sesami Developers Blog</title>
         <link>https://sesami.co/blog</link>
         <description>Sesami Developers Blog</description>
-        <lastBuildDate>Fri, 17 Apr 2020 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 01 May 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[A fresh look for sesami.dev]]></title>
+            <link>https://sesami.co/blog/dev-portal-refresh</link>
+            <guid>https://sesami.co/blog/dev-portal-refresh</guid>
+            <pubDate>Fri, 01 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[We've given sesami.dev a refresh — a clearer story of what the platform offers, and faster paths into the parts of Sesami you actually want to build with.]]></description>
+            <content:encoded><![CDATA[<p>We've given <strong>sesami.dev</strong> a refresh — a clearer story of what the platform offers, and faster paths into the parts of Sesami you actually want to build with.</p><p><img loading="lazy" alt="Sesami Developers — refreshed homepage" src="/assets/images/sesami-dev-refreshed-87b5f328201325f4d8e863a799abbad6.png" width="3172" height="2492" class="img_ev3q"></p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="whats-new">What's new<a href="#whats-new" class="hash-link" aria-label="Direct link to What's new" title="Direct link to What's new">​</a></h3><p><strong>A homepage that explains the platform.</strong> Instead of a generic "welcome" banner, the new homepage opens with what Sesami actually does — <em>"Sesami powers service commerce"</em> — and a card grid of every product (Experience, SDK, API, Flows, Apps) you can build with.</p><p><strong>Three live showcases.</strong> Below the cards, three side-by-side code samples show the most exciting use of each major surface:</p><ul><li><strong>Experience</strong> — add booking to your store in 3 lines of HTML.</li><li><strong>SDK</strong> — build your own booking UI on top of Sesami's primitives.</li><li><strong>API</strong> — query upcoming bookings (and everything else) over GraphQL.</li></ul><p>Copy-paste-ready, all the way down.</p><p><strong>Clearer navigation.</strong> The top nav now has direct shortcuts to each product (Experience · SDK · API · Flows · Apps) with active-section highlighting. The docs landing page has a card grid showing what's inside each product so you can jump straight to a sub-topic.</p><p><strong>Restructured docs.</strong> The product order now follows the natural developer journey: <em>Experience → SDK → API → Flows → Apps</em>. The Experience section gained a new <strong>Methods</strong> page documenting <code>openExperience()</code> and a <strong>Custom button</strong> recipe for full styling control.</p><p><strong>Refined typography.</strong> Aligned with the broader Sesami brand, with sizing and spacing tuned for long-form reading.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="whats-next">What's next<a href="#whats-next" class="hash-link" aria-label="Direct link to What's next" title="Direct link to What's next">​</a></h3><p>This refresh is the foundation, not the destination. We're following up with:</p><ul><li>More end-to-end examples in the Experience and SDK docs.</li><li>A proper API reference with searchable endpoint docs.</li><li>Embedded interactive playgrounds for the SDK.</li></ul><p>If something looks off, or you'd like a topic we don't cover yet, the docs are open source — <a href="https://github.com/sesamiapp/devportal" target="_blank" rel="noopener noreferrer">open an issue or send a PR on the devportal repo</a>.</p><p>Happy building.</p>]]></content:encoded>
+            <category>docs</category>
+            <category>platform</category>
+            <category>sesami</category>
+        </item>
         <item>
             <title><![CDATA[Welcome]]></title>
             <link>https://sesami.co/blog/welcome</link>

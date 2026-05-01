@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[4578],{7441:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/docs","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Updates and notes from the Sesami developer platform team","blogTitle":"Dev Blog"}')}}]);
