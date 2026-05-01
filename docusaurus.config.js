@@ -120,6 +120,10 @@ module.exports = {
           title: 'More',
           items: [
             {
+              label: 'Partners',
+              href: 'https://sesami.co/partners',
+            },
+            {
               label: 'Sesami website',
               href: 'https://sesami.co',
             },
@@ -128,7 +132,7 @@ module.exports = {
               href: 'https://help.sesami.co/',
             },
             {
-              label: 'Blog',
+              label: 'Dev Blog',
               to: '/blog',
             },
             {
@@ -151,6 +155,8 @@ module.exports = {
             'https://github.com/sesamiapp/devportal/edit/master/',
         },
         blog: {
+          blogTitle: 'Dev Blog',
+          blogDescription: 'Updates and notes from the Sesami developer platform team',
           showReadingTime: true,
           editUrl:
             'https://github.com/sesamiapp/devportal/edit/master/blog/',
