@@ -16,7 +16,7 @@ Our platform currently supports **Read-Only** Permissions. This means all apps a
 Apps are not allowed to modify, delete, or create new data at this time.
 :::
 
-The App follows a structured permission model, represented as `Shop:Read` and send it in the [**OAuth flow**](../3-api-reference/installation-api.md).
+The App follows a structured permission model, represented as `Shop:Read` and send it in the [**OAuth flow**](../4-api-reference/installation-api.md).
 
 when the Shop manager wants to install the app, the list of the app permissions will be shown, and he/she has to grant permissions to the app to be able to install and use it.
 
