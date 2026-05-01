@@ -5,21 +5,43 @@
  * and scoped locally.
  */
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.hero {
+  padding: 5rem 0 3rem;
+  text-align: left;
 }
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.heroLead {
+  font-size: 1.15rem;
+  line-height: 1.55;
+  max-width: 800px;
+  margin: 0 0 1rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.heroTagline {
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-700);
+  font-style: italic;
+  margin: 0;
+}
+
+@media screen and (max-width: 996px) {
+  .hero {
+    padding: 3rem 0 2rem;
   }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  .heroLead {
+    font-size: 1rem;
+  }
 }
