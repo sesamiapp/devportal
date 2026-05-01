@@ -182,8 +182,8 @@ So for example if you stringify and then URI encode the object below:
 
 ```ts
 const style = {
-  width: 300,
-  height: 50,
+  width: '300px',
+  height: '50px',
   font_size: 14,
   color: '#FFF',
   color_background: 'red',
@@ -203,3 +203,45 @@ It can be passed to the Experience like this:
   button-style="%7B%22width%22%3A%22300px%22%2C%22height%22%3A%2250px%22%2C%22font_size%22%3A14%2C%22color%22%3A%22%23FFF%22%2C%22color_background%22%3A%22red%22%2C%22border_width%22%3A2%2C%22border_color%22%3A%22black%22%2C%22border_radius%22%3A9%2C%22alignment%22%3A%22center%22%7D"
 ></sesami-experience>
 ```
+
+### Custom button
+If the [button-style](#button-style) option is not enough and you need full control over the button markup and styling (for example to match a complex theme, reuse an existing component, or escape Shadow DOM constraints), you can hide the Sesami button and open the Experience from your own element by calling the [`openExperience()`](/docs/sesami-experience/methods/#openexperience) method on the `sesami-experience` tag.
+
+```html
+<!-- 1. Add the Experience tag and hide its rendered button -->
+<sesami-experience
+  id="my-sesami"
+  shop-id="761236725762"
+  service-id="981219221893"
+  style="display: none;"
+></sesami-experience>
+
+<!-- 2. Add your own button and call openExperience() on click -->
+<button
+  class="my-custom-booking-button"
+  onclick="document.querySelector('#my-sesami').openExperience()"
+>
+  Book Now
+</button>
+
+<style>
+  .my-custom-booking-button {
+    font-family: 'Ubuntu', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+    padding: 14px 28px;
+    background: #14146d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+</style>
+```
+
+The `sesami-experience` element still loads its configuration and sets up the [hidden fields](/docs/sesami-experience/quick-start/#sesami-hidden-fields) as usual; only its own rendered button is hidden, and your element triggers the popup.
+
+:::note
+Make sure to call `openExperience()` after Sesami is ready by listening for the [sesami:loaded](/docs/sesami-experience/events/#sesamiloaded) event, or simply rely on the click happening after the page has loaded.
+:::
