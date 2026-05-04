@@ -1,6 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Sesami developers',
+  title: 'Sesami Developers',
   tagline: 'Built for developers, by developers',
   url: 'https://sesami.co',
   baseUrl: '/',
@@ -12,17 +12,52 @@ module.exports = {
   trailingSlash: true,
   themeConfig: {
     navbar: {
-      title: 'Sesami developers',
+      title: 'Sesami Developers',
       logo: {
         alt: 'Sesami',
         src: 'img/logo.svg',
       },
       items: [
         {
-          type: 'doc',
-          docId: 'intro',
+          to: '/docs/intro/',
+          activeBaseRegex: '^/docs/intro/?$',
           position: 'left',
           label: 'Docs',
+        },
+        {
+          to: '/docs/sesami-experience/quick-start/',
+          activeBasePath: '/docs/sesami-experience',
+          position: 'left',
+          label: 'Experience',
+          className: 'navbar-shortcut',
+        },
+        {
+          to: '/docs/sesami-sdk/quick-start/',
+          activeBasePath: '/docs/sesami-sdk',
+          position: 'left',
+          label: 'SDK',
+          className: 'navbar-shortcut',
+        },
+        {
+          to: '/docs/sesami-api/intro/',
+          activeBasePath: '/docs/sesami-api',
+          position: 'left',
+          label: 'API',
+          className: 'navbar-shortcut',
+        },
+        {
+          to: '/docs/sesami-flows/flows/',
+          activeBasePath: '/docs/sesami-flows',
+          position: 'left',
+          label: 'Flows',
+          className: 'navbar-shortcut',
+        },
+        {
+          to: '/docs/sesami-apps/intro/',
+          activeBasePath: '/docs/sesami-apps',
+          position: 'left',
+          label: 'Apps',
+          className: 'navbar-shortcut',
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -39,8 +74,24 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Storefront',
-              to: '/docs/intro',
+              label: 'Experience',
+              to: '/docs/sesami-experience/quick-start/',
+            },
+            {
+              label: 'SDK',
+              to: '/docs/sesami-sdk/quick-start/',
+            },
+            {
+              label: 'API',
+              to: '/docs/sesami-api/intro/',
+            },
+            {
+              label: 'Flows',
+              to: '/docs/sesami-flows/flows/',
+            },
+            {
+              label: 'Apps',
+              to: '/docs/sesami-apps/intro/',
             },
           ],
         },
@@ -48,12 +99,20 @@ module.exports = {
           title: 'Community',
           items: [
             {
+              label: 'Community',
+              href: 'http://community.sesami.co/',
+            },
+            {
+              label: 'X',
+              href: 'https://twitter.com/sesamiapp',
+            },
+            {
               label: 'Stack Overflow',
               href: 'https://stackoverflow.com/questions/tagged/sesami',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/sesamiapp',
+              label: 'Reddit',
+              href: 'https://www.reddit.com/search/?q=sesami',
             },
           ],
         },
@@ -61,16 +120,24 @@ module.exports = {
           title: 'More',
           items: [
             {
+              label: 'Partners',
+              href: 'https://sesami.co/partners',
+            },
+            {
               label: 'Sesami website',
               href: 'https://sesami.co',
             },
             {
-              label: 'Blog',
+              label: 'Help Docs',
+              href: 'https://help.sesami.co/',
+            },
+            {
+              label: 'Dev Blog',
               to: '/blog',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/sesamiapp/devportal',
+              href: 'https://github.com/sesamiapp',
             }
           ],
         },
@@ -88,12 +155,18 @@ module.exports = {
             'https://github.com/sesamiapp/devportal/edit/master/',
         },
         blog: {
+          blogTitle: 'Dev Blog',
+          blogDescription: 'Updates and notes from the Sesami developer platform team',
           showReadingTime: true,
           editUrl:
             'https://github.com/sesamiapp/devportal/edit/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        gtag: {
+          trackingID: 'G-F5WBC6JPB3',
+          anonymizeIP: true,
         },
       },
     ],
@@ -103,6 +176,12 @@ module.exports = {
       src:
         'https://cdn.sesami.co/storefront/latest/sesami-main.js',
       async: false,
+    },
+  ],
+  stylesheets: [
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=optional',
+      type: 'text/css',
     },
   ],
 }

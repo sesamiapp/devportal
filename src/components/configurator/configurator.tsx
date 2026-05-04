@@ -214,6 +214,8 @@ export const Configurator = () => {
                         <p className='description'>If you leave it empty it would be one.</p>
                     </div>
 
+                    <h4 className="groupTitle">Behavior</h4>
+
                     <div className="fieldWrapper">
                         <a>Appointment ID</a>
                         <input defaultValue={appointmentId ?? ''} onChange={e => setAppointmentId(e.target.value === '' ? null : e.target.value)}/>

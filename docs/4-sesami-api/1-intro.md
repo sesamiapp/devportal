@@ -12,4 +12,9 @@ You can find Sesami APIs here:
 - [GraphQL](https://api.sesami.co/graphql)
 - [REST](https://api.sesami.co/swagger)
 
+## Sesami (Admin) Shop ID
+When using the Sesami API, all requests require a **Sesami (Admin) Shop ID**. This is an `ObjectID (string)` and is **different from the Shopify Shop ID**. You can find the Sesami Shop ID (Admin ID) in the **Shop Select Menu** of the **Sesami Admin Portal**.
+
+![Sesami Admin Portal Shop Section](/img/admin-shop-section.png)
+
 Now, Let's dive in for building and scaling your booking capabilities.
