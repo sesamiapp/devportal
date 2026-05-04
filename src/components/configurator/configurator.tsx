@@ -12,10 +12,19 @@ declare global {
 
 export const Configurator = () => {
 
-    const [ shopId              , setShopId              ] = useState<string | null>('76573311249')
-    const [ serviceId           , setServiceId           ] = useState<string | null>('8689310236945')
-    const [ locationId          , setLocationId          ] = useState<string | null>(null)
-    const [ variantId           , setVariantId           ] = useState<string | null>(null)
+    // Read URL params on initial render
+    const getInitialValue = (param: string, defaultValue: string | null) => {
+        if (typeof window !== 'undefined') {
+            const urlParams = new URLSearchParams(window.location.search)
+            return urlParams.get(param) || defaultValue
+        }
+        return defaultValue
+    }
+
+    const [ shopId              , setShopId              ] = useState<string | null>(() => getInitialValue('shopId', '76573311249'))
+    const [ serviceId           , setServiceId           ] = useState<string | null>(() => getInitialValue('serviceId', '8689310236945'))
+    const [ locationId          , setLocationId          ] = useState<string | null>(() => getInitialValue('locationId', null))
+    const [ variantId           , setVariantId           ] = useState<string | null>(() => getInitialValue('variantId', null))
     const [ quantity            , setQuantity            ] = useState<number | null>(null)
 
     const [ locale              , setLocale              ] = useState<string | null>(null)
@@ -29,8 +38,8 @@ export const Configurator = () => {
     const [ skipCart            , setSkipCart            ] = useState<boolean | null>(null)
 
     const [ label               , setLabel               ] = useState<string | null>(null)
-    const [ width               , setWidth               ] = useState<number | null>(300)
-    const [ height              , setHeight              ] = useState<number | null>(50)
+    const [ width               , setWidth               ] = useState<string | null>('300px')
+    const [ height              , setHeight              ] = useState<string | null>('50px')
     const [ fontSize            , setFontSize            ] = useState<number | null>(18)
     const [ color               , setColor               ] = useState<string | null>('#FFF')
     const [ backgroundColor     , setBackgroundColor     ] = useState<string | null>('#14146d')
@@ -43,6 +52,39 @@ export const Configurator = () => {
     const [ ctaTextColor        , setCtaTextColor        ] = useState<string | null>(null)
 
     const [ showButton, setShowButton ] = useState(true)
+
+    // Update URL when shareable params change
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const url = new URL(window.location.href)
+
+            if (shopId && shopId !== '76573311249') {
+                url.searchParams.set('shopId', shopId)
+            } else {
+                url.searchParams.delete('shopId')
+            }
+
+            if (serviceId && serviceId !== '8689310236945') {
+                url.searchParams.set('serviceId', serviceId)
+            } else {
+                url.searchParams.delete('serviceId')
+            }
+
+            if (locationId) {
+                url.searchParams.set('locationId', locationId)
+            } else {
+                url.searchParams.delete('locationId')
+            }
+
+            if (variantId) {
+                url.searchParams.set('variantId', variantId)
+            } else {
+                url.searchParams.delete('variantId')
+            }
+
+            window.history.replaceState({}, '', url.toString())
+        }
+    }, [shopId, serviceId, locationId, variantId])
 
     // rerender the button on prop change:
     useEffect(() => { setShowButton(false) }, [
@@ -66,9 +108,9 @@ export const Configurator = () => {
         label,
         width,
         height,
+        fontSize,
         color,
         backgroundColor,
-        fontSize,
         borderWidth,
         borderColor,
         borderRadius,
@@ -79,6 +121,14 @@ export const Configurator = () => {
 
     ])
     useEffect(() => { !showButton && setShowButton(true) }, [showButton])
+
+    const validateSize = (size: string | null) => {
+        if(size?.includes('px') || size?.includes('%') ){
+            return size
+        }else{
+            return undefined
+        }
+    }
 
     const sesamiExperienceProps = {
 
@@ -101,8 +151,8 @@ export const Configurator = () => {
         ...(label !== null && { 'button-label': label }),
 
         'button-style': encodeURIComponent(JSON.stringify({
-            width:            width           !== null ? `${width}px`  : undefined,
-            height:           height          !== null ? `${height}px` : undefined,
+            width:  validateSize(width),
+            height: validateSize(height),
             font_size:        fontSize        !== null ? fontSize      : undefined,
             color:            color           ?? undefined,
             color_background: backgroundColor ?? undefined,
@@ -119,15 +169,17 @@ export const Configurator = () => {
     
     return (
         <div className="contentWrapper">
-            
-            <div className="inputsWrapper">
 
-                <div className="leftColumn">
+            <div className="mainLayout">
+
+                <div className="inputsWrapper">
+
+                    <h4 className="groupTitle">Service</h4>
 
                     <div className="fieldWrapper">
                         <a>Shop ID</a>
                         <input defaultValue={shopId ?? ''} onChange={e => setShopId(e.target.value)}/>
-                        <p className='description'>You can find it in the Admin's shop select menu.</p>
+                        <p className='description'>You can find it in the <a href='/docs/sesami-api/intro/#sesami-shop-id'>Admin's shop select menu</a>.</p>
                     </div>
 
                     <div className="fieldWrapper">
@@ -153,6 +205,8 @@ export const Configurator = () => {
                         <input type="number" min={1} defaultValue={quantity ?? undefined} onChange={e => setQuantity(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>If you leave it empty it would be one.</p>
                     </div>
+
+                    <h4 className="groupTitle">Behavior</h4>
 
                     <div className="fieldWrapper">
                         <a>Locale</a>
@@ -265,27 +319,25 @@ export const Configurator = () => {
                         <p className='description'>It will go to the checkout after user selects time.*</p>
                     </div>
 
-                </div>
+                    <h4 className="groupTitle">Button Style</h4>
 
-                <div className="rightColumn">
-                        
                     <div className="fieldWrapper">
                         <a>Button Text Font Size(px)</a>
                         <input type="number" min={0} defaultValue={fontSize ?? undefined} onChange={e => setFontSize(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>The button's text font size.</p>
                     </div>
-                    
+
                     <div className="widthHeightWrapper">
 
                         <div className="fieldWrapper">
-                            <a>Width(px)</a>
-                            <input type="number" min={0} defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ? parseInt(e.target.value) : null)}/>
-                            <p className='description'>Button's width & height.</p>
+                            <a>Width</a>
+                            <input defaultValue={width ?? undefined} onChange={e => setWidth(e.target.value ?? null)}/>
+                            <p className='description'>e.g. 250px or 90%</p>
                         </div>
                         
                         <div className="fieldWrapper">
-                            <a>Height(px)</a>
-                            <input type="number" min={0} defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ? parseInt(e.target.value) : null)}/>
+                            <a>Height</a>
+                            <input defaultValue={height ?? undefined} onChange={e => setHeight(e.target.value ?? null)}/>
                         </div>
 
                     </div>
@@ -319,12 +371,6 @@ export const Configurator = () => {
                         <input type="number" min={0} defaultValue={borderRadius ?? undefined} onChange={e => setBorderRadius(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>The button's border radius.</p>
                     </div>
-                    
-                    <div className="fieldWrapper">
-                        <a>Button Border Color</a>
-                        <input defaultValue={borderColor ?? ''} onChange={e => setBorderColor(e.target.value === '' ? null : e.target.value)}/>
-                        <p className='description'>The button's border color.</p>
-                    </div>
 
                     <div className="fieldWrapper">
                         <a>Button Alignment</a>
@@ -340,6 +386,8 @@ export const Configurator = () => {
                         <p className='description'>The alignment of the button.</p>
                     </div>
                     
+                    <h4 className="groupTitle">CTA Style</h4>
+
                     <div className="fieldWrapper">
                         <a>CTA Background Color</a>
                         <input defaultValue={ctaBackgroundColor ?? ''} onChange={e => setCtaBackgroundColor(e.target.value === '' ? null : e.target.value)}/>
@@ -354,30 +402,43 @@ export const Configurator = () => {
 
                 </div>
 
+                <div className="previewColumn">
+
+                    {/* button */}
+                    <div className="previewSection">
+                        <h3 className="sectionTitle">Preview</h3>
+                        <div className="buttonPreview">
+                            {showButton && <sesami-experience key={sesamiExperienceProps['button-style']} {...sesamiExperienceProps} ></sesami-experience>}
+                        </div>
+                    </div>
+
+                    {/* code sample */}
+                    <div className="codeSection">
+                        <h3 className="sectionTitle">Code Snippet</h3>
+                        <textarea
+                            className="codeSampleTextarea"
+                            wrap="off"
+                            rows={16}
+                            value={
+                                `${`<sesami-experience`}${(JSON.stringify(sesamiExperienceProps, null, 4))
+                                .replace('{', '')
+                                .replace('}', '')
+                                .replace(new RegExp(': ' , 'g'), '=')
+                                .replace(new RegExp(' "' , 'g'), ' ')
+                                .replace(new RegExp('"=' , 'g'), '=')
+                                .replace(new RegExp(','  , 'g'), '' )
+                                .replace(new RegExp('=""', 'g'), '' )
+                                }${`>`}${`</sesami-experience>`}`
+                            }
+                        ></textarea>
+                        <p className='description'>Copy this code to your HTML, Shopify theme code, or a custom Liquid block.</p>
+                    </div>
+
+                </div>
+
             </div>
-            
-            {/* code sample */}
-            <textarea
-                className="codeSampleTextarea"
-                wrap="off"
-                rows={16}
-                value={
-                    `${`<sesami-experience`}${(JSON.stringify(sesamiExperienceProps, null, 4))
-                    .replace('{', '')
-                    .replace('}', '')
-                    .replace(new RegExp(': ' , 'g'), '=')
-                    .replace(new RegExp(' "' , 'g'), ' ')
-                    .replace(new RegExp('"=' , 'g'), '=')
-                    .replace(new RegExp(','  , 'g'), '' )
-                    .replace(new RegExp('=""', 'g'), '' )
-                    }${`>`}${`</sesami-experience>`}`
-                }
-            ></textarea>
 
-            {/* button */}
-            {showButton && <sesami-experience {...sesamiExperienceProps} ></sesami-experience>}
-
-            <p className='description'>* It will work with forms with a target of "/cart/add" (like Shopify); other headless platforms with different structures can use <a href="/docs/sesami-experience/events">Sesami Events</a> to handle it manually.</p>
+            <p className='description' id='page-description'>* It will work with forms with a target of "/cart/add" (like Shopify); other headless platforms with different structures can use <a href="/docs/sesami-experience/events">Sesami Events</a> to handle it manually.</p>
 
         </div>
     )

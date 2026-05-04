@@ -101,7 +101,7 @@ A regular `change` event will be fired on the [hidden fields](/docs/sesami-exper
     window.addEventListener('sesami:modal:opened', e => {
       const tagId = e.detail.tagId
       const hiddenFieldsWrapper = document.getElementById(`sesami-hidden-fields-${tagId}`)
-      const sesamiDateInput = hiddenFieldsWrapper.querySelector("[name='properties[Date]']")
+      const sesamiDateInput = hiddenFieldsWrapper.querySelector('[sesami-hidden-date]')
       sesamiDateInput.addEventListener('change', e => {
         console.log('date changed', e.target.value)
         // create order...
@@ -126,5 +126,22 @@ Auto skip cart has been triggered.
 ```js
 window.addEventListener('sesami:cart:skip', () => {
   console.log('skip cart')
+})
+```
+
+### sesami:checkout:lock
+This event is triggered when Sesami needs to lock the checkout button. For example, this can happen when an invalid item is added to the cart and the user should not proceed to checkout.
+
+```js
+window.addEventListener('sesami:checkout:lock', () => {
+  console.log('checkout locked')
+})
+```
+
+### sesami:checkout:unlock
+This event is triggered when Sesami unlocks the checkout button, allowing the user to proceed with the checkout process again.
+```js
+window.addEventListener('sesami:checkout:unlock', () => {
+  console.log('checkout unlocked')
 })
 ```
