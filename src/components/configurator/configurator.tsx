@@ -12,10 +12,19 @@ declare global {
 
 export const Configurator = () => {
 
-    const [ shopId              , setShopId              ] = useState<string | null>('76573311249')
-    const [ serviceId           , setServiceId           ] = useState<string | null>('8689310236945')
-    const [ locationId          , setLocationId          ] = useState<string | null>(null)
-    const [ variantId           , setVariantId           ] = useState<string | null>(null)
+    // Read URL params on initial render
+    const getInitialValue = (param: string, defaultValue: string | null) => {
+        if (typeof window !== 'undefined') {
+            const urlParams = new URLSearchParams(window.location.search)
+            return urlParams.get(param) || defaultValue
+        }
+        return defaultValue
+    }
+
+    const [ shopId              , setShopId              ] = useState<string | null>(() => getInitialValue('shopId', '76573311249'))
+    const [ serviceId           , setServiceId           ] = useState<string | null>(() => getInitialValue('serviceId', '8689310236945'))
+    const [ locationId          , setLocationId          ] = useState<string | null>(() => getInitialValue('locationId', null))
+    const [ variantId           , setVariantId           ] = useState<string | null>(() => getInitialValue('variantId', null))
     const [ quantity            , setQuantity            ] = useState<number | null>(null)
 
     const [ locale              , setLocale              ] = useState<string | null>(null)
@@ -44,6 +53,39 @@ export const Configurator = () => {
 
     const [ showButton, setShowButton ] = useState(true)
 
+    // Update URL when shareable params change
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const url = new URL(window.location.href)
+
+            if (shopId && shopId !== '76573311249') {
+                url.searchParams.set('shopId', shopId)
+            } else {
+                url.searchParams.delete('shopId')
+            }
+
+            if (serviceId && serviceId !== '8689310236945') {
+                url.searchParams.set('serviceId', serviceId)
+            } else {
+                url.searchParams.delete('serviceId')
+            }
+
+            if (locationId) {
+                url.searchParams.set('locationId', locationId)
+            } else {
+                url.searchParams.delete('locationId')
+            }
+
+            if (variantId) {
+                url.searchParams.set('variantId', variantId)
+            } else {
+                url.searchParams.delete('variantId')
+            }
+
+            window.history.replaceState({}, '', url.toString())
+        }
+    }, [shopId, serviceId, locationId, variantId])
+
     // rerender the button on prop change:
     useEffect(() => { setShowButton(false) }, [
         
@@ -66,9 +108,9 @@ export const Configurator = () => {
         label,
         width,
         height,
+        fontSize,
         color,
         backgroundColor,
-        fontSize,
         borderWidth,
         borderColor,
         borderRadius,
@@ -127,10 +169,12 @@ export const Configurator = () => {
     
     return (
         <div className="contentWrapper">
-            
-            <div className="inputsWrapper">
 
-                <div className="leftColumn">
+            <div className="mainLayout">
+
+                <div className="inputsWrapper">
+
+                    <h4 className="groupTitle">Service</h4>
 
                     <div className="fieldWrapper">
                         <a>Shop ID</a>
@@ -161,6 +205,8 @@ export const Configurator = () => {
                         <input type="number" min={1} defaultValue={quantity ?? undefined} onChange={e => setQuantity(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>If you leave it empty it would be one.</p>
                     </div>
+
+                    <h4 className="groupTitle">Behavior</h4>
 
                     <div className="fieldWrapper">
                         <a>Locale</a>
@@ -273,16 +319,14 @@ export const Configurator = () => {
                         <p className='description'>It will go to the checkout after user selects time.*</p>
                     </div>
 
-                </div>
+                    <h4 className="groupTitle">Button Style</h4>
 
-                <div className="rightColumn">
-                        
                     <div className="fieldWrapper">
                         <a>Button Text Font Size(px)</a>
                         <input type="number" min={0} defaultValue={fontSize ?? undefined} onChange={e => setFontSize(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>The button's text font size.</p>
                     </div>
-                    
+
                     <div className="widthHeightWrapper">
 
                         <div className="fieldWrapper">
@@ -327,12 +371,6 @@ export const Configurator = () => {
                         <input type="number" min={0} defaultValue={borderRadius ?? undefined} onChange={e => setBorderRadius(e.target.value ? parseInt(e.target.value) : null)}/>
                         <p className='description'>The button's border radius.</p>
                     </div>
-                    
-                    <div className="fieldWrapper">
-                        <a>Button Border Color</a>
-                        <input defaultValue={borderColor ?? ''} onChange={e => setBorderColor(e.target.value === '' ? null : e.target.value)}/>
-                        <p className='description'>The button's border color.</p>
-                    </div>
 
                     <div className="fieldWrapper">
                         <a>Button Alignment</a>
@@ -348,6 +386,8 @@ export const Configurator = () => {
                         <p className='description'>The alignment of the button.</p>
                     </div>
                     
+                    <h4 className="groupTitle">CTA Style</h4>
+
                     <div className="fieldWrapper">
                         <a>CTA Background Color</a>
                         <input defaultValue={ctaBackgroundColor ?? ''} onChange={e => setCtaBackgroundColor(e.target.value === '' ? null : e.target.value)}/>
@@ -362,28 +402,41 @@ export const Configurator = () => {
 
                 </div>
 
-            </div>
-            
-            {/* code sample */}
-            <textarea
-                className="codeSampleTextarea"
-                wrap="off"
-                rows={16}
-                value={
-                    `${`<sesami-experience`}${(JSON.stringify(sesamiExperienceProps, null, 4))
-                    .replace('{', '')
-                    .replace('}', '')
-                    .replace(new RegExp(': ' , 'g'), '=')
-                    .replace(new RegExp(' "' , 'g'), ' ')
-                    .replace(new RegExp('"=' , 'g'), '=')
-                    .replace(new RegExp(','  , 'g'), '' )
-                    .replace(new RegExp('=""', 'g'), '' )
-                    }${`>`}${`</sesami-experience>`}`
-                }
-            ></textarea>
+                <div className="previewColumn">
 
-            {/* button */}
-            {showButton && <sesami-experience {...sesamiExperienceProps} ></sesami-experience>}
+                    {/* button */}
+                    <div className="previewSection">
+                        <h3 className="sectionTitle">Preview</h3>
+                        <div className="buttonPreview">
+                            {showButton && <sesami-experience key={sesamiExperienceProps['button-style']} {...sesamiExperienceProps} ></sesami-experience>}
+                        </div>
+                    </div>
+
+                    {/* code sample */}
+                    <div className="codeSection">
+                        <h3 className="sectionTitle">Code Snippet</h3>
+                        <textarea
+                            className="codeSampleTextarea"
+                            wrap="off"
+                            rows={16}
+                            value={
+                                `${`<sesami-experience`}${(JSON.stringify(sesamiExperienceProps, null, 4))
+                                .replace('{', '')
+                                .replace('}', '')
+                                .replace(new RegExp(': ' , 'g'), '=')
+                                .replace(new RegExp(' "' , 'g'), ' ')
+                                .replace(new RegExp('"=' , 'g'), '=')
+                                .replace(new RegExp(','  , 'g'), '' )
+                                .replace(new RegExp('=""', 'g'), '' )
+                                }${`>`}${`</sesami-experience>`}`
+                            }
+                        ></textarea>
+                        <p className='description'>Copy this code to your HTML, Shopify theme code, or a custom Liquid block.</p>
+                    </div>
+
+                </div>
+
+            </div>
 
             <p className='description' id='page-description'>* It will work with forms with a target of "/cart/add" (like Shopify); other headless platforms with different structures can use <a href="/docs/sesami-experience/events">Sesami Events</a> to handle it manually.</p>
 

@@ -10,47 +10,53 @@ const FeatureList = [
     Svg: require('../../static/img/integration.svg').default,
     description: (
       <>
-        Sesami works with almost any standard theme
+        Add booking to any website, Shopify theme, or headless storefront —
+        embed the tag, call the API, or automate with Flows.
       </>
     ),
+    link: {to: '/docs/intro/', label: 'Explore the docs'},
   },
   {
     title: 'Fully customizable',
     Svg: require('../../static/img/customizable.svg').default,
     description: (
       <>
-        Sesami is smart and tries to match your theme automatically,
-        But that doesn't mean you don't have full control on how it looks on your store!{` `}
-        
-        <Link
-          className=""
-          to="/docs/storefront-integration/styling">
-          Learn more here
-        </Link>
+        Style the Experience to match your brand, build your own UI with the SDK,
+        and tailor every touchpoint — from emails to flows.
       </>
     ),
+    link: {to: '/docs/sesami-sdk/quick-start/', label: 'Try the SDK'},
   },
   {
     title: 'Open for contribution',
     Svg: require('../../static/img/contribution.svg').default,
     description: (
       <>
-        Something is missing? whether it be a new language that we don't currently support,
-        or a custom calendar view, or even a topic in the docs, Let's do it together!
+        Something missing — a language we don't support, a custom calendar view,
+        or a topic in the docs? Let's build it together.
       </>
     ),
+    link: {href: 'https://github.com/sesamiapp', label: 'Contribute on GitHub'},
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({Svg, title, description, link}) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--4', styles.feature)}>
       <div className="text--center">
         <Svg className={styles.featureSvg} alt={title} />
       </div>
       <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p>{description}</p>
+        <h3 className={styles.featureTitle}>{title}</h3>
+        <p className={styles.featureDescription}>{description}</p>
+        {link && (
+          <Link
+            className={styles.featureLink}
+            to={link.to}
+            href={link.href}>
+            {link.label} →
+          </Link>
+        )}
       </div>
     </div>
   );

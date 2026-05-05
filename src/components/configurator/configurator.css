@@ -4,22 +4,67 @@
     flex-direction: column;
 }
 
+.mainLayout{
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.previewColumn{
+    flex: 0 0 340px;
+    max-width: 340px;
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.previewSection,
+.codeSection{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sectionTitle{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.buttonPreview{
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.buttonPreview sesami-experience{
+    display: block;
+    width: 100%;
+}
+
 .codeSampleTextarea{
     width: 100%;
     height: 390px;
     padding: 12px 16px;
-    margin-top: 32px;
-    margin-bottom: 32px;
     color: white;
-    font-size: 18px;
-    line-height: 25px;
+    font-size: 14px;
+    line-height: 22px;
     background-color: #333;
     border-radius: 8px;
     resize: none;
 }
 
 #page-description{
-    margin-top: 32px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #eee;
 }
 
 .widthHeightWrapper{
@@ -54,23 +99,35 @@
 }
 
 .inputsWrapper{
-    width: 100%;
-    display: flex;
-    gap: 32px;
-}
-
-.leftColumn, .rightColumn{
     flex: 1;
-    max-width: 360px;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+}
+
+.groupTitle{
+    margin: 24px 0 4px;
+    padding-top: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #666;
+    border-top: 1px solid #eaeaea;
+}
+
+.groupTitle:first-child{
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
 }
 
 .fieldWrapper{
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
 }
 
 .fieldWrapper a{
@@ -97,12 +154,14 @@
     padding: 0 8px;
 }
 
-@media only screen and (max-width: 650px) {
-    .inputsWrapper{
+@media only screen and (max-width: 1280px) {
+    .mainLayout{
         flex-direction: column;
-        gap: 16px;
     }
-    .leftColumn, .rightColumn{
+    .previewColumn{
+        position: static;
         max-width: unset;
+        width: 100%;
     }
 }
+
