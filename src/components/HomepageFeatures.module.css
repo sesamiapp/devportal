@@ -3,11 +3,38 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 4rem 0;
   width: 100%;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
 }
 
 .featureSvg {
   height: 200px;
   width: 200px;
+}
+
+.featureTitle {
+  font-size: 1.35rem;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.featureDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1rem;
+}
+
+.featureLink {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.featureLink:hover {
+  text-decoration: underline;
 }
