@@ -89,6 +89,32 @@ window.addEventListener('sesami:booking:failed', e => {
 })
 ```
 
+### sesami:rescheduling:success
+When the rescheduling process finished successfully.<br></br>
+
+```js
+window.addEventListener('sesami:rescheduling:success', e => {
+  console.log('rescheduling success')
+})
+```
+
+### sesami:rescheduling:failed
+The booking process has been failed. You can find the error message in the event's detail.
+
+```ts
+type ReschedulingError =
+  'session_expired'  | // the session token has been expired
+  'rate_limit'       | // user sends too many requests
+  'unavailable_slot' | // someone else took the slot
+  'unknown'            // none above
+```
+
+```js
+window.addEventListener('sesami:rescheduling:failed', e => {
+  console.log('rescheduling failed', e.detail.error)
+})
+```
+
 ### change
 
 A regular `change` event will be fired on the [hidden fields](/docs/sesami-experience/quick-start/#sesami-hidden-fields).

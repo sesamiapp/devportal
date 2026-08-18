@@ -57,6 +57,30 @@ If you don't want to display a quantity selector within your service form and ne
 ></sesami-experience>
 ```
 
+### appointment-id
+To use the Experience to reschedule or reassign an appointment, you need to pass the appointment ID:
+
+```html {4}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  appointment-id="389yr2983u98rng0832"
+  management-token="894394r498h984frj90j490rj4390rj490"
+></sesami-experience>
+```
+
+### management-token
+Having a management token will enable you to change an appointment:
+
+```html {5}
+<sesami-experience
+  shop-id="761236725762"
+  service-id="981219221893"
+  appointment-id="389yr2983u98rng0832"
+  management-token="894394r498h984frj90j490rj4390rj490"
+></sesami-experience>
+```
+
 ### locale
 Sometimes you might need the Sesami calendar to be displayed in a different language than what is set as your primary language in the settings. This is primarily useful if you have a multi-lingual store:
 
