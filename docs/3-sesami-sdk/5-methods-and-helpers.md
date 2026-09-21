@@ -32,6 +32,12 @@ The Sesami SDK offers various methods to render a calendar and manage availabili
 - **`setTeamMember(teamMember: string)`**  
   Updates the current value for [`teamMember`](/docs/sesami-sdk/options/) and fetches availabilities if [`autoLoad`](/docs/sesami-sdk/options/) is enabled.
 
+- **`setLocation(location: string)`**  
+  Updates the current location id. Pass a falsy value to clear it. Fetches availabilities if [`autoLoad`](/docs/sesami-sdk/options/) is enabled.
+
+- **`setResources(resources: string[])`**  
+  Updates the current resource ids used to filter availabilities. Pass a non-empty array of ids; an empty array or a non-array value clears the selection. Fetches availabilities if [`autoLoad`](/docs/sesami-sdk/options/) is enabled.
+
 ### Availabilities
 
 - **`load()`**  
