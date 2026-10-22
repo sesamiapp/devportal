@@ -23,13 +23,25 @@ For integrations to other platforms such as Klaviyo, Slack, or Zapier.
 
 
 ## Flow triggers
-Different types of triggers:
+Each Flow runs on one of these booking events:
 
-### Instant
-Useful for immediate event types, such as booking confirmations.
+| Trigger | Fires when |
+|---------|------------|
+| **Appointment created** | A new booking is made |
+| **Appointment rescheduled** | A booking is moved to a new date or time |
+| **Customer checked in** | The customer is checked in for their booking |
+| **Appointment started** | The booking's start time is reached |
+| **Appointment cancelled** | A booking is cancelled |
+| **No show** | A booking is marked as a no-show |
+
+## Flow timing
+The **When** setting controls when the Flow runs relative to its trigger:
+
+### Immediately
+Useful for immediate event types, such as booking confirmations or pushing a cancellation to another system.
 
 ### Scheduled
-Useful for early or delayed event types, such as reminders or thank-you messages.
+A set number of minutes, hours, or days before or after the event. Useful for early or delayed event types, such as reminders or thank-you messages.
 
 
 ## Flow templates
