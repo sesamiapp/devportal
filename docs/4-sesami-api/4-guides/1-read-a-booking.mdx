@@ -24,8 +24,8 @@ Pass `timezone` to choose the time zone for `datetime`, `rangeStart` and `rangeE
 One query returns the booking with its customer, service and resources:
 
 ```graphql
-query GetBooking($id: String!, $timezone: String) {
-  getAppointment(id: $id, timezone: $timezone) {
+query GetBooking($shop: String!, $id: String!, $timezone: String) {
+  getAppointment(shop: $shop, id: $id, timezone: $timezone) {
     id
     status
     datetime
@@ -70,7 +70,7 @@ curl --request POST \
 --header 'x-client-id: YOUR_CLIENT_ID' \
 --header 'x-shop-id: YOUR_SESAMI_ADMIN_SHOP_ID' \
 --url 'https://api.sesami.co/graphql' \
---data '{"query":"query GetBooking($id: String!, $timezone: String) { getAppointment(id: $id, timezone: $timezone) { id status datetime rangeStart rangeEnd customer { firstName lastName email } service { title } resources { name } locationId } }","variables":{"id":"64f1c2a9e4b0a7d3c8e91b25","timezone":"UTC"}}'
+--data '{"query":"query GetBooking($shop: String!, $id: String!, $timezone: String) { getAppointment(shop: $shop, id: $id, timezone: $timezone) { id status datetime rangeStart rangeEnd customer { firstName lastName email } service { title } resources { name } locationId } }","variables":{"shop":"YOUR_SHOP_ID","id":"64f1c2a9e4b0a7d3c8e91b25","timezone":"UTC"}}'
 ```
 
 #### Response

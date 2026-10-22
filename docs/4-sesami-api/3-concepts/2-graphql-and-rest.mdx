@@ -14,7 +14,7 @@ Sesami's GraphQL and REST APIs are two ways into the same backend. They share to
 | | GraphQL | REST |
 |---|---|---|
 | Endpoint | One: `POST https://api.sesami.co/graphql` | One per resource, under `https://api.sesami.co/api/v1` |
-| Shop | A `shop` argument, where a query needs one | A path segment: `/api/v1/{shop}/...` |
+| Shop | A `shop` argument on each query | A path segment: `/api/v1/{shop}/...` |
 | Response | The fields you select, related records included | The endpoint's full shape, related records as ids |
 | Errors | In `errors[].extensions.errors`, HTTP status in `message` | The response body, with an HTTP status |
 | Reference | [GraphQL reference](../5-reference/2-graphql.md) | [REST reference](../5-reference/1-rest.md) |
@@ -36,8 +36,8 @@ curl --request POST \
 --header 'x-client-id: YOUR_CLIENT_ID' \
 --header 'x-shop-id: YOUR_SHOP_ID' \
 --data '{
-  "query": "query ($id: String!) { getAppointment(id: $id) { id datetime service { title } } }",
-  "variables": { "id": "64f1c2a9e4b0a7d3c8e91b25" }
+  "query": "query ($shop: String!, $id: String!) { getAppointment(shop: $shop, id: $id) { id datetime service { title } } }",
+  "variables": { "shop": "YOUR_SHOP_ID", "id": "64f1c2a9e4b0a7d3c8e91b25" }
 }'
 ```
 
