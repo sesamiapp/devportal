@@ -1,0 +1,100 @@
+---
+sidebar_position: 2
+title: GraphQL and REST
+description: How Sesami's GraphQL and REST APIs relate, and what a request looks like in each.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Sesami's GraphQL and REST APIs are two ways into the same backend. They share tokens, headers, permissions, ids and error codes, and new features ship to both. Data you write through one is immediately readable through the other.
+
+## At a glance
+
+| | GraphQL | REST |
+|---|---|---|
+| Endpoint | One: `POST https://api.sesami.co/graphql` | One per resource, under `https://api.sesami.co/api/v1` |
+| Shop | A `shop` argument, where a query needs one | A path segment: `/api/v1/{shop}/...` |
+| Response | The fields you select, related records included | The endpoint's full shape, related records as ids |
+| Errors | In `errors[].extensions.errors`, HTTP status in `message` | The response body, with an HTTP status |
+| Reference | [GraphQL reference](../5-reference/2-graphql.md) | [REST reference](../5-reference/1-rest.md) |
+
+## Anatomy of a request
+
+Both requests below read the same booking.
+
+<Tabs groupId="api" queryString>
+<TabItem value="graphql" label="GraphQL" default>
+
+Send a `POST` with a JSON body holding the `query` and its `variables`:
+
+```bash
+curl --request POST \
+--url 'https://api.sesami.co/graphql' \
+--header 'content-type: application/json' \
+--header 'x-api-key: YOUR_TOKEN' \
+--header 'x-client-id: YOUR_CLIENT_ID' \
+--header 'x-shop-id: YOUR_SHOP_ID' \
+--data '{
+  "query": "query ($id: String!) { getAppointment(id: $id) { id datetime service { title } } }",
+  "variables": { "id": "64f1c2a9e4b0a7d3c8e91b25" }
+}'
+```
+
+The result comes back under `data`, named after the query:
+
+```json
+{
+  "data": {
+    "getAppointment": {
+      "id": "64f1c2a9e4b0a7d3c8e91b25",
+      "datetime": "2026-10-24 14:44:00",
+      "service": { "title": "Deep tissue massage" }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="rest" label="REST">
+
+Call the resource's path with the matching HTTP method:
+
+```bash
+curl --request GET \
+--url 'https://api.sesami.co/api/v1/YOUR_SHOP_ID/appointments/64f1c2a9e4b0a7d3c8e91b25?timezone=UTC' \
+--header 'x-api-key: YOUR_TOKEN' \
+--header 'x-client-id: YOUR_CLIENT_ID' \
+--header 'x-shop-id: YOUR_SHOP_ID'
+```
+
+The body is the resource itself. Related records are ids:
+
+```json
+{
+  "id": "64f1c2a9e4b0a7d3c8e91b25",
+  "datetime": "2026-10-24 14:44:00",
+  "service": "64b2e7f1a9c3d5e8f0a1b2c4"
+}
+```
+
+The real response has more fields; this one is trimmed.
+
+</TabItem>
+</Tabs>
+
+## Which one to use
+
+Both cover the same core resources: bookings, services, locations, resources and customers. A few rules of thumb:
+
+- **Reading related data:** GraphQL. A booking, its customer, its service and its resources come back in one request.
+- **Shopify developers:** GraphQL feels familiar if you've used the Shopify Admin API.
+- **Simple scripts and REST-first tools:** REST. Every endpoint is in the [REST reference](../5-reference/1-rest.md), with a try-it console.
+
+You can mix them. Ids are the same in both, so a booking id from one works in the other.
+
+## Shared conventions
+
+- **Bookings are appointments.** The API calls bookings `appointments` in queries, paths and fields.
+- **Ids** are 24-character strings, for example `64f1c2a9e4b0a7d3c8e91b25`.
+- **Times** come back as `YYYY-MM-DD HH:mm:ss` in the `timezone` you request, with no offset in the string. Request `UTC` and convert on your side.

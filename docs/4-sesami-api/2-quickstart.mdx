@@ -1,0 +1,114 @@
+---
+sidebar_position: 2
+title: Quickstart
+description: Create a token, find your Shop ID and make your first Sesami API request.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Make your first request to the Sesami API and list a shop's upcoming bookings.
+
+## 1. Create a token
+
+In the [Sesami Admin](https://admin.sesami.co), open [**Tokens**](https://admin.sesami.co/token) and click **Create Token**. Give it a name, grant `Shop:Read`, and click **Create**. Copy the **Client ID** and the **Personal Access Token** and keep them somewhere safe.
+
+[Authentication](./3-concepts/1-authentication.mdx#create-a-personal-access-token) has the full steps.
+
+## 2. Find your Shop ID
+
+Open the shop menu at the top of the Sesami Admin and copy the **Admin ID**. That's your Shop ID. It's a 24-character id, different from your Shopify shop id.
+
+## 3. Check your token
+
+Every request carries three headers: `x-api-key`, `x-client-id` and `x-shop-id`. List the shops your token can see:
+
+<Tabs groupId="api" queryString>
+<TabItem value="graphql" label="GraphQL" default>
+
+```bash
+curl --request POST \
+--url 'https://api.sesami.co/graphql' \
+--header 'content-type: application/json' \
+--header 'x-api-key: YOUR_TOKEN' \
+--header 'x-client-id: YOUR_CLIENT_ID' \
+--header 'x-shop-id: YOUR_SHOP_ID' \
+--data '{"query":"{ getShops { data { id email } } }"}'
+```
+
+</TabItem>
+<TabItem value="rest" label="REST">
+
+```bash
+curl --request GET \
+--url 'https://api.sesami.co/api/v1/shops?limit=10' \
+--header 'x-api-key: YOUR_TOKEN' \
+--header 'x-client-id: YOUR_CLIENT_ID' \
+--header 'x-shop-id: YOUR_SHOP_ID'
+```
+
+</TabItem>
+</Tabs>
+
+Your shop comes back in `data`. An `unauthorized` error means a header is missing or the token is wrong.
+
+## 4. List bookings
+
+Ask for a shop's bookings, with times in UTC:
+
+<Tabs groupId="api" queryString>
+<TabItem value="graphql" label="GraphQL" default>
+
+```graphql
+query ListBookings($shop: String!) {
+  getAppointments(shop: $shop, limit: 10, timezone: "UTC") {
+    data {
+      id
+      status
+      datetime
+      customer {
+        firstName
+        lastName
+        email
+      }
+      service {
+        title
+      }
+    }
+  }
+}
+```
+
+```bash
+curl --request POST \
+--url 'https://api.sesami.co/graphql' \
+--header 'content-type: application/json' \
+--header 'x-api-key: YOUR_TOKEN' \
+--header 'x-client-id: YOUR_CLIENT_ID' \
+--header 'x-shop-id: YOUR_SHOP_ID' \
+--data '{"query":"query ListBookings($shop: String!) { getAppointments(shop: $shop, limit: 10, timezone: \"UTC\") { data { id status datetime customer { firstName lastName email } service { title } } } }","variables":{"shop":"YOUR_SHOP_ID"}}'
+```
+
+Each booking comes back with its customer and the service title in the same response.
+
+</TabItem>
+<TabItem value="rest" label="REST">
+
+```bash
+curl --request GET \
+--url 'https://api.sesami.co/api/v1/YOUR_SHOP_ID/appointments?limit=10&timezone=UTC' \
+--header 'x-api-key: YOUR_TOKEN' \
+--header 'x-client-id: YOUR_CLIENT_ID' \
+--header 'x-shop-id: YOUR_SHOP_ID'
+```
+
+Each booking comes back with its customer. The service is an id; fetch `GET /api/v1/{shop}/services/{id}` for its title.
+
+</TabItem>
+</Tabs>
+
+## Next steps
+
+- [Read a booking](./4-guides/1-read-a-booking.mdx) with its customer, service, resources and location.
+- Learn how [GraphQL and REST](./3-concepts/2-graphql-and-rest.mdx) compare.
+- Handle [errors](./3-concepts/3-errors.md).

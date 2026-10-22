@@ -1,35 +1,20 @@
 ---
-sidebar_position: 5
+sidebar_position: 1
+description: Fetch a booking with its customer, service, resources and location, in GraphQL or REST.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# React to a new booking
+# Read a booking
 
-When a customer books, Sesami can notify your server with a webhook. The webhook tells you which booking changed. You then fetch the booking to get its customer, service, time and location.
+Fetch a booking with its customer, service, time, resources and location. You need the booking's id, for example from a [list of bookings](#list-bookings) or from your own records.
 
-In the API, bookings are called **appointments**, so queries, paths and topics use that name.
+In the API, bookings are called **appointments**, so queries and paths use that name.
 
-## 1. Receive the webhook
+## 1. Fetch the booking
 
-Subscribe to a booking topic such as `appointment.created`. Each delivery carries the booking id in `data.id`:
-
-```json
-{
-  "topic": "appointment.created",
-  "shop_id": "YOUR_SESAMI_ADMIN_SHOP_ID",
-  "created_at": "2026-10-22T06:10:22.345Z",
-  "hash": "9f2c4e6a8b0d1f3e5a7c9b2d4f6e8a0c1b3d5e7f",
-  "data": { "id": "64f1c2a9e4b0a7d3c8e91b25", "type": "appointment" }
-}
-```
-
-The other booking topics are `appointment.updated`, `appointment.cancelled`, `appointment.rescheduled`, `appointment.checkin` and `appointment.noshow`. They all have the same shape, so the next step works for each one.
-
-## 2. Fetch the booking
-
-Send the usual [request headers](./3-make-a-request.md). The `Shop:Read` permission is enough.
+Send the [authentication headers](../3-concepts/1-authentication.mdx). The `Shop:Read` permission is enough.
 
 Pass `timezone` to choose the time zone for `datetime`, `rangeStart` and `rangeEnd`. It takes an IANA name such as `UTC` or `America/New_York`. Use `UTC` and convert on your side to avoid ambiguity.
 
@@ -148,8 +133,8 @@ GET https://api.sesami.co/api/v1/{shop}/appointments/{id}?timezone=UTC
 
 | Parameter  | In    | Description |
 |------------|-------|-------------|
-| `shop`     | path  | Your [Sesami (Admin) Shop ID](./1-intro.md#sesami-admin-shop-id). |
-| `id`       | path  | The booking id, for example `data.id` from the webhook. |
+| `shop`     | path  | Your [Sesami (Admin) Shop ID](../3-concepts/1-authentication.mdx#find-your-shop-id). |
+| `id`       | path  | The booking id, for example from a list of bookings. |
 | `timezone` | query | IANA time zone for the booking times. |
 
 ```curl
@@ -162,7 +147,7 @@ curl --request GET \
 
 #### Response
 
-The service and resources come back as ids. Step 3 shows how to get their names.
+The service and resources come back as ids. Step 2 shows how to get their names.
 
 ```json
 {
@@ -218,21 +203,21 @@ A booking that doesn't exist returns `404`:
 | `customerTimezone` | The customer's time zone when they booked. |
 | `service` | The booked service. |
 | `variantTitle` | The option the customer chose, for example a duration. |
-| `locationId` | Location id. See step 3. |
+| `locationId` | Location id. See step 2. |
 | `resources` | The team members, rooms or equipment assigned. |
 | `price`, `currency` | Booking price and its currency. |
 | `orderId`, `orderName` | The Shopify order, when the booking has one. |
 | `customerManagementLink` | Link for the customer to manage the booking, when available. |
 | `lineItemProperties` | Answers to the booking form, as `{ id, name, value }`. |
 
-## 3. Add the location and names
+## 2. Add the location and names
 
 The booking references its location by id. Fetch the location for its name, address and time zone. Use the location's `timezone` when you show the booking time to the customer. Locations, services and resources change rarely, so cache them.
 
 <Tabs groupId="api" queryString>
 <TabItem value="graphql" label="GraphQL" default>
 
-The service and resource names already came back in step 2. Fetch the location:
+The service and resource names already came back in step 1. Fetch the location:
 
 ```graphql
 query GetLocation($shop: String!, $locationId: String!) {
@@ -280,7 +265,7 @@ Use the `getAppointments` query with your Shop ID as `shop`. It returns the same
 GET https://api.sesami.co/api/v1/{shop}/appointments?timezone=UTC
 ```
 
-Returns `{ "data": [...] }` with the same booking shape. See the [REST reference](https://api.sesami.co/swagger) for filters and paging.
+Returns `{ "data": [...] }` with the same booking shape. See the [REST reference](../5-reference/1-rest.md) for filters and paging.
 
 </TabItem>
 </Tabs>

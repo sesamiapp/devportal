@@ -1,0 +1,68 @@
+---
+sidebar_position: 1
+title: Authentication
+description: Tokens, request headers, permissions and the Sesami Shop ID.
+---
+
+Every request to the Sesami API carries three headers. Together they say who is calling and which shop the request is for.
+
+| Header | Value |
+|---|---|
+| `x-api-key` | Your Personal Access Token, or an app's offline token |
+| `x-client-id` | The Client ID shown with the token |
+| `x-shop-id` | Your Sesami Shop ID |
+
+```bash
+x-api-key: YOUR_TOKEN
+x-client-id: YOUR_CLIENT_ID
+x-shop-id: YOUR_SHOP_ID
+```
+
+The same headers work for GraphQL and REST.
+
+## Tokens
+
+There are two kinds of token:
+
+- **Personal Access Token (PAT):** for your own integrations and scripts. You create it in the Sesami Admin.
+- **Offline token:** for [Sesami Apps](/docs/sesami-apps/intro/). The app receives one per shop when a merchant installs it. See the [Installation API](/docs/sesami-apps/api-reference/installation-api/).
+
+Each token belongs to one shop and only reaches that shop's data.
+
+### Create a Personal Access Token
+
+1. Sign in to the [Sesami Admin](https://admin.sesami.co).
+2. Open [**Tokens**](https://admin.sesami.co/token) and click **Create Token**.
+3. Enter a **Name** and choose the **Grant Permissions**.
+4. Click **Create**.
+5. Copy the **Client ID** and the **Personal Access Token**.
+
+<img
+  className="doc-screenshot"
+  src={require('@site/static/img/personal-access-token.png').default}
+  alt="The new token in the Sesami Admin, showing its Client ID and Personal Access Token"
+/>
+
+:::caution
+The token is shown once. Store it somewhere safe, like a secrets manager. If you lose it, create a new one.
+:::
+
+## Permissions
+
+You choose a token's permissions when you create it. Grant only what the integration needs. For example, `Shop:Read` is enough to read bookings, services, locations and resources.
+
+A request outside the token's permissions returns an [error](./3-errors.md) instead of data.
+
+## Find your Shop ID
+
+The Sesami Shop ID is a 24-character id such as `64a0f3d2c1b8e9a7d6f5e4c3`. It's **different from your Shopify shop id**.
+
+Find it in the shop menu at the top of the Sesami Admin, where it's labelled **Admin ID**:
+
+<img
+  className="doc-screenshot"
+  src={require('@site/static/img/admin-shop-section.png').default}
+  alt="The shop menu in the Sesami Admin, showing the Shop ID"
+/>
+
+Send it in the `x-shop-id` header. Many requests also take it as a path segment in REST (`/api/v1/{shop}/...`) or a `shop` argument in GraphQL.
