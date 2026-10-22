@@ -122,6 +122,23 @@ curl --request POST \
 }
 ```
 
+A booking that doesn't exist returns `null` with an error:
+
+```json
+{
+  "errors": [
+    {
+      "message": "404",
+      "path": ["getAppointment"],
+      "extensions": {
+        "errors": [{ "property": "Appointment", "constraints": [{ "name": "not_found" }] }]
+      }
+    }
+  ],
+  "data": null
+}
+```
+
 </TabItem>
 <TabItem value="rest" label="REST">
 
@@ -254,7 +271,7 @@ To backfill or reconcile, list bookings instead of fetching them one at a time.
 <Tabs groupId="api" queryString>
 <TabItem value="graphql" label="GraphQL" default>
 
-Use the `getAppointments` query. It returns the same booking fields, with `service` and `resources` resolved, plus a `cursor` per item for paging.
+Use the `getAppointments` query with your Shop ID as `shop`. It returns the same booking fields, with `service` and `resources` resolved, plus a `cursor` per item for paging.
 
 </TabItem>
 <TabItem value="rest" label="REST">
