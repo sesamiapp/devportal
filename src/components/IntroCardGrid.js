@@ -34,9 +34,10 @@ const PRODUCTS = [
       "Talk to Sesami's backend directly — programmatic access for integrations, custom workflows, and admin tools.",
     href: '/docs/sesami-api/intro/',
     inside: [
-      {label: 'Personal Access Token', href: '/docs/sesami-api/personal-access-token/'},
-      {label: 'Make a Request', href: '/docs/sesami-api/make-a-request/'},
-      {label: 'Errors', href: '/docs/sesami-api/errors/'},
+      {label: 'Quickstart', href: '/docs/sesami-api/quickstart/'},
+      {label: 'Authentication', href: '/docs/sesami-api/concepts/authentication/'},
+      {label: 'GraphQL and REST', href: '/docs/sesami-api/concepts/graphql-and-rest/'},
+      {label: 'Read a booking', href: '/docs/sesami-api/guides/read-a-booking/'},
     ],
   },
   {

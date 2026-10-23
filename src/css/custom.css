@@ -62,3 +62,12 @@ html[data-theme='dark'] {
 .menu__link--active.menu__link--sublist {
   font-weight: 600;
 }
+
+/* Screenshots in docs: keep them readable without filling the page */
+.doc-screenshot {
+  display: block;
+  max-width: min(100%, 560px);
+  margin: 1rem 0 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+}

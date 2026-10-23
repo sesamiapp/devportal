@@ -1,0 +1,42 @@
+---
+sidebar_position: 1
+sidebar_label: Overview
+title: Sesami API
+description: Read and manage a shop's bookings, services, locations, resources and customers over GraphQL or REST.
+---
+
+The Sesami API gives you programmatic access to a shop's bookings, services, locations, resources and customers. Use it to sync bookings into another system, build an app for Sesami merchants, or automate work in the Sesami Admin.
+
+## GraphQL and REST
+
+Sesami has a GraphQL API and a REST API, both at `https://api.sesami.co`. They run on the same backend, use the same tokens and permissions, and get new features together. Pick the one that suits your stack.
+
+| | GraphQL | REST |
+|---|---|---|
+| Endpoint | `POST /graphql` | `/api/v1/...` |
+| You get | Exactly the fields you ask for, with related records in the same response | A fixed shape per endpoint, with related records as ids |
+| A good fit for | Reading a booking with its customer, service and resources in one request | Simple reads and writes, and tools that expect REST |
+| Reference | [GraphQL reference](./5-reference/2-graphql.md) | [REST reference](./5-reference/1-rest.md) |
+
+Examples on these pages show GraphQL first, with REST one tab away. Your choice of tab carries across the site. [GraphQL and REST](./3-concepts/2-graphql-and-rest.mdx) covers how the two compare.
+
+:::info Bookings are "appointments" in the API
+The API calls bookings **appointments**, so queries, paths and fields use that name: `getAppointment`, `/appointments/{id}`.
+:::
+
+## What you need
+
+- A shop in the [Sesami Admin](https://admin.sesami.co)
+- A **Personal Access Token** and its **Client ID**
+- Your **Sesami Shop ID**
+
+[Authentication](./3-concepts/1-authentication.mdx) shows where to find all three.
+
+## Start here
+
+- **[Quickstart](./2-quickstart.mdx):** make your first request in a few minutes.
+- **[Authentication](./3-concepts/1-authentication.mdx):** tokens, headers, permissions and your Shop ID.
+- **[Read a booking](./4-guides/1-read-a-booking.mdx):** fetch a booking with its customer, service and location.
+- **[Errors](./3-concepts/3-errors.md):** the error format and how to handle it.
+
+Building an app that merchants install? Start with [Sesami Apps](/docs/sesami-apps/intro/), which use the same API with app tokens.

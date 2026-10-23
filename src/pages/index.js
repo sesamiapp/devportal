@@ -109,7 +109,7 @@ export default function Home() {
           ]}
           buttons={[
             {label: 'API reference', href: '/docs/sesami-api/intro/', variant: 'primary'},
-            {label: 'Get a token', href: '/docs/sesami-api/personal-access-token/'},
+            {label: 'Quickstart', href: '/docs/sesami-api/quickstart/'},
           ]}
           codeTitle="fetch.sh"
           codeLanguage="bash"

@@ -1,0 +1,271 @@
+---
+sidebar_position: 1
+description: Fetch a booking with its customer, service, resources and location, in GraphQL or REST.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Read a booking
+
+Fetch a booking with its customer, service, time, resources and location. You need the booking's id, for example from a [list of bookings](#list-bookings) or from your own records.
+
+In the API, bookings are called **appointments**, so queries and paths use that name.
+
+## 1. Fetch the booking
+
+Send the [authentication headers](../3-concepts/1-authentication.mdx). The `Shop:Read` permission is enough.
+
+Pass `timezone` to choose the time zone for `datetime`, `rangeStart` and `rangeEnd`. It takes an IANA name such as `UTC` or `America/New_York`. Use `UTC` and convert on your side to avoid ambiguity.
+
+<Tabs groupId="api" queryString>
+<TabItem value="graphql" label="GraphQL" default>
+
+One query returns the booking with its customer, service and resources:
+
+```graphql
+query GetBooking($shop: String!, $id: String!, $timezone: String) {
+  getAppointment(shop: $shop, id: $id, timezone: $timezone) {
+    id
+    status
+    datetime
+    rangeStart
+    rangeEnd
+    customerTimezone
+    variantTitle
+    quantity
+    price
+    currency
+    orderId
+    orderName
+    locationId
+    customer {
+      id
+      firstName
+      lastName
+      email
+      phone
+    }
+    service {
+      id
+      title
+    }
+    resources {
+      id
+      name
+    }
+    lineItemProperties {
+      id
+      name
+      value
+    }
+  }
+}
+```
+
+```curl
+curl --request POST \
+--header 'content-type: application/json' \
+--header 'x-api-key: YOUR_TOKEN' \
+--header 'x-client-id: YOUR_CLIENT_ID' \
+--header 'x-shop-id: YOUR_SESAMI_ADMIN_SHOP_ID' \
+--url 'https://api.sesami.co/graphql' \
+--data '{"query":"query GetBooking($shop: String!, $id: String!, $timezone: String) { getAppointment(shop: $shop, id: $id, timezone: $timezone) { id status datetime rangeStart rangeEnd customer { firstName lastName email } service { title } resources { name } locationId } }","variables":{"shop":"YOUR_SHOP_ID","id":"64f1c2a9e4b0a7d3c8e91b25","timezone":"UTC"}}'
+```
+
+#### Response
+
+```json
+{
+  "data": {
+    "getAppointment": {
+      "id": "64f1c2a9e4b0a7d3c8e91b25",
+      "status": "pending",
+      "datetime": "2026-10-24 14:44:00",
+      "rangeStart": "2026-10-24 14:44:00",
+      "rangeEnd": "2026-10-24 15:44:00",
+      "customerTimezone": "America/New_York",
+      "variantTitle": "1 hour",
+      "quantity": 1,
+      "price": 100,
+      "currency": "USD",
+      "orderId": null,
+      "orderName": null,
+      "locationId": "64c3d8e2b0a4f6c9e1b2d3a5",
+      "customer": {
+        "id": "64f1c2aae4b0a7d3c8e91b30",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane@example.com",
+        "phone": null
+      },
+      "service": { "id": "64b2e7f1a9c3d5e8f0a1b2c4", "title": "Deep tissue massage" },
+      "resources": [{ "id": "64d4e9f3c1b5a7d0f2c3e4b6", "name": "Alex" }],
+      "lineItemProperties": []
+    }
+  }
+}
+```
+
+A booking that doesn't exist returns `null` with an error:
+
+```json
+{
+  "errors": [
+    {
+      "message": "404",
+      "path": ["getAppointment"],
+      "extensions": {
+        "errors": [{ "property": "Appointment", "constraints": [{ "name": "not_found" }] }]
+      }
+    }
+  ],
+  "data": null
+}
+```
+
+</TabItem>
+<TabItem value="rest" label="REST">
+
+```
+GET https://api.sesami.co/api/v1/{shop}/appointments/{id}?timezone=UTC
+```
+
+| Parameter  | In    | Description |
+|------------|-------|-------------|
+| `shop`     | path  | Your [Sesami (Admin) Shop ID](../3-concepts/1-authentication.mdx#find-your-shop-id). |
+| `id`       | path  | The booking id, for example from a list of bookings. |
+| `timezone` | query | IANA time zone for the booking times. |
+
+```curl
+curl --request GET \
+--header 'x-api-key: YOUR_TOKEN' \
+--header 'x-client-id: YOUR_CLIENT_ID' \
+--header 'x-shop-id: YOUR_SESAMI_ADMIN_SHOP_ID' \
+--url 'https://api.sesami.co/api/v1/YOUR_SESAMI_ADMIN_SHOP_ID/appointments/64f1c2a9e4b0a7d3c8e91b25?timezone=UTC'
+```
+
+#### Response
+
+The service and resources come back as ids. Step 2 shows how to get their names.
+
+```json
+{
+  "id": "64f1c2a9e4b0a7d3c8e91b25",
+  "shopId": "64a0f3d2c1b8e9a7d6f5e4c3",
+  "status": "pending",
+  "customer": {
+    "id": "64f1c2aae4b0a7d3c8e91b30",
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "phone": null
+  },
+  "datetime": "2026-10-24 14:44:00",
+  "rangeStart": "2026-10-24 14:44:00",
+  "rangeEnd": "2026-10-24 15:44:00",
+  "customerTimezone": "America/New_York",
+  "service": "64b2e7f1a9c3d5e8f0a1b2c4",
+  "variantTitle": "1 hour",
+  "locationId": "64c3d8e2b0a4f6c9e1b2d3a5",
+  "resources": ["64d4e9f3c1b5a7d0f2c3e4b6"],
+  "quantity": 1,
+  "price": 100,
+  "currency": "USD",
+  "orderId": null,
+  "orderName": null,
+  "customerManagementLink": null,
+  "lineItemProperties": [],
+  "events": [],
+  "notes": [],
+  "createdAt": "2026-10-22T06:10:21.214Z",
+  "updatedAt": "2026-10-22T06:10:21.214Z"
+}
+```
+
+A booking that doesn't exist returns `404`:
+
+```json
+[{ "property": "Appointment", "constraints": [{ "name": "not_found" }] }]
+```
+
+</TabItem>
+</Tabs>
+
+### Booking fields
+
+| Field | Description |
+|-------|-------------|
+| `status` | Booking status, for example `pending`. |
+| `customer` | The customer who holds the booking. `email` is how most marketing tools match a profile. |
+| `datetime`, `rangeStart`, `rangeEnd` | Start and end as `YYYY-MM-DD HH:mm:ss` in the `timezone` you requested. The string has no offset. |
+| `customerTimezone` | The customer's time zone when they booked. |
+| `service` | The booked service. |
+| `variantTitle` | The option the customer chose, for example a duration. |
+| `locationId` | Location id. See step 2. |
+| `resources` | The team members, rooms or equipment assigned. |
+| `price`, `currency` | Booking price and its currency. |
+| `orderId`, `orderName` | The Shopify order, when the booking has one. |
+| `customerManagementLink` | Link for the customer to manage the booking, when available. |
+| `lineItemProperties` | Answers to the booking form, as `{ id, name, value }`. |
+
+## 2. Add the location and names
+
+The booking references its location by id. Fetch the location for its name, address and time zone. Use the location's `timezone` when you show the booking time to the customer. Locations, services and resources change rarely, so cache them.
+
+<Tabs groupId="api" queryString>
+<TabItem value="graphql" label="GraphQL" default>
+
+The service and resource names already came back in step 1. Fetch the location:
+
+```graphql
+query GetLocation($shop: String!, $locationId: String!) {
+  getLocation(shop: $shop, locationId: $locationId) {
+    id
+    name
+    timezone
+    businessAddress {
+      address
+      suite
+      city
+      state
+      zipCode
+      country
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="rest" label="REST">
+
+| Request | Name field |
+|---------|-----------|
+| `GET /api/v1/{shop}/locations/{id}` | `name`, plus `timezone` and `businessAddress` |
+| `GET /api/v1/{shop}/services/{id}` | `title` |
+| `GET /api/v1/{shop}/resources/{id}` | `name` |
+
+</TabItem>
+</Tabs>
+
+## List bookings
+
+To backfill or reconcile, list bookings instead of fetching them one at a time.
+
+<Tabs groupId="api" queryString>
+<TabItem value="graphql" label="GraphQL" default>
+
+Use the `getAppointments` query with your Shop ID as `shop`. It returns the same booking fields, with `service` and `resources` resolved, plus a `cursor` per item for paging.
+
+</TabItem>
+<TabItem value="rest" label="REST">
+
+```
+GET https://api.sesami.co/api/v1/{shop}/appointments?timezone=UTC
+```
+
+Returns `{ "data": [...] }` with the same booking shape. See the [REST reference](../5-reference/1-rest.md) for filters and paging.
+
+</TabItem>
+</Tabs>

@@ -171,6 +171,18 @@ module.exports = {
       },
     ],
   ],
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {from: '/docs/sesami-api/personal-access-token', to: '/docs/sesami-api/concepts/authentication/'},
+          {from: '/docs/sesami-api/make-a-request', to: '/docs/sesami-api/quickstart/'},
+          {from: '/docs/sesami-api/errors', to: '/docs/sesami-api/concepts/errors/'},
+        ],
+      },
+    ],
+  ],
   scripts: [
     {
       src:
