@@ -17,7 +17,7 @@ POST https://api.sesami.co/graphql
 | Query | Arguments | Returns |
 |---|---|---|
 | `getShops` | — | The shops your token can reach, in `data` |
-| `getAppointment` | `shop: String`, `id: String!`, `timezone: String` | One booking, with `customer`, `service` and `resources` |
+| `getAppointment` | `shop: String!`, `id: String!`, `timezone: String` | One booking, with `customer`, `service` and `resources` |
 | `getAppointments` | `shop: String!`, `limit`, `after`, `before`, `timezone`, `locationId` | A page of bookings in `data`, with `nextCursor` |
 | `getLocation` | `shop: String!`, `locationId: String!` | One location, with `name`, `timezone` and `businessAddress` |
 
