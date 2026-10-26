@@ -48,6 +48,11 @@ Our platform support Read-only permission at this time.
 :::
 
 This endpoint redirects the user to the Sesami consent page, where the user decides whether to accept or deny your requested permissions. If the user accepts, Sesami sends an authorization code to your specified redirect URI.
+
+`shopId` is optional. Leave it out when the install starts outside Sesami, for example from another platform's app marketplace, and your app doesn't know the shop yet. Sesami then asks the user to log in and choose a shop before the consent page. The `shopId` in the callback tells you which shop they chose.
+
+If your app is already installed on the chosen shop with the same scopes, Sesami skips the consent page and sends a new authorization code straight to your redirect URI.
+
 The callback URL format is:
 ```typescript
 https://your-app-domain/your-callback-url?code=string&shopId=string&timestamp=string&hmac=string
