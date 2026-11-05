@@ -73,49 +73,92 @@ window.sesami
 
 ### getConfig()
 
-Retrieves the service configuration, including details about the service, shop, and more.
+Fetches the storefront configuration for the current product. Use it to drive pickers and labels in a custom booking UI: locations (including timezone and resource groups), team members, instant booking and reservation settings, date/time formatting, locale, translations, and feature flags.
 
 #### **Returns:**
 
-- **Shop Details**: Shop name, base URL, etc.
-- **Service Details**: Title, product image, customer management options, etc.
-- **Locations**: Available locations and resources for the service.
-- **Instant Booking Status**: Whether instant booking is enabled and required fields.
-- **Date/Time Format**: Customizable date and time formatting.
-- **Extensions**: List of installed apps extensions.
-- **Locale and Translations**: Localized strings for the storefront.
-- **Features**: Shop features based on plan and other settings.
+- **Shop**: `shopId`, `shop`, `origin`, and Sesami `baseURL`.
+- **Product**: Service `title` and the `product` object (image, group size, cancel/reschedule settings).
+- **Team members**: Top-level `teamMembers` list, plus `defaultTeamMemberAvatar` / `defaultResourceAvatar`.
+- **Locations**: `locations[]` with timezone, contact fields, and `resourceGroups` (`hideAnyAvailable`, `resources`).
+- **Booking**: `reservation` (hold duration in minutes) and `instantBooking` (`enabled`, `requiredFields`).
+- **Storefront display**: `locale`, `dateFormat`, `timeFormat`, `hideTimezone`, `calendarExperience`, `storefrontButtonLabel`, `storefrontStartDate`, `removeBranding`, `sesamiBrand`.
+- **Extensions**: Installed app extensions (empty array when none are installed).
+- **Translations**: Localized storefront strings.
+- **Features**: Plan/feature flags enabled for the shop.
 
 ```json title="Config Response Example"
 {
-  "title": "Cat Massage",
-  "shop": "cat-massage.myshopify.com",
-  "shopId": "73ej83874241b002709b8db",
-  "calendarExperience": "CLASSIC",
-  "product": {
-    "id": "644c0db76u3a2ff85c9088fad",
-    "image": "https://sesami-pos.myshopify.com/cdn/shop/files/Cats-Massaging.jpg",
-    "location": null,
-    "customerCanCancel": true,
-    "customerCanReschedule": true,
-    "customerCanManageBefore": null,
-    "groupAppointment": 3,
-    "flexStartInterval": null
-  },
-  "timeFormat": "12",
-  "dateFormat": "dd NN yyyy hh:mm",
-  "hideTimezone": true,
-  "reservation": 15,
-  "instantBooking": {
-    "enabled": true,
-    "requiredFields": [
-      "firstName",
-      "lastName",
-      "email",
-      "phone"
-    ]
+  "shopId": "64f0a1b2c3d4e5f678901234",
+  "shop": "example.myshopify.com",
+  "origin": "example.myshopify.com",
+  "baseURL": "https://storefront.sesami.co",
+  "defaultTeamMemberAvatar": "https://cdn.sesami.co/static/default_avatar.png",
+  "defaultResourceAvatar": "https://cdn.sesami.co/static/default_avatar.png",
+  "features": {
+    "REMOVE_BRANDING": true,
+    "STOREFRONT_FULL_EXPERIENCE": true
   },
   "locale": "en",
+  "dateFormat": "dd NN yyyy hh:mm",
+  "timeFormat": "12",
+  "hideTimezone": false,
+  "storefrontStartDate": null,
+  "storefrontButtonLabel": "Select Time",
+  "calendarExperience": "V2",
+  "removeBranding": false,
+  "sesamiBrand": "<span>We book with <a target='_blank' href='https://sesami.co'><img alt='Sesami icon' src='https://cdn.sesami.co/icon.png' width='16'/> Sesami</a></span>",
+  "title": "Example Service",
+  "product": {
+    "id": "64f0a1b2c3d4e5f678901235",
+    "title": "Example Service",
+    "image": "https://cdn.shopify.com/s/files/1/0000/0000/0000/files/example.jpg",
+    "location": null,
+    "groupAppointment": 1,
+    "flexStartInterval": null,
+    "customerCanCancel": false,
+    "customerCanReschedule": false,
+    "customerCanManageBefore": null
+  },
+  "reservation": 10,
+  "instantBooking": {
+    "enabled": false,
+    "requiredFields": [
+      "email",
+      "firstName",
+      "lastName"
+    ]
+  },
+  "teamMembers": [
+    {
+      "id": "64f0a1b2c3d4e5f678901236",
+      "name": "Alex",
+      "description": null,
+      "image": {
+        "id": "64f0a1b2c3d4e5f678901237",
+        "url": "https://cdn.sesami.co/uploads/avatar/64f0a1b2c3d4e5f678901237.jpg"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "64f0a1b2c3d4e5f678901238",
+      "name": "Main Location",
+      "description": null,
+      "image": null,
+      "timezone": "America/New_York",
+      "phone": null,
+      "email": null,
+      "businessAddress": null,
+      "resourceGroups": [
+        {
+          "hideAnyAvailable": false,
+          "resources": []
+        }
+      ]
+    }
+  ],
+  "extensions": [],
   "translations": {
     "you_can_action_until_the_appointment_starts": "You can {action} until the appointment starts.",
     "number_left": "{number} left",
@@ -141,6 +184,10 @@ Retrieves the service configuration, including details about the service, shop, 
     "time": "Time",
     "timezone": "Timezone",
     "team_member": "Team Member",
+    "resources": "Resources",
+    "verify_cart_error_slot_unavailable": "Unfortunately this time slot is not available anymore. Please remove this item and book again.",
+    "verify_cart_error_time_not_selected": "No time slot selected, Please remove this item and select a date and time.",
+    "verify_cart_error_team_member_not_found": "Team member not found",
     "brand_text": "We book with {sesami}",
     "return": "Return",
     "reschedule": "Reschedule",
@@ -150,108 +197,43 @@ Retrieves the service configuration, including details about the service, shop, 
     "click_here": "Click here",
     "all": "All",
     "next": "Next",
-    "location": "Location"
-  },
-  "locations": [
-    {
-      "id": "67a5402b1297947834b02ff0",
-      "name": "Paris",
-      "image": {
-        "id": "default",
-        "url": null
-      },
-      "description": "",
-      "resourceGroups": [
-        {
-          "hideAnyAvailable": false,
-          "resources": [
-            {
-              "name": "Ehsan",
-              "id": "646fea87b3e0a998a17dc047",
-              "image": {
-                "id": "default",
-                "url": "https://app.sesami.co/static/default_avatar.png"
-              },
-              "type": "Team Member"
-            },
-            {
-              "name": "Alex",
-              "id": "65cb1fc98ccab3356ea492dc",
-              "image": {
-                "id": "default",
-                "url": "https://app.sesami.co/static/default_avatar.png"
-              },
-              "type": "Team Member"
-            }
-          ]
-        },
-        {
-          "hideAnyAvailable": true,
-          "resources": [
-            {
-              "name": "Room 1",
-              "id": "666abc785590b39decacb1d9",
-              "image": {
-                "id": "67b6dec4745b3370e6535bb1",
-                "url": null
-              },
-              "type": "Room"
-            },
-            {
-              "name": "Room 2",
-              "id": "67b59a6245aa681b2893d274",
-              "image": {
-                "id": "default",
-                "url": null
-              },
-              "type": "Room"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "defaultResourceAvatar": "https://app.sesami.co/static/default_avatar.png",
-  "storefrontStartDate": null,
-  "storefrontButtonLabel": "Select Time",
-  "baseURL": "https://app.sesami.co",
-  "sesamiBrand": "<span>We book with <a target='_blank' href='https://sesami.co'><img alt='Sesami icon' src='https://app.sesami.co/static/icon.png' width='16'/> Sesami</a></span>",
-  "removeBranding": false,
-  "extensions": [
-    {
-      "_id": "673489f69cf7e3fb4aedbca0",
-      "name": "Form loader",
-      "url": "https://formsapp.sesami.co/experience/formLoader",
-      "target": "EXPERIENCE_INSTANT_BOOKING_FORM",
-      "isAdmin": false,
-      "appId": "66b4712057bc573a3a98bb5c",
-      "appName": "sesami-forms-app"
-    },
-    {
-      "_id": "6739df8c6ce9a73e1e8d64c8",
-      "name": "Confirmation page",
-      "url": "https://formsapp.sesami.co/experience/confirmation",
-      "target": "EXPERIENCE_CONFIRMATION_PAGE",
-      "isAdmin": false,
-      "appId": "66b4712057bc573a3a98bb5c",
-      "appName": "sesami-forms-app"
-    }
-  ],
-  "features": {
-    "CALENDAR_SYNC": true,
-    "REMOVE_BRANDING": true,
-    "SERVICE_HOURS": false,
-    "APPOINTMENT_MANAGEMENT": true,
-    "GROUP_APPOINTMENTS": true,
-    "APPOINTMENT_REPORT": true,
-    "RESERVATION": true,
-    "STOREFRONT_SDK": true,
-    "FLOWS": true,
-    "INSTANT_BOOKING": true,
-    "STOREFRONT_CALENDAR_V2": true,
-    "EXPERIENCE_SELECTOR": true,
-    "STOREFRONT_FULL_EXPERIENCE": true,
-    "MULTI_LOCATION": true
+    "location": "Location",
+    "cancel_appointment": "Cancel Appointment",
+    "reschedule_appointment": "Reschedule",
+    "appointment_management_alert": "until {numberOfHours} hours before the appointment starts: {formattedDateAndTime}",
+    "session_expired": "Session expired",
+    "storefront_selected_slot": "Selected slot",
+    "storefront_input_label_first_name": "First name",
+    "storefront_input_label_last_name": "Last name",
+    "storefront_input_label_email": "Email",
+    "storefront_input_label_phone": "Phone",
+    "storefront_input_label_country_code": "Country code",
+    "storefront_input_validation_field_is_required": "{fieldName} is required",
+    "storefront_input_validation_field_is_invalid": "Invalid value",
+    "storefront_input_validation_please_enter_a_valid_phone_number": "Please enter a valid phone number",
+    "storefront_input_label_country_code_suggested": "Suggested",
+    "error_storefront_session_expired": "Please reload the page and try again.",
+    "storefront_reservation_notice": "The selected slot will be reserved for {reservationPeriod} minutes",
+    "storefront_reservation_error_generic": "Something went wrong, please reload the page and try again.",
+    "storefront_reservation_error_bad_request": "Slot could not be reserved, please try again.",
+    "storefront_reservation_error_slot_unavailable": "Someone else has already booked this time, please select another time.",
+    "storefront_book_success_message": "Thanks for booking an appointment with us, You can now close this window",
+    "storefront_book_error_generic": "Something went wrong, please reload the page and try again.",
+    "storefront_book_error_validation": "Please enter a valid value for highlighted field(s)",
+    "storefront_book_error_slot_unavailable": "Someone else has already booked this time, please select another time.",
+    "error_loading_calendar": "There was an error loading the calendar",
+    "error_ratelimit": "Too many requests, please retry after a few minutes.",
+    "try_again": "Try again",
+    "appointment_management_expired_management_period": "This appointment can no longer be managed. allowed period has already expired",
+    "appointment_management_product_deleted": "Couldn't find service, Please contact store.",
+    "appointment_management_disabled_cancellation": "This appointment can't be cancelled, Please contact store.",
+    "appointment_management_disabled_rescheduling": "This appointment can't be rescheduled, Please contact store.",
+    "appointment_management_limit_reached": "This appointment can't be rescheduled, Limit reached.",
+    "appointment_management_rescheduled_successfully_title": "Appointment rescheduled successfully",
+    "appointment_management_rescheduled_successfully_description": "<p>You will receive a confirmation email soon.</p><p>You can now close this window.</p>",
+    "appointment_management_cancellation_failed": "Could not cancel appointment",
+    "appointment_management_cancelled_successfully_title": "Appointment cancelled successfully",
+    "appointment_management_cancelled_successfully_description": "<p>You can now close this window.</p>"
   }
 }
 ```
